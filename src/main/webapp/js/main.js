@@ -1,5 +1,5 @@
 
-require(['/quickforms/js/quickforms.js'],function(){
+require(['quickforms/quickforms'],function(){
 	quickforms.registerReadyFunction(function()
 	{
 		require(['server/getFactData','server/putFact'],

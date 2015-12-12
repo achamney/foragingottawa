@@ -1,6 +1,7 @@
-var dojoConfig = { 
-	paths: { quickforms: location.pathname.replace(/\/[^/]+$/, "") + "/quickforms/js/",
-			js: "js/",
+var root=location.pathname.replace(/\/[^/]+$/, "");
+window.dojoConfig = { 
+	paths: { quickforms:  root+ "../quickforms/js/",
+			js: root+"/js/",
 			"dom":  "/quickforms/js/dom/",
 			"server":  "/quickforms/js/server/",
 			"helper":  "/quickforms/js/helper/",
