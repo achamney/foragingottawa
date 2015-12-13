@@ -10,14 +10,33 @@
   <link rel="stylesheet" href="https://js.arcgis.com/3.14/esri/css/esri.css" /> 
 </head>
 <body>
-  <div id="mainMap"></div>
   <div class="container">
     <h1>Foraging Ottawa</h1>
-    <p>Hang tight while we create content</p>  
+    <div id="mainMap">
+      
+      <div class="popup hide" id="addPointPopup">
+        <h4>Add Location</h4>
+        <div>Name:</div> 
+        <input class="form-control" id="addPointName" name="name" type="text"/>
+        <div>Image Url: <a href="http://imgur.com" target="new">Upload</a></div>
+        <input class="form-control" id="addPointImg" name="img" type="text"/>
+        <br>
+        <div class="btn-group">
+          <button class="btn btn-default cancel">Cancel</button>
+          <button class="btn btn-primary ok">Submit</button>
+        </div>
+      </div>
+      
+      <div class="popup hide" id="showPointPopup">
+        <h4 id="popupName" class="popup-name"></h4>
+        <img id="popupImage" class="popup-img"/>
+      </div>
+      
+    </div>
   </div>
   
   <script src="js/dojoconfig.js"></script>
-  <script src="http://js.arcgis.com/3.14/"></script>
+  <script src="https://js.arcgis.com/3.14/"></script>
   
   <script src="js/terraformer.js"></script>
   <script src="js/terraformer-wkt.js"></script>
