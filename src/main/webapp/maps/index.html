@@ -5,8 +5,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Welcome to Foraging Ottawa</title>
-  <link href="css/main.css" rel="stylesheet" />
-  <link href="css/bootstrap.css" rel="stylesheet" />
+  <link href="../css/main.css" rel="stylesheet" />
+  <link href="css/map.css" rel="stylesheet" />
+  <link href="../css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://js.arcgis.com/3.14/esri/css/esri.css" /> 
 </head>
 <body>
@@ -16,29 +17,44 @@
       <span class="nav-item"><a href="http://foragingottawa.ca">Home</a></span>  
       <span class="nav-item active"><a href="maps">Maps</a></span>  
       <span class="nav-item"><a href="http://foragingottawa.ca">About</a></span>  
+      <span class="nav-item"><a href="http://foragingottawa.ca">Forum</a></span>  
     </div>
   </div>
   <div class="container content">
-    <div id="mainMap">
+    
+    
+    <div class="col-sm-4" id="addPointForm">
+      <h4>Add Location</h4>
+      <label>Date Visited:</label>
+      <input type="text" name="date" class="date form-control" id="formDate"/>
+      <label>Name:</label> 
+      <input class="form-control" id="addPointName" name="name" type="text"/>
+      <label>Image Url: <a href="http://imgur.com" target="new">Upload</a></label>
+      <input class="form-control" id="addPointImg" name="img" type="text"/>
       
-      <div class="popup hide" id="addPointPopup">
-        <h4>Add Location</h4>
-        <div>Name:</div> 
-        <input class="form-control" id="addPointName" name="name" type="text"/>
-        <div>Image Url: <a href="http://imgur.com" target="new">Upload</a></div>
-        <input class="form-control" id="addPointImg" name="img" type="text"/>
-        <br>
-        <div class="btn-group">
-          <button class="btn btn-default cancel">Cancel</button>
-          <button class="btn btn-primary ok">Submit</button>
+      <label>Description:</label> 
+      <textarea class="form-control" id="addPointDescription" name="description" type="text"></textarea>
+      <label>X/Y:</label> 
+      <div>
+        <div class="col-xs-6"><input class="form-control" id="addPointLat" name="latitude" type="text"/></div>
+        <div class="col-xs-6"><input class="form-control" id="addPointLong" name="longitude" type="text"/></div>
+      </div>
+      <br>
+      <div class="btn-group">
+        <button class="btn btn-default cancel">Cancel</button>
+        <button class="btn btn-primary ok">Submit</button>
+      </div>
+    </div>
+    
+    
+    <div class="col-sm-8">
+      <div id="mainMap">
+        <div class="popup hide" id="showPointPopup">
+          <h4 id="popupName" class="popup-name"></h4>
+          <img id="popupImage" class="popup-img"/>
         </div>
+        
       </div>
-      
-      <div class="popup hide" id="showPointPopup">
-        <h4 id="popupName" class="popup-name"></h4>
-        <img id="popupImage" class="popup-img"/>
-      </div>
-      
     </div>
   </div>
   

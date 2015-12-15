@@ -18,9 +18,15 @@ var Popup = declare([], {
 	},
 	
 	show: function (event) {
-		this.dom.show();
-		this.dom.css({left:event.screenPoint.x,
-					  top: event.screenPoint.y});
+		this.dom.removeClass("hide");
+		var top = event.screenPoint.y,
+			left = event.screenPoint.x;
+		if(left+this.dom.width()-12 > this.dom.parent().width())
+			left =  this.dom.parent().width() - this.dom.width()-12;
+		if(top+this.dom.height()-12 > this.dom.parent().height())
+			top =  this.dom.parent().height() - this.dom.height()-12;
+		this.dom.css({left:left,
+					  top: top});
 					  
 		this.blocker = $('<div class="blocker"></div>');
 		$('body').append(this.blocker);
@@ -55,7 +61,7 @@ var Popup = declare([], {
 	},
 	
 	hide: function() {
-		this.dom.hide();
+		this.dom.addClass("hide");
 		this.blocker.remove();
 	},
 	

@@ -1,17 +1,13 @@
 html,body{ height: 100% }
-body{ background: url('../img/bg.jpg'); } /*http://cwf-fcf.org/en/discover-wildlife/flora-fauna/flora/winterberry.html*/
-#mainMap{
-	width:100%;
-	height:100%;
-	position:absolute;
-	top:0;
-	left:0;
-	z-index: -1;
-}
+body{ 
+	background: url('../img/bg2.jpg'); /*http://graphicriver.net/item/vector-floral-seamless-pattern/3547898*/       
+	background: url('../img/bg3.jpg'); /* http://www.shutterstock.com/cat.mhtml?country_code=US&safesearch=1&search_language=en&search_type=similar&similar_photo_id=102874691&tracking_id=VAJHRNwqcUfIAKilaTYdOw&page=1&inline=205363717 */
+	background: url('../img/bg.jpg'); /*http://cwf-fcf.org/en/discover-wildlife/flora-fauna/flora/winterberry.html*/
+} 
 body .container.content{
 	background-color: rgba(255,255,255,0.9);
 	padding:20px;
-	height:100%;
+	height:auto;
 }
 .nav-container{
 	background: #b4ddb4; /* Old browsers */
@@ -26,7 +22,7 @@ body .container.content{
 #nav .nav-item a { 
 	padding:0px 5px;
 	color: white;
-	height:33px;
+	height:40px;
 	display:inline-block;
 	padding-top:10px;
 }
