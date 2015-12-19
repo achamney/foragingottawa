@@ -18,15 +18,14 @@ var Popup = declare([], {
 	},
 	
 	show: function (event) {
+		var  _this = this;
 		this.dom.removeClass("hide");
 		var top = event.screenPoint.y,
 			left = event.screenPoint.x;
-		if(left+this.dom.width()-12 > this.dom.parent().width())
-			left =  this.dom.parent().width() - this.dom.width()-12;
-		if(top+this.dom.height()-12 > this.dom.parent().height())
-			top =  this.dom.parent().height() - this.dom.height()-12;
-		this.dom.css({left:left,
-					  top: top});
+		window.setTimeout(function(){
+			_this.popupBoundaryCheck(left,top,_this.dom);
+		},500);
+		_this.popupBoundaryCheck(left,top,_this.dom);
 					  
 		this.blocker = $('<div class="blocker"></div>');
 		$('body').append(this.blocker);
@@ -50,7 +49,14 @@ var Popup = declare([], {
 				attr.html(attributes[key]);
 		}	
 	},
-	
+	popupBoundaryCheck(left,top,dom){
+		if(left+dom.width()-12 > dom.parent().width())
+			left =  dom.parent().width() - dom.width()-12;
+		if(top+dom.height()-12 > dom.parent().height())
+			top =  dom.parent().height() - dom.height()-12;
+		dom.css({left:left,
+					top: top});
+	},
 	appendData: function(attributeList, data) {
 		attributeList.forEach(dojo.hitch(this,function(attr) {
 			var val = $('#'+attr,this.dom).val();

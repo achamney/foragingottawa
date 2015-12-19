@@ -43,3 +43,6 @@ body label {
 	padding: 10px 20px;
 	background-color: white;
 }
+.navbar .dropdown-menu{
+	padding:10px;
+}
