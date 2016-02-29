@@ -1,0 +1,41 @@
+<div class="container content">
+
+
+
+    <div class="col-sm-8">
+        <div id="mainMap">
+            <div class="popup hide" id="showPointPopup">
+                <h4 id="popupName" class="popup-name"></h4>
+                <img id="popupImage" class="popup-img" />
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-sm-4" id="addPointForm">
+        <h4>Add Location</h4>
+        <label>Date Visited:</label>
+        <input type="text" name="date" class="date form-control" id="formDate" />
+        <label>Name:</label>
+        <input class="form-control" id="addPointName" name="name" type="text" />
+        <label>Image Url: <a href="http://imgur.com" target="new">Upload</a></label>
+        <input class="form-control" id="addPointImg" name="img" type="text" />
+
+        <label>Description:</label>
+        <textarea class="form-control" id="addPointDescription" name="description" type="text"></textarea>
+        <label>X/Y:</label>
+        <div>
+            <div class="col-xs-6">
+                <input class="form-control" id="addPointLat" name="latitude" type="text" />
+            </div>
+            <div class="col-xs-6">
+                <input class="form-control" id="addPointLong" name="longitude" type="text" />
+            </div>
+        </div>
+        <br>
+        <div class="btn-group">
+            <button class="btn btn-default cancel">Cancel</button>
+            <button class="btn btn-primary ok">Submit</button>
+        </div>
+    </div>
+</div>

@@ -7,7 +7,7 @@ window.dojoConfig = {
 			"helper":  "/quickforms/js/helper/",
 			"jquery":  "/quickforms/js/jquery/",
 			"google":  "/quickforms/js/google/", 
-			'foragingottawa':  "js/",
+			'foragingottawa':  root+"js/",
 			'jq': '/quickforms/js/jquery/jquery-1.7.1.min'
 	}	
 };

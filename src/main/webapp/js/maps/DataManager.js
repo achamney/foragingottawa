@@ -11,7 +11,7 @@ define([
 	"esri/Color",
 	
 	"esri/renderers/SimpleRenderer",
-	"foragingottawa/Popup"
+	"foragingottawa/maps/Popup"
 			
 ],function(declare,Deferred,
 			GraphicsLayer,
