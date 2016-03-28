@@ -1,0 +1,13 @@
+
+<div class="container content">
+    <h1 class="header">Forum</h1>
+    <div class="boards">
+        <div class="board" *ngFor="#board of boards">
+            <div class="board-icon" [class.active]="board.icon==='active'">
+            </div>
+            <div class="board-text">
+                <div>{{board.name}}</div> <small> {{board.description}} </small>
+            </div>
+        </div>
+    </div>
+</div>

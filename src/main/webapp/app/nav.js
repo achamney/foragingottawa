@@ -1,7 +1,7 @@
 define([], function () {
     return ng.core.Component({
         selector: 'nav',
-        templateUrl: 'js/nav.html',
+        templateUrl: 'app/nav.html',
         inputs: ['page'],
         outputs: ['changePage']
     }).Class({

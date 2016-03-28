@@ -1,0 +1,36 @@
+.header {
+    text-align: center;
+    background-color: #666;
+    color: white;
+    padding: 10px;
+    margin: 0 -20px;
+}
+.boards {
+    background-color: #DDD;
+    padding: 10px;
+    margin: 0 -20px;
+}
+.board {
+    background-color:#DDD;
+    box-shadow: 0 0 1px 1px #999;
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+}
+.board:hover {
+    background-color: #DDF
+}
+.board-icon {
+    display: inline-block;
+    width:30px;
+    height: 30px;
+}
+.board-text {
+    display: inline-block;
+}
+
+
+
+div, h1, p {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}

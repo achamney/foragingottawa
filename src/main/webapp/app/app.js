@@ -9,7 +9,7 @@ require([
             
     var Main = ng.core.Component({
         selector: 'app',
-        templateUrl: 'js/app.html',
+        templateUrl: 'app/app.html',
         directives: [Nav, Home, Maps, Forum]
     }).Class({
         constructor: function () { 

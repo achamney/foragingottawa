@@ -4,12 +4,12 @@ define(['esri/map','foragingottawa/maps/DataManager', 'foragingottawa/maps/FormM
                 function(Map, DataManager, FormManager){
     return ng.core.Component({
         selector: 'maps',
-        templateUrl: 'js/maps/map.html'
+        templateUrl: 'app/maps/map.html'
     }).Class({
 
         constructor: function () {
             if(!hasLoaded) {
-                quickforms.loadCss('js/maps/css/map.css');
+                quickforms.loadCss('app/maps/css/map.css');
                 hasLoaded = true;
             }
 
