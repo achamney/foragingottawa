@@ -15,7 +15,7 @@
             
             <li class="nav-item" 
                     [class.active]="page===nav.id" 
-                    *ngFor="#nav of navs"
+                    *ngFor="let nav of navs"
                     (click)="changeTab(nav)">
                 <a [href]='"#?page="+nav.id'>{{nav.title}}</a>
             </li>

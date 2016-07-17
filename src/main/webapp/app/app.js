@@ -1,16 +1,14 @@
 require([
         'foragingottawa/nav',
         'foragingottawa/home',
-        'foragingottawa/maps/map',
         'foragingottawa/forum/forum',
-        '/quickforms/js/quickforms.js',
         'dojo/domReady!'
-        ], function (Nav, Home, Maps, Forum) {
+        ], function (Nav, Home, Forum) {
             
     var Main = ng.core.Component({
         selector: 'app',
         templateUrl: 'app/app.html',
-        directives: [Nav, Home, Maps, Forum]
+        directives: [Nav, Home, Forum]
     }).Class({
         constructor: function () { 
             this.page = 1;
@@ -19,7 +17,7 @@ require([
             }
         }
     });
-    ng.platform.browser.bootstrap(Main);
+    ng.platformBrowserDynamic.bootstrap(Main);
 });
 
 

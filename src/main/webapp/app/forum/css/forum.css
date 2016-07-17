@@ -14,21 +14,40 @@
     background-color:#DDD;
     box-shadow: 0 0 1px 1px #999;
     width: 100%;
-    padding: 10px;
     cursor: pointer;
+    display: flex;
+}
+.board.header-board {
+    font-weight: 700;
 }
 .board:hover {
     background-color: #DDF
 }
-.board-icon {
-    display: inline-block;
-    width:30px;
-    height: 30px;
+.board .board-cell {
+    border-right: 1px solid black;
+    padding: 5px;
 }
-.board-text {
-    display: inline-block;
+.board .board-icon {
+    width:50px;
 }
-
+.board .board-text {
+    flex: 5;
+}
+.board .board-threads {
+    text-align: center;
+    width: 70px;
+}
+.board .board-posts {
+    text-align: center;
+    width: 70px;
+}
+.board .board-latest-post {
+    padding: 5px;
+    flex: 2;
+}
+.clear {
+    clear: both;
+}
 
 
 div, h1, p {
