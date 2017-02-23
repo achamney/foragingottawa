@@ -1,8 +1,15 @@
 
 <div class="container content">
-    <div class="col-md-8">
-        <h4><b>Take Advantage </b> of the greatest gift given to us by nature  </h4>
-        <p>We are surrounded by useful vegetation in Ottawa. Let's get together and forage</p>
+    <div class="col-md-8 home">
+        <h4><b>Take Advantage </b> of the greatest gift given to us by nature and our city.</h4>
+        <p>In Ottawa we are blessed with abundant useful vegetation, free stuff, and a great community. Let's get together and forage!</p>
+        <hr>
+        <div *ngFor="let blogPost of blogPosts" class="blog-post">
+            <h3>{{blogPost.name}}</h3>
+            <img *ngIf="blogPost.img" [src]="blogPost.img" width="300px"/>
+            <text [textContainer]="tx" [text]="blogPost.description"><div #tx></div></text>
+            <map *ngIf="blogPost.latitude" [coordinates]="blogPost" [map]="m"><div #m></div></map>
+        </div>
     </div>
     <div class="col-md-4">
         <img src="img/photoreel1.jpg" width="100%">

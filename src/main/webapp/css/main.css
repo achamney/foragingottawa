@@ -4,6 +4,9 @@ body{
 	background: url('../img/bg3.jpg'); /* http://www.shutterstock.com/cat.mhtml?country_code=US&safesearch=1&search_language=en&search_type=similar&similar_photo_id=102874691&tracking_id=VAJHRNwqcUfIAKilaTYdOw&page=1&inline=205363717 */
 	background: url('../img/bg.jpg'); /*http://cwf-fcf.org/en/discover-wildlife/flora-fauna/flora/winterberry.html*/
 } 
+body * {
+	font-size: 15px;
+}
 body .container.content{
 	background-color: rgba(255,255,255,0.9);
 	padding:20px;
@@ -42,4 +45,23 @@ body .container.content{
 #nav .nav-item a:hover, .nav-item.active a{
 	text-decoration: none;
 	background-color:rgba(255,255,255,0.1);
+}
+nav .disabled{
+	text-decoration: none;
+	background-color:rgba(0,0,0,0.1);
+}
+.home {
+	padding: 10px;
+}
+.home hr {
+	border-top-color: #999;
+}
+.blog-post text {
+	margin-bottom: 10px;
+	display: block;
+}
+.blog-post img {
+	float: left;
+	margin-right: 15px;
+	margin-bottom: 15px;
 }

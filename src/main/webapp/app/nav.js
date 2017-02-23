@@ -13,16 +13,23 @@ define([], function () {
                     title: "Home"
                 }, {
                     id:2,
-                    title: "Maps"
+                    title: "Maps",
+                    disabled: true
                 }, {
                     id:3,
-                    title: "About"
+                    title: "About",
+                    disabled: true
                 }, {
                     id:4,
-                    title: "Forum"
+                    title: "Forum",
+                    disabled: true
                 }];
         },
-        changeTab: function(nav) {
+        ngOnInit: function() {
+            this.username = quickforms.username;
+        },
+        changeTab: function(nav, e) {
+            if(nav.disabled) return;
             this.page = nav.id;
             this.changePage.next(nav.id);
         }

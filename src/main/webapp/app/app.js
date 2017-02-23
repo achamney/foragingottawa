@@ -1,20 +1,24 @@
 require([
         'foragingottawa/nav',
         'foragingottawa/home',
+        'foragingottawa/subscribe',
         'foragingottawa/forum/forum',
         'dojo/domReady!'
-        ], function (Nav, Home, Forum) {
+        ], function (Nav, Home, Subscribe, Forum) {
             
     var Main = ng.core.Component({
         selector: 'app',
         templateUrl: 'app/app.html',
-        directives: [Nav, Home, Forum]
+        directives: [Nav, Home, Forum, Subscribe]
     }).Class({
         constructor: function () { 
             this.page = 1;
             if(QueryString['page']) {
                 this.page=parseInt(QueryString['page']);
             }
+        }, 
+        changePage: function(page) {
+            this.page=page;
         }
     });
     ng.platformBrowserDynamic.bootstrap(Main);

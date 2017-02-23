@@ -1,0 +1,30 @@
+
+<div class="container content">
+    <form id="formTemplate">
+        <h1>Subscribe to Foraging Ottawa</h1>
+        <p>Subscribing will give you access to post on the forums, and receive notifications for recent posts</p>
+
+        <label for="email">Email</label><br>
+        <input type="text" name = "email" id = "email" value = ""/>
+
+        <br />
+        <label for="username">Username</label><br>
+        <input type="text" name = "username" id = "username" value = ""/>
+
+        <br />
+        
+        <label for="password">Password</label><br>
+        <input type="password" name = "password" id = "password" value = ""/>
+
+        <br><br>
+
+        <captcha [container]="c" (cb)="resolveCaptcha($event)"><div #c></div></captcha>
+
+        <br>
+
+        <div class="buttons design delete">
+            <div class="btn btn-primary" [class.disabled]="!captchad" (click)="submitForm(btn)" 
+                data-icon="check" data-theme="b" data-inline="true" #btn>Subscribe</div>
+        </div>
+    </form>
+</div>

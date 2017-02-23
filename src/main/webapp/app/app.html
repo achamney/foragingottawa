@@ -1,8 +1,9 @@
 <nav class="navbar navbar-fixed-top navbar-default" 
     id="forageNav" [page]="page"
-    (changePage)="page=$event">
+    (changePage)="changePage($event)">
 </nav>
 
 <home *ngIf="page===1"></home>
 <maps *ngIf="page===2"></maps>
 <forum *ngIf="page===4"></forum>
+<subscribe *ngIf="page===10"></subscribe>
