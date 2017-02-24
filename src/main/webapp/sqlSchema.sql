@@ -110,12 +110,13 @@ CREATE TABLE `fact_users` (
   `username` text NOT NULL,
   `password` text NOT NULL,
   `email` text NOT NULL,
-  `createdDate` datetime DEFAULT NULL,
+  `createdDate` varchar(20) DEFAULT NULL,
   `avatar` text,
   `member_title` text,
   `signature` text,
+  `token` varchar(130),
   `deleteFlag` int(11) DEFAULT NULL,
-  PRIMARY KEY (`usersKey`)
+  PRIMARY KEY (`usersKey`,`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `lkup_userrole` (

@@ -19,13 +19,24 @@ define([
 
         submitForm: function (el) {
             if(!this.captchad) return;
+            var redir = quickforms.formRedirect;
+            quickforms.formRedirect = this.success;
             quickforms.putFact(el, "/");
-            var username = quickforms.currentFormformTemplate.children.filter(function(c){return c && c.id==="username"})[0];
-            setCookie("username", username.currentVal);
+            quickforms.formRedirect = redir;
         },
         
         resolveCaptcha: function(cap) {
             this.captchad = cap;
+            var captcha = quickforms.currentFormformTemplate.children.filter(function(c){return c && c.id==="captcha"})[0];
+            captcha.currentVal = cap;
+        },
+
+        success: function(data) {
+            var username = quickforms.currentFormformTemplate.children.filter(function(c){return c && c.id==="username"})[0];
+            setCookie("username", username.currentVal);
+            var dataJson = JSON.parse(data);
+            setCookie("token", dataJson[0].token);
+            window.location.href="/";
         }
     });
 
