@@ -8,8 +8,8 @@
         <input type="text" name = "email" id = "email" value = ""/>
 
         <br />
-        <label for="username">Username</label><br>
-        <input type="text" name = "username" id = "username" value = ""/>
+        <label for="username" [class.error]="duplicate">Username</label> &nbsp;&nbsp; <span *ngIf="duplicate" class="error">That username has alreay been taken</span><br>
+        <input type="text" name = "username" id = "username" value = "" (keyup)="duplicate=false" #user/>
 
         <br />
         
@@ -18,7 +18,7 @@
 
         <br><br>
 
-        <captcha [container]="c" (cb)="resolveCaptcha($event)"><div #c></div></captcha>
+        <captcha [container]="c" (cb)="resolveCaptcha($event)" [val]="user.value"><div #c></div></captcha>
         <input type="hidden" name = "captcha" id = "captcha" value = ""/>
 
         <br>

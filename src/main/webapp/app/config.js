@@ -6,11 +6,11 @@ define(function(){
 	config.jqueryDataTableCss = "jquery/jquery.dataTables.css";
 	config.jqueryMobileTheme = "";
 	config.jqueryUITheme = "";
-	config.quickformsUrl = "http://foragingottawa.ca/quickforms/";
+	config.quickformsUrl = "/quickforms/";
 	config.loginCss = "quickforms/login.css";
 	
 	config.dataNativeMenu = false;
-	config.dataTransferType = 'json';
+	config.dataTransferType = 'text';
 	config.app = 'foragingottawa';             ////////////////////** Required//////////////////////////
 	config.quickformsEnding = ""; // "" or ".asp"
 	config.defaultPageTransition = "none"; // slide, pop, none
