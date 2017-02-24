@@ -7,7 +7,7 @@ define(function(){
 	config.jqueryMobileTheme = "";
 	config.jqueryUITheme = "";
 	config.quickformsUrl = "http://foragingottawa.ca/quickforms/";
-	config.loginCss = "quickforms/login.css";
+	config.loginCss = "http://foragingottawa.ca/quickforms/css/quickforms/login.css";
 	
 	config.dataNativeMenu = false;
 	config.dataTransferType = 'jsonp';
@@ -21,7 +21,7 @@ define(function(){
 	config.debug = true; // kills cache of js/css files if true
 	
     config.jqueryMobileEnable = true;
-	config.extraScripts = []; // set to empty array if app does not require login
+	config.extraScripts = ["js/auth.js"]; // set to empty array if app does not require login
 	
 	config.offline = false;
 	return config;
