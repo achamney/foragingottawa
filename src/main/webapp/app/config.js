@@ -10,7 +10,7 @@ define(function(){
 	config.loginCss = "quickforms/login.css";
 	
 	config.dataNativeMenu = false;
-	config.dataTransferType = 'jsonp';
+	config.dataTransferType = 'json';
 	config.app = 'foragingottawa';             ////////////////////** Required//////////////////////////
 	config.quickformsEnding = ""; // "" or ".asp"
 	config.defaultPageTransition = "none"; // slide, pop, none
