@@ -41,6 +41,7 @@
 				                var json = JSON.parse(data);
                                 setCookie("adminToken", json[0].token);
                                 setCookie("username", json[0].username);
+                                window.location = "index.html";
                             }
                             else {
                                 this.success = false;
@@ -53,10 +54,10 @@
 		});
 	</script>
 	
-	<div class ="container">	
+	<div class ="container" style="background: #CDC">	
 			
 			<hr />
-			<p id="versioning" style="color:gray"></p>
+			<p id="versioning" style="color:#333"></p>
             <form id="loginfrm">
 				<table border = "0" cellpadding="2"><tr>
                 <td><label for="username">Username:</label></td>
@@ -69,7 +70,7 @@
 				</tr></table>
             </form>	
 			<hr />
-			<a href ="mailto:achamney@gmail.com?Subject=Foraging%20Ottawa%20Password%20reset">Forgot your password?</a>
+			<a href ="mailto:achamney@gmail.com?Subject=Foraging%20Ottawa%20Password%20reset" style="color: #084">Forgot your password?</a>
 	</div>
 	<div align="center">
 	Copyright &copy; 2017 Quickforms

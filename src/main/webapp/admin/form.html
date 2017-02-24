@@ -23,6 +23,10 @@
 					});
 			});
 		});
+		function put(dom) {
+			quickforms.currentFormformTemplate.childMap['token'].currentVal = getCookie("adminToken");
+			quickforms.putFact(dom, 'form.html');
+		}
 	</script>
 	<div data-role ="content">
 	<form id="formTemplate">
@@ -52,8 +56,10 @@
 		<label for="description">Body</label>
 		<textarea name = "description" id = "description" rows="40" cols="100" style="height: 200px"></textarea>
 		
+		<input type="hidden" name="token" id="token"/>
+
 		<div class="buttons design delete">
-			<a href = "" onclick="quickforms.putFact(this,'form.html')" data-role="button" data-icon="check" data-theme="b" data-inline="true">Submit</a>
+			<a href = "" onclick="put(this)" data-role="button" data-icon="check" data-theme="b" data-inline="true">Submit</a>
 		</div>
 	</form>
 	</div>

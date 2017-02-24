@@ -17,8 +17,17 @@
 				require(['dom/tableControl'],
 					function() {
 						quickforms.loadTable(//appName, queryName*, parameterList, callback
-							{queryName:'getBlogPosts',
-							parameterList:''});
+							{ queryName:'getBlogPosts',
+							  parameterList:'',
+							  callback: function() {
+								  $('#tableTemplate').undelegate('tbody tr');
+								  $('#tableTemplate').delegate('tbody tr','click', function () {
+											var aData = $(this).find("td").first().html();
+											//alert( aData.id ); // assuming the id is in the first column
+											window.location = "form.html?id="+ aData;
+									} );
+							  }
+							});
 					});
 			});
 		});
@@ -26,6 +35,7 @@
 	<div data-role ="content">
 	<form id="tableTemplate">
 		<h1>Blog Posts</h1>
+		<a href = "form.html" data-role="button" data-icon="check" data-theme="b" data-inline="true">New Post</a>
 		<table id ="mainData"></table>
 	</form>
 	</div>
