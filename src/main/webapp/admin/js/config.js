@@ -6,11 +6,11 @@ define(function(){
 	config.jqueryDataTableCss = "/quickforms/css/jquery/jquery.dataTables.css";
 	config.jqueryMobileTheme = "";
 	config.jqueryUITheme = "";
-	config.quickformsUrl = "http://foragingottawa.ca/quickforms/";
+	config.quickformsUrl = "/quickforms/";
 	config.loginCss = "http://foragingottawa.ca/quickforms/css/quickforms/login.css";
 	
 	config.dataNativeMenu = false;
-	config.dataTransferType = 'jsonp';
+	config.dataTransferType = 'text';
 	config.app = 'foragingottawa';             ////////////////////** Required//////////////////////////
 	config.quickformsEnding = ""; // "" or ".asp"
 	config.defaultPageTransition = "none"; // slide, pop, none
@@ -18,7 +18,7 @@ define(function(){
 	
 	config.version = '1.0';
 	config.build = '1001';
-	config.debug = true; // kills cache of js/css files if true
+	config.debug = false; // kills cache of js/css files if true
 	
     config.jqueryMobileEnable = true;
 	config.extraScripts = ["js/auth.js"]; // set to empty array if app does not require login

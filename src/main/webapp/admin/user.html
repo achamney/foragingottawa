@@ -12,33 +12,53 @@
 <body>
 <div data-role="page" id="loadQuickformsTemplate">
 	<script type="text/javascript">
-	require(['/quickforms/js/quickforms.js'], function() {
-			quickforms.registerReadyFunction(function() {
-				require(['dom/tableControl'],
-					function() {
-						quickforms.loadTable(//appName, queryName*, parameterList, callback
-							{ queryName:'getBlogPosts',
-							  parameterList:'',
-							  configFile: 'js/tableConfig',
-							  callback: function() {
-								  $('#tableTemplate').undelegate('tbody tr');
-								  $('#tableTemplate').delegate('tbody tr','click', function () {
-											var aData = $(this).find("td").first().html();
-											//alert( aData.id ); // assuming the id is in the first column
-											window.location = "form.html?id="+ aData;
-									} );
-							  }
-							});
+	require(['/quickforms/js/quickforms.js'],function(){
+			quickforms.registerReadyFunction(function()
+			{
+				require(['dom/form/text', 'dom/form/select'],// Add this module to the list
+					function(){
+						quickforms.parseForm( //formId*, app, fact*, callback
+							{formId:'formTemplate',
+							fact:'users'});
 					});
 			});
 		});
+		function put(dom) {
+			quickforms.currentFormformTemplate.childMap['token'].currentVal = getCookie("adminToken");
+			quickforms.putFact(dom, 'users.html');
+		}
 	</script>
 	<div data-role ="content">
-	<form id="tableTemplate">
-		<h1>Blog Posts</h1>
-		<a href = "form.html" data-role="button" data-icon="check" data-theme="b" data-inline="true">New Post</a>
-		<a href = "users.html" data-role="button" data-icon="check" data-theme="c" data-inline="true">Users</a>
-		<table id ="mainData"></table>
+	<form id="formTemplate">
+		<h1>User</h1>
+		
+		<label for="usersKey">ID</label>
+		<input disabled type="text" name = "usersKey" id = "usersKey" value = ""/>
+		<br />
+
+		<label for="email">Email</label><br>
+        <input type="text" name = "email" id = "email" value = ""/>
+
+        <br />
+        <label for="username">Username</label>  <br>
+        <input type="text" name = "username" id = "username" value = "" />
+
+        <br />
+        
+        <label for="password">Password</label><br>
+        <input type="password" name = "password" id = "password" value = ""/>
+		
+		<br />
+
+		<label for ="userRole">User Role</label>
+		<select id="userRole" name="userRole"></select>
+
+
+		<input type="hidden" name="token" id="token"/>
+
+		<div class="buttons design delete">
+			<a href = "" onclick="put(this)" data-role="button" data-icon="check" data-theme="b" data-inline="true">Submit</a>
+		</div>
 	</form>
 	</div>
 </div>

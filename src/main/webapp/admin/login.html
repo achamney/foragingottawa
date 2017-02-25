@@ -29,7 +29,7 @@
                                 this.md5edPass = typedPass;
                             this.username = $('#username').val();
                             var prms = "username='"+this.username+"' and password='"+this.md5edPass+"'";
-                            quickforms.getFactData({queryName:'getLogin',
+                            quickforms.getFactData({queryName:'getAdminLogin',
                                                                 whereclause:prms,
                                                                 callback:this.loginSuccess
                                                             });

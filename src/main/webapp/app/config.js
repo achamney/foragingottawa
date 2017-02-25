@@ -18,7 +18,7 @@ define(function(){
 	
 	config.version = '1.0';
 	config.build = '1001';
-	config.debug = true; // kills cache of js/css files if true
+	config.debug = false; // kills cache of js/css files if true
 	
     config.jqueryMobileEnable = false;
 	config.extraScripts = ['foragingottawa/login']; // set to empty array if app does not require login
