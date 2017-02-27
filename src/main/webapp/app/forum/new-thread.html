@@ -1,0 +1,24 @@
+
+<div class="container content">
+    <form id="formTemplate">
+        <h1>New Thread</h1>
+
+        <label for="name">Name</label><br>
+        <input type="text" name = "name" id = "name" value = ""/>
+
+        <br />
+        <label for="icon">Icon</label><br>
+        <input type="text" name = "icon" id = "icon" value = ""/>
+
+        <br />
+        
+        <label for="post">Body</label><br>
+        <input type="text" name = "post" id = "post" value = ""/>
+
+        <br>
+
+        <div class="buttons design delete">
+            <div class="btn btn-primary" (click)="submitForm(btn)" data-theme="b" data-inline="true" #btn>Submit</div>
+        </div>
+    </form>
+</div>

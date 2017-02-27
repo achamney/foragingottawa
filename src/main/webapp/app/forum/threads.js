@@ -25,9 +25,9 @@ define([
                 }
             });
         },
-        openBoard: function(board) {
-            window.location = "#?page=5&board="+board.id;
-            this.changePage({ page: 5, board: board.id });
+        openThread: function(thread) {
+            window.location = "#?page=6&thread="+thread.threadsKey;
+            this.changePage({ page: 6, thread: thread.threadsKey });
         }
     });
 
