@@ -2,23 +2,25 @@ require([
         'foragingottawa/nav',
         'foragingottawa/home',
         'foragingottawa/subscribe',
-        'foragingottawa/forum/forum',
+        'foragingottawa/forum/boards',
+        'foragingottawa/forum/threads',
+        'foragingottawa/forum/thread',
         'dojo/domReady!'
-        ], function (Nav, Home, Subscribe, Forum) {
+        ], function (Nav, Home, Subscribe, Boards, Threads, Thread) {
             
     var Main = ng.core.Component({
         selector: 'app',
         templateUrl: 'app/app.html',
-        directives: [Nav, Home, Forum, Subscribe]
+        directives: [Nav, Home, Boards, Subscribe, Threads, Thread]
     }).Class({
         constructor: function () { 
             this.page = 1;
             if(QueryString['page']) {
-                this.page=parseInt(QueryString['page']);
+                this.page = parseInt(QueryString['page']);
             }
         }, 
-        changePage: function(page) {
-            this.page=page;
+        changePage: function(event) {
+            this.page = event.page;
         }
     });
     ng.platformBrowserDynamic.bootstrap(Main);

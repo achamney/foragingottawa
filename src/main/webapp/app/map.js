@@ -14,7 +14,8 @@ define([], function() {
                 var coords = { lat: parseFloat(this.coordinates.latitude), lng: parseFloat(this.coordinates.longitude) };
                 this.mapImpl = new google.maps.Map(this.map, {
                     zoom: 17,
-                    center: coords
+                    center: coords,
+                    scrollwheel: false
                 });
             }
         }

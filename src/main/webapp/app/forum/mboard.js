@@ -8,6 +8,7 @@ define(['dojo/_base/declare'], function (declare) {
             this.latestPost = json.latestPost || "Post 101";
             this.description = json.description || "Description";
             this.topicCount = json.topicCount || 0;
+            this.id = json.boardsKey;
         }
     });
 });

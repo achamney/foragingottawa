@@ -5,5 +5,7 @@
 
 <home *ngIf="page===1"></home>
 <maps *ngIf="page===2"></maps>
-<forum *ngIf="page===4"></forum>
+<boards *ngIf="page===4" (changePage)="changePage($event)"></boards>
+<threads *ngIf="page===5" (changePage)="changePage($event)"></threads>
+<thread *ngIf="page===6" (changePage)="changePage($event)"></thread>
 <subscribe *ngIf="page===10"></subscribe>

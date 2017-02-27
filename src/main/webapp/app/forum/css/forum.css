@@ -5,46 +5,59 @@
     padding: 10px;
     margin: 0 -20px;
 }
-.boards {
+.table {
     background-color: #DDD;
     padding: 10px;
-    margin: 0 -20px;
 }
-.board {
+.table-row {
     background-color:#DDD;
     box-shadow: 0 0 1px 1px #999;
     width: 100%;
     cursor: pointer;
     display: flex;
 }
-.board.header-board {
+.table-row.header-row {
     font-weight: 700;
 }
-.board:hover {
+.table-row:hover {
     background-color: #DDF
 }
-.board .board-cell {
+.table-row .row-cell {
     border-right: 1px solid black;
     padding: 5px;
 }
-.board .board-icon {
+.table-row .row-icon {
     width:50px;
 }
-.board .board-text {
+.table-row .row-text {
     flex: 5;
 }
-.board .board-threads {
-    text-align: center;
-    width: 70px;
-}
-.board .board-posts {
-    text-align: center;
-    width: 70px;
-}
-.board .board-latest-post {
+.table-row .row-latest-post {
     padding: 5px;
     flex: 2;
 }
+
+
+.table-row .board-threads {
+    text-align: center;
+    width: 70px;
+}
+.table-row .board-posts {
+    text-align: center;
+    width: 70px;
+}
+
+
+.table-row .thread-views {
+    text-align: center;
+    width: 70px;
+}
+.table-row .thread-replies {
+    text-align: center;
+    width: 70px;
+}
+
+
 .clear {
     clear: both;
 }

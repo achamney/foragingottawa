@@ -1,0 +1,38 @@
+
+<div class="container content">
+    <h1 class="header">Forum</h1>
+    <div class="table">
+        <div class="table-row header-row">
+            <div class="row-cell row-icon">
+            </div>
+            <div class="row-cell row-text">
+                Board
+            </div>
+            <div class="row-cell board-threads">
+                Threads
+            </div>
+            <div class="row-cell board-posts">
+                Posts
+            </div>
+            <div class="row-latest-post">
+                Latest Post
+            </div>
+        </div>
+        <div class="table-row" *ngFor="let board of boards" (click)="openBoard(board)">
+            <div class="row-cell row-icon" [class.active]="board.icon==='active'">
+            </div>
+            <div class="row-cell row-text">
+                <div>{{board.name}}</div> <small> {{board.description}} </small>
+            </div>
+            <div class="row-cell board-threads">
+                <div>{{board.threads}}</div>
+            </div>
+            <div class="row-cell board-posts">
+                <div>{{board.posts}}</div>
+            </div>
+            <div class="row-latest-post">
+                <div>{{board.latestPost}}</div>
+            </div>
+        </div>
+    </div>
+</div>

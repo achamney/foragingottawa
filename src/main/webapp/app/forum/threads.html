@@ -1,0 +1,38 @@
+
+<div class="container content">
+    <h1 class="header">Threads</h1>
+    <div class="table">
+        <div class="table-row header-row">
+            <div class="row-cell row-icon">
+            </div>
+            <div class="row-cell row-text">
+                Title
+            </div>
+            <div class="row-cell thread-views">
+                Views
+            </div>
+            <div class="row-cell thread-replies">
+                Replies
+            </div>
+            <div class="row-latest-post">
+                Latest Post
+            </div>
+        </div>
+        <div class="table-row" *ngFor="let thread of threads" (click)="openThread(thread)">
+            <div class="row-cell row-icon" [class.active]="thread.icon==='active'">
+            </div>
+            <div class="row-cell row-text">
+                <div>{{thread.name}}</div>
+            </div>
+            <div class="row-cell thread-views">
+                <div>{{thread.views}}</div>
+            </div>
+            <div class="row-cell thread-replies">
+                <div>{{thread.replies}}</div>
+            </div>
+            <div class="row-latest-post">
+                <div>{{thread.latestPost}}</div>
+            </div>
+        </div>
+    </div>
+</div>

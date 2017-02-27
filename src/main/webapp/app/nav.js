@@ -31,7 +31,7 @@ define([], function () {
         changeTab: function(nav, e) {
             if(nav.disabled) return;
             this.page = nav.id;
-            this.changePage.next(nav.id);
+            this.changePage.next({ page : nav.id });
         }
     });
 
