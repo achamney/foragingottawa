@@ -1,17 +1,20 @@
 require([
         'foragingottawa/nav',
         'foragingottawa/home',
+        'foragingottawa/text',
+        'foragingottawa/map',
+        'foragingottawa/maps/map',
         'foragingottawa/subscribe',
-        'foragingottawa/forum/boards',
-        'foragingottawa/forum/threads',
-        'foragingottawa/forum/thread',
+        'foragingottawa/captcha',
+        'foragingottawa/nls',
+
+        'foragingottawa/forum/forum',
         'dojo/domReady!'
-        ], function (Nav, Home, Subscribe, Boards, Threads, Thread) {
+        ], function (Nav, Home, Text, Map, Maps, Subscribe, Captcha, Nls, Forum) {
             
     var Main = ng.core.Component({
         selector: 'app',
-        templateUrl: 'app/app.html',
-        directives: [Nav, Home, Boards, Subscribe, Threads, Thread]
+        templateUrl: 'app/app.html'
     }).Class({
         constructor: function () { 
             this.page = 1;
@@ -23,7 +26,18 @@ require([
             this.page = event.page;
         }
     });
-    ng.platformBrowserDynamic.bootstrap(Main);
+
+    var module = ng.core.NgModule({
+        imports: [ng.platformBrowser.BrowserModule, Forum],
+        declarations: [ Main, Home, Text, Map, Maps, Nav, Subscribe, Nls, Captcha],
+        bootstrap: [ Main ]
+    })
+    .Class({
+      constructor: function() { }
+    });
+    ng.platformBrowserDynamic
+      .platformBrowserDynamic()
+      .bootstrapModule(module);
 });
 
 

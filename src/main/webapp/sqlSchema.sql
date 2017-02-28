@@ -13,25 +13,6 @@ CREATE TABLE `fact_foragelocations` (
   PRIMARY KEY (`foragelocationsKey`)
 ) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 
-CREATE TABLE `fact_forums` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `forum_id` int(10) NOT NULL,
-  `title` text NOT NULL,
-  `forum_info` text NOT NULL,
-  PRIMARY KEY (`id`,`forum_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `fact_message` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `forum_id` int(10) NOT NULL,
-  `thread_id` int(10) NOT NULL,
-  `reply_id` int(10) NOT NULL,
-  `message` text NOT NULL,
-  `user` text NOT NULL,
-  `date_time` datetime NOT NULL,
-  PRIMARY KEY (`id`,`forum_id`,`thread_id`,`reply_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 CREATE TABLE `fact_queries` (
   `queriesKey` int(11) NOT NULL AUTO_INCREMENT,
   `queryLabel` varchar(100) DEFAULT NULL,
@@ -39,17 +20,6 @@ CREATE TABLE `fact_queries` (
   `deleteFlag` int(11) DEFAULT NULL,
   PRIMARY KEY (`queriesKey`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
-
-CREATE TABLE `fact_settings` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `dbName` text NOT NULL,
-  `dbLogin` text NOT NULL,
-  `dbPassword` text NOT NULL,
-  `forumPath` text NOT NULL,
-  `forumName` text NOT NULL,
-  `messagePerPage` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `fact_teammembers` (
   `temmemberKey` int(11) NOT NULL AUTO_INCREMENT,
@@ -64,15 +34,6 @@ CREATE TABLE `fact_teammembers` (
   PRIMARY KEY (`temmemberKey`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-CREATE TABLE `fact_threads` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `forum_id` int(10) NOT NULL,
-  `thread_id` int(10) NOT NULL,
-  `title` text NOT NULL,
-  `views` int(10) NOT NULL,
-  PRIMARY KEY (`id`,`forum_id`,`thread_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 CREATE TABLE `fact_users` (
   `usersKey` int(10) NOT NULL AUTO_INCREMENT,
   `username` text NOT NULL,
@@ -85,25 +46,6 @@ CREATE TABLE `fact_users` (
   `deleteFlag` int(11) DEFAULT NULL,
   PRIMARY KEY (`usersKey`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
-
-CREATE TABLE `fact_forums` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `forum_id` int(10) NOT NULL,
-  `title` text NOT NULL,
-  `forum_info` text NOT NULL,
-  PRIMARY KEY (`id`,`forum_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `fact_message` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `forum_id` int(10) NOT NULL,
-  `thread_id` int(10) NOT NULL,
-  `reply_id` int(10) NOT NULL,
-  `message` text NOT NULL,
-  `user` text NOT NULL,
-  `date_time` datetime NOT NULL,
-  PRIMARY KEY (`id`,`forum_id`,`thread_id`,`reply_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `fact_users` (
   `usersKey` int(10) NOT NULL AUTO_INCREMENT,
