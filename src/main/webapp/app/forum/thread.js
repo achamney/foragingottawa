@@ -1,33 +1,37 @@
-var hasLoaded;
+var hasLoaded = window.hasLoaded || false;
 define([
+    'foragingottawa/forum/mpost',
+    'foragingottawa/forum/new-thread',
     'server/getFactData'
-], function (Board) {
+], function (Thread, NewThread) {
     return ng.core.Component({
         selector: 'thread',
         templateUrl: 'app/forum/thread.html',
-        outputs: ["changePage"]
+        outputs: ["changePage"],
+        directives: [NewThread]
     }).Class({
         constructor: function () {
-            this._boards = [];
             this.changePage = new ng.core.EventEmitter();
+            this.posts = [];
+            if(QueryString['thread']) {
+                this.thread = parseInt(QueryString['thread']);
+            }
+
             if(!hasLoaded) {
                 quickforms.loadCss('app/forum/css/forum.css');
-                hasLoaded = true;
+                hasLoaded = window.hasLoaded = true;
             }
             var _this = this;
-            /*quickforms.getFactData({
-                queryName: "getBoards",
+            quickforms.getFactData({
+                queryName: "getPosts",
+                params: "thread="+this.thread,
                 callback: function (data) {
                     var json = JSON.parse(data);
-                    _this.boards = json.map(function(datum) {
-                        return new Board(datum);
+                    _this.posts = json.map(function(datum) {
+                        return new Thread(datum);
                     })
                 }
-            });*/
-        },
-        openBoard: function(board) {
-            window.location = "#?page=5&board="+board.id;
-            this.changePage({ page: 5, board: board.id });
+            });
         }
     });
 

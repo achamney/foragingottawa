@@ -14,9 +14,13 @@ define([
                 quickforms.loadCss('app/forum/css/forum.css');
                 hasLoaded = true;
             }
+            if(QueryString['board']) {
+                this.board = parseInt(QueryString['board']);
+            }
             var _this = this;
             quickforms.getFactData({
                 queryName: "getThreads",
+                params: "board="+this.board,
                 callback: function (data) {
                     var json = JSON.parse(data);
                     _this.threads = json.map(function(datum) {
@@ -26,8 +30,8 @@ define([
             });
         },
         openThread: function(thread) {
-            window.location = "#?page=6&thread="+thread.threadsKey;
-            this.changePage({ page: 6, thread: thread.threadsKey });
+            window.location = "#?page=6&thread="+thread.id;
+            this.changePage({ page: 6, thread: thread.id });
         }
     });
 

@@ -3,18 +3,16 @@
     <form id="formTemplate">
         <h1>New Thread</h1>
 
-        <label for="name">Name</label><br>
-        <input type="text" name = "name" id = "name" value = ""/>
-
-        <br />
-        <label for="icon">Icon</label><br>
-        <input type="text" name = "icon" id = "icon" value = ""/>
+        <label for="title">Title</label><br>
+        <input type="text" name = "title" id = "title" value = ""/>
 
         <br />
         
-        <label for="post">Body</label><br>
-        <input type="text" name = "post" id = "post" value = ""/>
+        <label for="body">Body</label><br>
+        <textarea type="text" name = "body" id = "body" ></textarea>
 
+        <input type="hidden" name = "token" id = "token" value = ""/>
+        <input type="hidden" name = "thread" id = "thread" value = ""/>
         <br>
 
         <div class="buttons design delete">
