@@ -1,7 +1,7 @@
 var hasLoaded = window.hasLoaded || false;
 define([
-    'foragingottawa/forum/mpost',
-    'foragingottawa/forum/new-thread',
+    'forage/forum/mpost',
+    'forage/forum/new-thread',
     'server/getFactData'
 ], function (Thread, NewThread) {
     return ng.core.Component({

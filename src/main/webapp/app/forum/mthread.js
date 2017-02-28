@@ -1,6 +1,5 @@
-define(['dojo/_base/declare'], function (declare) {
-    return declare(null, {
-        constructor: function(json) {
+define([], function () {
+    return function(json) {
             this.icon = json.icon || "board";    
             this.name = json.name || "Name";
             this.username = json.username;
@@ -12,5 +11,4 @@ define(['dojo/_base/declare'], function (declare) {
             this.board = json.board;
             this.id = json.threadsKey;
         }
-    });
 });

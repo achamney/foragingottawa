@@ -1,6 +1,6 @@
 define([
-    'foragingottawa/map',
-    'foragingottawa/text',
+    'forage/map',
+    'forage/text',
     "quickforms/server/getFactData"
 ], function (Map, Text) {
     return ng.core.Component({

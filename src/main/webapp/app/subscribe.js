@@ -1,5 +1,5 @@
 define([
-    'foragingottawa/captcha',
+    'forage/captcha',
     "quickforms/server/getFactData",
     'quickforms/dom/form/text'
 ], function (Captcha) {

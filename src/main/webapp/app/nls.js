@@ -1,6 +1,6 @@
 define([], function() {
     var pseudo, _resources = { "Threads": "Threads" };
-    if (dojo.locale === 'pseudo') {
+    if (window.navigator.userLanguage || window.navigator.language === 'pseudo') {
         pseudo = function (s) {
             var p = new Array(Math.ceil(s.length * 0.15) + 1).join('_');
             return p + ' ' + s + ' ' + p;

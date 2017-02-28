@@ -1,8 +1,7 @@
 define([
-    'foragingottawa/forum/boards',
-    'foragingottawa/forum/threads',
-    'foragingottawa/forum/thread',
-    'dojo/domReady!'
+    'forage/forum/boards',
+    'forage/forum/threads',
+    'forage/forum/thread'
     ], function (Boards, Threads, Thread) {
         var module = ng.core.NgModule({
             imports: [ng.platformBrowser.BrowserModule],

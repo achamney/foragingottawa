@@ -21,7 +21,7 @@ define(function(){
 	config.debug = false; // kills cache of js/css files if true
 	
     config.jqueryMobileEnable = false;
-	config.extraScripts = ['foragingottawa/login']; // set to empty array if app does not require login
+	config.extraScripts = []; // set to empty array if app does not require login
 	
 	config.offline = false;
 	return config;

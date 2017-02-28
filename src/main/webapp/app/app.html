@@ -2,8 +2,8 @@
     id="forageNav" [page]="page"
     (changePage)="changePage($event)">
 </nav>
+
 <home *ngIf="page===1"></home>
-<maps *ngIf="page===2"></maps>
 <boards *ngIf="page===4" (changePage)="changePage($event)"></boards>
 <threads *ngIf="page===5" (changePage)="changePage($event)"></threads>
 <thread *ngIf="page===6" (changePage)="changePage($event)"></thread>

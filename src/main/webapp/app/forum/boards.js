@@ -1,6 +1,6 @@
 var hasLoaded;
 define([
-    'foragingottawa/forum/mboard',
+    'forage/forum/mboard',
     'server/getFactData'
 ], function (Board) {
     return ng.core.Component({

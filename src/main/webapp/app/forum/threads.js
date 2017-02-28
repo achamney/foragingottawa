@@ -2,7 +2,7 @@ var hasLoaded;
 
 
 define([
-    'foragingottawa/forum/mthread',
+    'forage/forum/mthread',
     'server/getFactData'
 ], function (Thread, Board) {
     return ng.core.Component({

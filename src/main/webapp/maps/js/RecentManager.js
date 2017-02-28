@@ -3,21 +3,9 @@
 define([
     "dojo/_base/declare",
     "dojo/_base/Deferred",
-
-    'esri/layers/GraphicsLayer',
-
-    "esri/graphic",
-    "esri/geometry/Point",
-    "esri/symbols/SimpleMarkerSymbol",
-    "esri/Color",
-
-    "esri/renderers/SimpleRenderer",
     "foragingottawa/Popup"
 
 ], function (declare, Deferred,
-    GraphicsLayer,
-    Graphic, Point, SimpleMarkerSymbol, Color,
-    SimpleRenderer,
     Popup) {
 
 var RecentManager=declare([],{
