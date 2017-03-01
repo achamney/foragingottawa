@@ -1,7 +1,10 @@
 
 <div class="container content">
     <h1 class="header">{{boardName+' Threads'}}</h1>
-    <a href="#?page=4">Boards</a> > {{boardName}}
+    <div class="nav">
+        <a href="#?page=4">Boards</a> > {{boardName}}
+        <button class="btn btn-primary pull-right" (click)="newThread()" *ngIf="token">New Thread</button>
+    </div>
     <div class="table">
         <div class="table-row header-row">
             <div class="row-cell row-icon">

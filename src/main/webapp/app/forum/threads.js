@@ -3,7 +3,8 @@ var hasLoaded;
 
 define([
     'forage/forum/mthread',
-    'server/getFactData'
+    'server/getFactData',
+    'helper/helper'
 ], function (Thread, Board) {
     return ng.core.Component({
         selector: 'threads',
@@ -14,6 +15,7 @@ define([
         constructor: function () {
             this.changePage = new ng.core.EventEmitter();
             this.boardName = "";
+            this.token = getCookie("token");
             if (!hasLoaded) {
                 quickforms.loadCss('app/forum/css/forum.css');
                 hasLoaded = true;

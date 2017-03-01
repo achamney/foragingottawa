@@ -18,17 +18,17 @@
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown disabled" *ngIf="!username">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <li class="dropdown" *ngIf="!username">
+                <a  class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
                     Sign In <span class="caret"></span>
                 </a>
-                <ul class="dropdown-menu" id="loginDropdown">
+                <ul class="dropdown-menu form-group" id="loginDropdown" [class.has-error]="fail">
                     <label for="username">Username:</label>
                     <input class="form-control" id="username" name="username" type="text"/>
                     <label for="password">Password:</label>
-                    <input class="form-control" id="password" name="username" type="password"/>
+                    <input class="form-control" id="password" name="username" type="password" (keyup)="checkEnter($event)"/>
                     <br>
-                    <button class="btn btn-primary" onclick="quickforms.loginControl.logIn()">Sign In</button>
+                    <button class="btn btn-primary" (click)="logIn()">Sign In</button>
                 </ul>
             </li>
             <li class="dropdown disabled" *ngIf="username">

@@ -28,7 +28,7 @@ require([
             this.page = event.page;
         },
         changeHash: function() {
-            this.changePage({ page: parseInt(QueryString('page')) });
+            this.changePage({ page: parseInt(QueryString('page') || "1") });
         }
     })
     Main = Reflect.decorate([
