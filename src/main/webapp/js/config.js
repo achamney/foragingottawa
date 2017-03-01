@@ -6,7 +6,7 @@ define(function(){
 	config.jqueryDataTableCss = "jquery/jquery.dataTables.css";
 	config.jqueryMobileTheme = "";
 	config.jqueryUITheme = "";
-	config.quickformsUrl = "http://foragingottawa.ca/quickforms/";
+	config.quickformsUrl = "/quickforms/";
 	config.loginCss = "quickforms/login.css";
 	
 	config.dataNativeMenu = false;

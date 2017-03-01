@@ -12,9 +12,12 @@ define([
     }).Class({
         constructor: function () {
             this.changePage = new ng.core.EventEmitter();
+            this.threadTitle = "";
+            this.boardName = "";
+            this.board;
             this.posts = [];
-            if(QueryString['thread']) {
-                this.thread = parseInt(QueryString['thread']);
+            if(QueryString('thread')) {
+                this.thread = parseInt(QueryString('thread'));
             }
 
             if(!hasLoaded) {
@@ -30,6 +33,9 @@ define([
                     _this.posts = json.map(function(datum) {
                         return new Thread(datum);
                     })
+                    _this.threadTitle = json[0].title;
+                    _this.boardName = json[0].boardName;
+                    _this.board = json[0].boardsKey;
                 }
             });
         }

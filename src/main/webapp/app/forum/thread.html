@@ -1,6 +1,7 @@
 
 <div class="container content">
     <h1 class="header">{{threadTitle}}</h1>
+    <a href="#?page=4">Boards</a> > <a href="#?page=5&board={{board}}">{{boardName}}</a> > {{threadTitle}}
     <div *ngFor="let post of posts">
         {{post.title}}
         {{post.createdDate}}

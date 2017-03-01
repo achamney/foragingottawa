@@ -19,17 +19,16 @@ require([
         constructor: function () {
             this.page = 1;
             this.location = location;
-            //router.changes.subscribe(() => this.routeChanged());
-            if (QueryString['page']) {
-                this.page = parseInt(QueryString['page']);
+            if (QueryString('page')) {
+                this.page = parseInt(QueryString('page'));
             }
+            window.addEventListener("hashchange", this.changeHash.bind(this));
         },
         changePage: function (event) {
             this.page = event.page;
         },
-        routeChanged: function() {
-            var path = this.location.path();
-            console.log("Path:" + path);
+        changeHash: function() {
+            this.changePage({ page: parseInt(QueryString('page')) });
         }
     })
     Main = Reflect.decorate([
@@ -51,7 +50,7 @@ require([
 });
 
 
-window.QueryString = function () {
+window.QueryString = function (name) {
     // This function is anonymous, is executed immediately and 
     // the return value is assigned to QueryString!
     var query_string = {};
@@ -71,5 +70,5 @@ window.QueryString = function () {
             query_string[pair[0]].push(decodeURIComponent(pair[1]));
         }
     }
-    return query_string;
-}();
+    return query_string[name];
+};

@@ -13,12 +13,13 @@ define([
     }).Class({
         constructor: function () {
             this.changePage = new ng.core.EventEmitter();
+            this.boardName = "";
             if (!hasLoaded) {
                 quickforms.loadCss('app/forum/css/forum.css');
                 hasLoaded = true;
             }
-            if (QueryString['board']) {
-                this.board = parseInt(QueryString['board']);
+            if (QueryString('board')) {
+                this.board = parseInt(QueryString('board'));
             }
             var _this = this;
             quickforms.getFactData({
@@ -29,12 +30,13 @@ define([
                     _this.threads = json.map(function (datum) {
                         return new Thread(datum);
                     })
+                    _this.boardName = json[0].boardName;
                 }
             });
         },
         openThread: function (thread) {
             window.location = "#?page=6&thread=" + thread.id;
-            this.changePage({ page: 6, thread: thread.id });
+            this.changePage.next({ page: 6, thread: thread.id });
         }
     });
 
