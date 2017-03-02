@@ -1,22 +1,21 @@
 
-<div class="container content">
-    <form id="formTemplate">
-        <h1>New Thread</h1>
+<form id="formTemplate">
+    <h1>New Thread</h1>
 
-        <label for="title">Title</label><br>
-        <input type="text" name = "title" id = "title" value = ""/>
+    <label for="name">Title</label><br>
+    <input type="text" name = "name" id = "name" value = "" class="form-control"/>
 
-        <br />
-        
-        <label for="body">Body</label><br>
-        <textarea type="text" name = "body" id = "body" ></textarea>
+    <br />
+    
+    <label for="body">Body</label><br>
+    <textarea type="text" name = "body" id = "body" class="form-control" ></textarea>
 
-        <input type="hidden" name = "token" id = "token" value = ""/>
-        <input type="hidden" name = "thread" id = "thread" value = ""/>
-        <br>
+    <input type="hidden" name = "token" id = "token" [value] = "token"/>
+    <input type="hidden" name = "board" id = "board" [value] = "board"/>
+    <input type="hidden" name = "thread" id = "thread"/>
+    <br>
 
-        <div class="buttons design delete">
-            <div class="btn btn-primary" (click)="submitForm(btn)" data-theme="b" data-inline="true" #btn>Submit</div>
-        </div>
-    </form>
-</div>
+    <div class="buttons design delete">
+        <div class="btn btn-primary" (click)="submitForm(btn)" data-theme="b" data-inline="true" #btn>Submit</div>
+    </div>
+</form>

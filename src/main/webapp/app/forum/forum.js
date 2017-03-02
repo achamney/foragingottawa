@@ -1,11 +1,12 @@
 define([
     'forage/forum/boards',
     'forage/forum/threads',
-    'forage/forum/thread'
-    ], function (Boards, Threads, Thread) {
+    'forage/forum/thread',
+    'forage/forum/new-thread'
+    ], function (Boards, Threads, Thread, NewThread) {
         var module = ng.core.NgModule({
             imports: [ng.platformBrowser.BrowserModule],
-            declarations: [ Boards, Threads, Thread ],
+            declarations: [ Boards, Threads, Thread, NewThread ],
             exports: [ Boards, Threads, Thread ]
         })
         .Class({

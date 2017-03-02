@@ -31,8 +31,13 @@
                     <button class="btn btn-primary" (click)="logIn()">Sign In</button>
                 </ul>
             </li>
-            <li class="dropdown disabled" *ngIf="username">
-                <a href="#?page=9" (click)="changeTab({id:9, disabled: true}, $event)">{{username}}</a>
+            <li class="dropdown" *ngIf="username">
+                <a  class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
+                    {{username}} <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu form-group" id="logoutDropdown">
+                    <button class="btn btn-primary pull-right" (click)="logOut()">Log Out</button>
+                </ul>
             </li>
             <li class="active"><a href="#?page=10" (click)="changeTab({id:10})">
                 Subscribe <span class="sr-only">Subscribe</span>

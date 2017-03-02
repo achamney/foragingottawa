@@ -3,7 +3,7 @@ define([
     'forage/forum/mpost',
     'forage/forum/new-thread',
     'server/getFactData'
-], function (Thread, NewThread) {
+], function (Post, NewThread) {
     return ng.core.Component({
         selector: 'thread',
         templateUrl: 'app/forum/thread.html',
@@ -31,11 +31,17 @@ define([
                 callback: function (data) {
                     var json = JSON.parse(data);
                     _this.posts = json.map(function(datum) {
-                        return new Thread(datum);
+                        return new Post(datum);
                     })
                     _this.threadTitle = json[0].title;
                     _this.boardName = json[0].boardName;
                     _this.board = json[0].boardsKey;
+                    window.setTimeout(function () {
+                        var post = QueryString('post'); 
+                        if(post) {
+                            $('#'+post).attr('tabindex',0).focus();    
+                        }
+                    });
                 }
             });
         }

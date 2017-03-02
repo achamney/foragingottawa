@@ -63,12 +63,16 @@
     text-align: center;
     width: 70px;
 }
-
+.table-row .glyphicon:hover {
+    color: #66F;
+}
+.row-latest-post {
+    line-height: 13px;
+}
 
 .clear {
     clear: both;
 }
-
 
 div, h1, p {
     font-family: "Trebuchet MS", Helvetica, sans-serif;

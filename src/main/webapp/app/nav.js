@@ -86,6 +86,11 @@ define(['helper/md5'], function () {
             if(e.which === 13) {
                 this.logIn();
             }
+        },
+        logOut: function() {
+            setCookie("token", "");
+            setCookie("username", "");
+            this.username = null;
         }
 
     });

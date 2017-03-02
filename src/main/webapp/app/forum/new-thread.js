@@ -4,7 +4,8 @@ define([
 ], function () {
     return ng.core.Component({
         selector: 'new-thread',
-        templateUrl: 'app/forum/new-thread.html'
+        templateUrl: 'app/forum/new-thread.html',
+        inputs: ['board']
     }).Class({
 
         constructor: function () {
@@ -13,28 +14,42 @@ define([
         ngOnInit: function () {
             quickforms.parseForm( //formId*, app, fact*, callback
 							{formId:'formTemplate',
-							fact:'thread'});
+							fact:'threads'});
+            this.token = getCookie('token');
         },
 
         submitForm: function (el) {
-            if(!this.captchad) return;
             var redir = quickforms.formRedirect;
             var _this = this;
-            quickforms.formRedirect = this.onFinish.bind(this);
+            this.finishButton = el;
+            quickforms.currentFormformTemplate.childMap['token'].currentVal = this.token;
+            quickforms.currentFormformTemplate.childMap['board'].currentVal = this.board;
+            quickforms.formRedirect = this.onFinishThread.bind(this);
             quickforms.putFact(el, "/");
             quickforms.formRedirect = redir;
             quickforms.serverQueries[quickforms.serverQueries.length-1].addErrorListener(function(e) {
                 _this.onError(e);
-            })
+            });
         },
 
+        onFinishThread: function(data) {
+            if (data.indexOf("[") !== 0) return this.onError(data);
+            var _this = this;
+            var json = JSON.parse(data);
+            this.thread = json[0].id;
+            quickforms.currentFormformTemplate.fact="posts";
+            quickforms.currentFormformTemplate.childMap['thread'].currentVal = json[0].id;
+            quickforms.formRedirect = this.onFinish.bind(this);
+            quickforms.putFact(this.finishButton, "/");
+            quickforms.formRedirect = redir;
+            quickforms.serverQueries[quickforms.serverQueries.length-1].addErrorListener(function(e) {
+                _this.onError(e);
+            });
+        },
+        
         onFinish: function(data) {
             if (data.indexOf("[") !== 0) return this.onError(data);
-            var username = quickforms.currentFormformTemplate.children.filter(function(c){return c && c.id==="username"})[0];
-            setCookie("username", username.currentVal);
-            var dataJson = JSON.parse(data);
-            setCookie("token", dataJson[0].token);
-            window.location.href="/";
+            window.location="#?page=6&thread="+this.thread;
         },
 
         onError: function(data) {

@@ -3,9 +3,9 @@
     <h1 class="header">{{boardName+' Threads'}}</h1>
     <div class="nav">
         <a href="#?page=4">Boards</a> > {{boardName}}
-        <button class="btn btn-primary pull-right" (click)="newThread()" *ngIf="token">New Thread</button>
+        <button class="btn btn-primary pull-right" (click)="startNewThread()" *ngIf="token">New Thread</button>
     </div>
-    <div class="table">
+    <div class="table" *ngIf="!newThread">
         <div class="table-row header-row">
             <div class="row-cell row-icon">
             </div>
@@ -35,8 +35,11 @@
                 <div>{{thread.replies}}</div>
             </div>
             <div class="row-latest-post">
-                <div>{{thread.latestPost}}</div>
+                <div><span>{{thread.replyUser}}</span><div class="glyphicon glyphicon-expand pull-right" (click)="goToLatest(thread, $event)"></div></div>
+                <div>{{thread.replyDate}}</div>
             </div>
         </div>
     </div>
+    <new-thread *ngIf="newThread" (close)="newThread=false" (create)="createNewThread($event)" [board]="board">
+    </new-thread>
 </div>

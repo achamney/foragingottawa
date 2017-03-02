@@ -36,9 +36,19 @@ define([
                 }
             });
         },
+
         openThread: function (thread) {
             window.location = "#?page=6&thread=" + thread.id;
             this.changePage.next({ page: 6, thread: thread.id });
+        },
+
+        startNewThread: function () {
+            this.newThread = true;
+        },
+
+        goToLatest: function (thread, e) {
+            window.location = "#?page=6&thread=" + thread.id + "&post=" + thread.replyKey;
+            e.stopImmediatePropagation();
         }
     });
 

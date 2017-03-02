@@ -5,16 +5,16 @@
         <p>Subscribing will give you access to post on the forums, and receive notifications for recent posts</p>
 
         <label for="email">Email</label><br>
-        <input type="text" name = "email" id = "email" value = ""/>
+        <input type="text" name = "email" id = "email" value = "" class="form-control"/>
 
         <br />
         <label for="username" [class.error]="duplicate">Username</label> &nbsp;&nbsp; <span *ngIf="duplicate" class="error">That username has alreay been taken</span><br>
-        <input type="text" name = "username" id = "username" value = "" (keyup)="duplicate=false" #user/>
+        <input type="text" name = "username" id = "username" value = "" (keyup)="duplicate=false" #user class="form-control"/>
 
         <br />
         
         <label for="password">Password</label><br>
-        <input type="password" name = "password" id = "password" value = ""/>
+        <input type="password" name = "password" id = "password" value = "" class="form-control"/>
 
         <br><br>
 
