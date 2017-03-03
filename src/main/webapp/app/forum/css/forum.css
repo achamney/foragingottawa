@@ -86,11 +86,27 @@
 
 .post .post-header {
     font-size: 12px;
+    line-height: 30px;
 }
 
 .post .post-header .a {
     font-size: 15px;
 }
+.post .post-header .glyphicon {
+    font-size: 12px;
+}
+.quoteicon {
+  quotes: "\201C""\201D""\2018""\2019";
+  line-height: 8px;
+  padding-top: 8px;
+}
+
+.quoteicon:before {
+  content: open-quote;
+  font-size: 26px;
+}
+
+
 
 .clear {
     clear: both;

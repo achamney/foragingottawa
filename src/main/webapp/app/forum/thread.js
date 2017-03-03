@@ -2,7 +2,8 @@ var hasLoaded = window.hasLoaded || false;
 define([
     'forage/forum/mpost',
     'forage/forum/new-thread',
-    'server/getFactData'
+    'server/getFactData',
+    'quickforms/dom/form/text'
 ], function (Post, NewThread) {
     return ng.core.Component({
         selector: 'thread',
@@ -45,9 +46,39 @@ define([
                 }
             });
         },
+        ngOnInit() {
+            this.username = getCookie('username');
+        },
         reply: function () {
             this.replyFlag = true;
-        }
+            window.setTimeout(function() {
+                quickforms.parseForm( //formId*, app, fact*, callback
+                                {formId:'newPost',
+                                fact:'posts'});
+            }, 50);
+            this.token = getCookie('token');
+        },
+
+        replySubmit: function (body, el) {
+            var redir = quickforms.formRedirect;
+            var _this = this;
+            quickforms.currentFormnewPost.childMap['token'].currentVal = this.token;
+            quickforms.currentFormnewPost.childMap['thread'].currentVal = this.thread;
+            quickforms.currentFormnewPost.childMap['body'].currentVal = body;
+            quickforms.formRedirect = this.onFinishPost.bind(this);
+            quickforms.putFact(el, "/");
+            quickforms.formRedirect = redir;
+            quickforms.serverQueries[quickforms.serverQueries.length-1].addErrorListener(function(e) {
+                _this.onError(e);
+            });
+        },
+
+        onFinishPost: function(data) {
+            if (data.indexOf("[") !== 0) return this.onError(data);
+            var json = JSON.parse(data);
+            var post = json[0].id;
+            location.reload();
+        },
     });
 
 });

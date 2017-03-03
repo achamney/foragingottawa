@@ -6,14 +6,24 @@
         <button class="btn btn-primary pull-right" (click)="reply()" *ngIf="!replyFlag">Reply <div class="glyphicon glyphicon-share"></div></button>
     </div>
     <div *ngFor="let post of posts" [id]="post.id" class="post">
-        <div class="post-header">by <a href="#?page=9&username={{post.username}}">{{post.username}}</a> {{post.createdDate}}</div>
+        <div class="post-header">
+            by <a href="#?page=9&username={{post.username}}">{{post.username}}</a> 
+            {{post.createdDate}}
+            <button class="btn btn-default pull-right"><div class="quoteicon"></div></button>
+            <button class="btn btn-default pull-right" *ngIf="post.username === username"><div class="glyphicon glyphicon-pencil"></div></button>
+        </div>
         <hr>
         <bbcode  [text]="post.body">
         </bbcode>
     </div>
-    <bbcodeEditor *ngIf="replyFlag" #editor>
-    </bbcodeEditor>
-    <button class="btn btn-primary pull-right" (click)="replySubmit(editor.form)" *ngIf="replyFlag">Reply</button>
-    <button class="btn btn-default pull-right" (click)="replyFlag=false" *ngIf="replyFlag">Cancel</button>
+    <form *ngIf="replyFlag" id="newPost">
+        <bbcodeEditor  #editor>
+        </bbcodeEditor>
+        <input type="hidden" name="token" id="token" />
+        <input type="hidden" name="body" id="body" />
+        <input type="hidden" name="thread" id="thread" />
+        <div class="btn btn-primary pull-right" (click)="replySubmit(editor.form, btn)" #btn>Reply</div>
+        <div class="btn btn-default pull-right" (click)="replyFlag=false">Cancel</div>
+    </form>
     <button class="btn btn-primary pull-right" (click)="reply()" *ngIf="!replyFlag">Reply <div class="glyphicon glyphicon-share"></div></button>
 </div>
