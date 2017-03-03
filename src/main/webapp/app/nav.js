@@ -75,8 +75,7 @@ define(['helper/md5'], function () {
                 var json = JSON.parse(data);
                 setCookie("token", json[0].token);
                 setCookie("username", json[0].username);
-                this.username = json[0].username;
-                $('li.dropdown').removeClass("open");
+                location.reload();
             }
             else {
                 this.fail = true;
@@ -90,7 +89,7 @@ define(['helper/md5'], function () {
         logOut: function() {
             setCookie("token", "");
             setCookie("username", "");
-            this.username = null;
+            location.reload();
         }
 
     });
