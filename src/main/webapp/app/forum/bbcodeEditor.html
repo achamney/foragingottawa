@@ -1,0 +1,7 @@
+<button class="btn btn-default" (click)="bbTag('url', textarea)">URL</button>
+<button class="btn btn-default" (click)="bbTag('img', textarea)">Image</button>
+<button class="btn btn-default" (click)="bbTag('b', textarea)">Bold</button>
+<button class="btn btn-default" (click)="bbTag('u', textarea)">Underline</button>
+<textarea id="body" name="body" (keyup)="updateText(textarea)" #textarea class="form-control"></textarea>
+<bbcode [text]="text" *ngIf="text">
+</bbcode>

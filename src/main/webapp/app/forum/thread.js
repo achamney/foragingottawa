@@ -44,6 +44,9 @@ define([
                     });
                 }
             });
+        },
+        reply: function () {
+            this.replyFlag = true;
         }
     });
 
