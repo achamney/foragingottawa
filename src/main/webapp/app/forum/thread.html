@@ -22,7 +22,7 @@
         <input type="hidden" name="token" id="token" />
         <input type="hidden" name="body" id="body" />
         <input type="hidden" name="thread" id="thread" />
-        <div class="btn btn-primary pull-right" (click)="replySubmit(editor.form, btn)" #btn>Reply</div>
+        <div class="btn btn-primary pull-right" (click)="replySubmit(editor.text, btn)" #btn>Reply</div>
         <div class="btn btn-default pull-right" (click)="replyFlag=false">Cancel</div>
     </form>
     <button class="btn btn-primary pull-right" (click)="reply()" *ngIf="!replyFlag">Reply <div class="glyphicon glyphicon-share"></div></button>

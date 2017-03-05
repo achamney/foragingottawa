@@ -85,7 +85,7 @@ heartbeat.open {
     top: 0;
     right: 0;
     bottom: 0;
-    padding: 100px 100px;
+    padding: 100px 35%;
     background-color: rgba(0,0,0,0.8);
     color: white;
 }

@@ -8,14 +8,16 @@
     <br />
     
     <label for="body">Body</label><br>
-    <textarea type="text" name = "body" id = "body" class="form-control" rows="4" cols="50"></textarea>
+    <bbcodeEditor  #editor>
+    </bbcodeEditor>
 
     <input type="hidden" name = "token" id = "token" [value] = "token"/>
     <input type="hidden" name = "board" id = "board" [value] = "board"/>
+    <input type="hidden" name = "body" id = "body" [value] = "board"/>
     <input type="hidden" name = "thread" id = "thread"/>
     <br>
 
     <div class="buttons design delete">
-        <div class="btn btn-primary" (click)="submitForm(btn)" data-theme="b" data-inline="true" #btn>Submit</div>
+        <div class="btn btn-primary" (click)="submitForm(btn, editor.text)" data-theme="b" data-inline="true" #btn>Submit</div>
     </div>
 </form>

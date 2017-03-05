@@ -18,10 +18,11 @@ define([
             this.token = getCookie('token');
         },
 
-        submitForm: function (el) {
+        submitForm: function (el, body) {
             var redir = quickforms.formRedirect;
             var _this = this;
             this.finishButton = el;
+            this.body = body;
             quickforms.currentFormformTemplate.childMap['token'].currentVal = getCookie('token');
             quickforms.currentFormformTemplate.childMap['board'].currentVal = this.board;
             quickforms.formRedirect = this.onFinishThread.bind(this);
@@ -39,6 +40,7 @@ define([
             this.thread = json[0].id;
             quickforms.currentFormformTemplate.fact="posts";
             quickforms.currentFormformTemplate.childMap['thread'].currentVal = json[0].id;
+            quickforms.currentFormformTemplate.childMap['body'].currentVal = this.body;
             quickforms.formRedirect = this.onFinish.bind(this);
             quickforms.putFact(this.finishButton, "/");
             quickforms.formRedirect = redir;

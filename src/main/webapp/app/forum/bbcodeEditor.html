@@ -2,6 +2,6 @@
 <div class="btn btn-default" (click)="bbTag('img', textarea)">Image</div>
 <div class="btn btn-default" (click)="bbTag('b', textarea)">Bold</div>
 <div class="btn btn-default" (click)="bbTag('u', textarea)">Underline</div>
-<textarea id="body" name="body" (keyup)="updateText(textarea)" #textarea class="form-control"></textarea>
+<textarea (keyup)="updateText(textarea, $event)" #textarea class="form-control"></textarea>
 <bbcode [text]="text" *ngIf="text">
 </bbcode>

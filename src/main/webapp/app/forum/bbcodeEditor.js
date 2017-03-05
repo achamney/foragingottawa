@@ -10,8 +10,8 @@ define([], function() {
         
         ngOnInit: function () {
         },
-        updateText: function (textarea) {
-            this.text = textarea.value;
+        updateText: function (textarea, key) {
+            this.text = textarea.value.replace(/\n/g,'[br][/br]');
         },
         bbTag: function (tag, textarea) {
             textarea.value += "["+tag+"][/"+tag+"]";
