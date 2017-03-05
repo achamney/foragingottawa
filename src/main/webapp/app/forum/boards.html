@@ -30,8 +30,10 @@
             <div class="row-cell board-posts">
                 <div>{{board.posts}}</div>
             </div>
-            <div class="row-latest-post">
-                <div>{{board.latestPost}}</div>
+            <div class="row-latest-post cell-latest-post ellipsis">
+                <a (click)="goToLatest(board, $event)">{{board.latestPost}}</a> 
+                <div><small>{{board.latestPostDate}}</small></div>
+                <div><small>by {{board.latestThreadUser}}</small></div>
             </div>
         </div>
     </div>

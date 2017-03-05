@@ -34,9 +34,9 @@
             <div class="row-cell thread-replies">
                 <div>{{thread.replies}}</div>
             </div>
-            <div class="row-latest-post">
+            <div class="row-latest-post cell-latest-post">
                 <div><span>{{thread.replyUser}}</span><div class="glyphicon glyphicon-expand pull-right" (click)="goToLatest(thread, $event)"></div></div>
-                <div>{{thread.replyDate}}</div>
+                <div><small>{{thread.replyDate}}</small></div>
             </div>
         </div>
     </div>

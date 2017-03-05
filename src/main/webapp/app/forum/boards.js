@@ -29,6 +29,10 @@ define([
         openBoard: function(board) {
             window.location = "#?page=5&board="+board.id;
             this.changePage.next({ page: 5, board: board.id });
+        },
+        goToLatest: function(board, mouseEvent) {
+            window.location = "#?page=6&thread="+board.latestThreadId+"&post="+board.latestPostId;
+            mouseEvent.stopImmediatePropagation();
         }
     });
 

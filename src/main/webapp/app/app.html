@@ -4,6 +4,7 @@
 </nav>
 
 <home *ngIf="page===1"></home>
+<about *ngIf="page===3"></about>
 <boards *ngIf="page===4" (changePage)="changePage($event)"></boards>
 <threads *ngIf="page===5" (changePage)="changePage($event)"></threads>
 <thread *ngIf="page===6" (changePage)="changePage($event)"></thread>

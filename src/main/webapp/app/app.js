@@ -6,9 +6,12 @@ require([
     'forage/subscribe',
     'forage/captcha',
     'forage/nls',
+    'forage/about',
 
     'forage/forum/forum'
-], function (Nav, Home, Text, Map, Subscribe, Captcha, Nls, Forum) {
+], function (
+    Nav, Home, Text, Map, Subscribe, Captcha, Nls, About,
+    Forum) {
 
     var Main = ng.core.Component({
         selector: 'app',
@@ -38,7 +41,7 @@ require([
                 { path: 'forum', component: Forum }];
     var module = ng.core.NgModule({
         imports: [ng.platformBrowser.BrowserModule, Forum],
-        declarations: [Main, Home, Text, Map, Nav, Subscribe, Nls, Captcha],
+        declarations: [Main, Home, Text, Map, Nav, Subscribe, Nls, Captcha, About],
         bootstrap: [Main]
     })
         .Class({
