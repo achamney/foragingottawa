@@ -21,6 +21,16 @@ define([], function() {
             $(this.ref.nativeElement).html(result.html);
         }
     });
+    
+    XBBCODE.addTags({"br": {
+        openTag: function(params,content) {
+            return '<br />';
+        },
+        closeTag: function(params,content) {
+            return '';
+        },
+        displayContent: false
+    }});
     BBCode = Reflect.decorate([
         Reflect.metadata("design:paramtypes", [ng.core.ElementRef])
     ], BBCode);

@@ -22,7 +22,7 @@ define([
             var redir = quickforms.formRedirect;
             var _this = this;
             this.finishButton = el;
-            quickforms.currentFormformTemplate.childMap['token'].currentVal = this.token;
+            quickforms.currentFormformTemplate.childMap['token'].currentVal = getCookie('token');
             quickforms.currentFormformTemplate.childMap['board'].currentVal = this.board;
             quickforms.formRedirect = this.onFinishThread.bind(this);
             quickforms.putFact(el, "/");

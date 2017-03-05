@@ -65,8 +65,12 @@ nav .disabled{
 }
 .blog-post img {
 	float: left;
+	width: 300px;
 	margin-right: 15px;
 	margin-bottom: 15px;
+}
+.blog-post .btn {
+	margin: 10px 0px;
 }
 
 .ellipsis {
@@ -75,16 +79,23 @@ nav .disabled{
   text-overflow: ellipsis;
 }
 
+heartbeat.open {
+	position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 100px 100px;
+    background-color: rgba(0,0,0,0.8);
+    color: white;
+}
+
 
 
 
 
 .xbbcode-b {
     font-weight:bold;
-}
-
-.xbbcode-blockquote {
-
 }
 
 .xbbcode-center {

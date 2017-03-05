@@ -98,6 +98,13 @@
 .post .post-header .glyphicon {
     font-size: 12px;
 }
+.post img {
+    max-width: 300px;
+    float: left;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
 .quoteicon {
   quotes: "\201C""\201D""\2018""\2019";
   line-height: 8px;

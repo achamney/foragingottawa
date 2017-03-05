@@ -21,6 +21,9 @@ define([
                 }
 
             })
+        },
+        goToComments: function(thread) {
+            window.location="#?page=6&thread="+thread.id;
         }
     });
 

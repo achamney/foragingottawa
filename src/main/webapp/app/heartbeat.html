@@ -1,0 +1,9 @@
+<form id="formTemplate" class="form-group" [class.has-error]="fail" *ngIf="login">
+    <label for="username">Username:</label>
+    <input class="form-control" id="username" name="username" type="text" />
+    <label for="password">Password:</label>
+    <input class="form-control" id="password" name="username" type="password" (keyup)="checkEnter($event)" />
+    <br>
+    <div class="btn btn-primary" (click)="submitLogin()">Sign In</div>
+    <div class="btn btn-default" (click)="logOut()">Log Out</div>
+</form>

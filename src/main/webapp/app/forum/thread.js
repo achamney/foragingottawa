@@ -46,7 +46,7 @@ define([
                 }
             });
         },
-        ngOnInit() {
+        ngOnInit: function() {
             this.username = getCookie('username');
         },
         reply: function () {
@@ -62,7 +62,7 @@ define([
         replySubmit: function (body, el) {
             var redir = quickforms.formRedirect;
             var _this = this;
-            quickforms.currentFormnewPost.childMap['token'].currentVal = this.token;
+            quickforms.currentFormnewPost.childMap['token'].currentVal = getCookie('token');
             quickforms.currentFormnewPost.childMap['thread'].currentVal = this.thread;
             quickforms.currentFormnewPost.childMap['body'].currentVal = body;
             quickforms.formRedirect = this.onFinishPost.bind(this);

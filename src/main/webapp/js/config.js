@@ -10,7 +10,7 @@ define(function(){
 	config.loginCss = "quickforms/login.css";
 	
 	config.dataNativeMenu = false;
-	config.dataTransferType = 'jsonp';
+	config.dataTransferType = 'text';
 	config.app = 'foragingottawa';             ////////////////////** Required//////////////////////////
 	config.quickformsEnding = ""; // "" or ".asp"
 	config.defaultPageTransition = "none"; // slide, pop, none
@@ -21,7 +21,7 @@ define(function(){
 	config.debug = false; // kills cache of js/css files if true
 	
     config.jqueryMobileEnable = false;
-	config.extraScripts = ['js/heartbeat']; // set to empty array if app does not require login
+	config.extraScripts = []; // set to empty array if app does not require login
 	
 	config.offline = false;
 	return config;

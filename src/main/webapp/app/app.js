@@ -7,10 +7,11 @@ require([
     'forage/captcha',
     'forage/nls',
     'forage/about',
+    'forage/heartbeat',
 
     'forage/forum/forum'
 ], function (
-    Nav, Home, Text, Map, Subscribe, Captcha, Nls, About,
+    Nav, Home, Text, Map, Subscribe, Captcha, Nls, About, Heartbeat,
     Forum) {
 
     var Main = ng.core.Component({
@@ -41,7 +42,7 @@ require([
                 { path: 'forum', component: Forum }];
     var module = ng.core.NgModule({
         imports: [ng.platformBrowser.BrowserModule, Forum],
-        declarations: [Main, Home, Text, Map, Nav, Subscribe, Nls, Captcha, About],
+        declarations: [Main, Home, Text, Map, Nav, Subscribe, Nls, Captcha, About, Heartbeat],
         bootstrap: [Main]
     })
         .Class({
