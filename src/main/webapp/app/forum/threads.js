@@ -38,6 +38,8 @@ define([
         },
 
         openThread: function (thread) {
+            var update = "updateid="+thread.id+"&viewCount="+(thread.views+1)+"&app=foragingottawa&factTable=threads&token="+getCookie("token");
+            quickforms.putFactServer(update, function(){});
             window.location = "#?page=6&thread=" + thread.id;
             this.changePage.next({ page: 6, thread: thread.id });
         },
@@ -47,6 +49,8 @@ define([
         },
 
         goToLatest: function (thread, e) {
+            var update = "updateid="+thread.id+"&viewCount="+(thread.views+1)+"&app=foragingottawa&factTable=threads&token="+getCookie("token");
+            quickforms.putFactServer(update, function(){});
             window.location = "#?page=6&thread=" + thread.id + "&post=" + thread.replyKey;
             e.stopImmediatePropagation();
         }
