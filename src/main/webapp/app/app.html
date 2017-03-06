@@ -1,6 +1,7 @@
 <nav class="navbar navbar-fixed-top navbar-default" 
     id="forageNav" [page]="page"
-    (changePage)="changePage($event)">
+    (changePage)="changePage($event)"
+    (triggerLogin)="heartbeat.triggerLogin()">
 </nav>
 
 <home *ngIf="page===1"></home>
@@ -10,4 +11,4 @@
 <thread *ngIf="page===6" (changePage)="changePage($event)"></thread>
 <subscribe *ngIf="page===10"></subscribe>
 
-<heartbeat></heartbeat>
+<heartbeat #heartbeat></heartbeat>

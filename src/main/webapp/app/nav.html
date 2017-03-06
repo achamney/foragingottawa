@@ -19,20 +19,12 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown" *ngIf="!username">
-                <a  class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
+                <a role="button" (click)="triggerLogin.next()">
                     Sign In <span class="caret"></span>
                 </a>
-                <ul class="dropdown-menu form-group" id="loginDropdown" [class.has-error]="fail">
-                    <label for="username">Username:</label>
-                    <input class="form-control" id="username" name="username" type="text"/>
-                    <label for="password">Password:</label>
-                    <input class="form-control" id="password" name="username" type="password" (keyup)="checkEnter($event)"/>
-                    <br>
-                    <button class="btn btn-primary" (click)="logIn()">Sign In</button>
-                </ul>
             </li>
             <li class="dropdown" *ngIf="username">
-                <a  class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
+                <a class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
                     {{username}} <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu form-group" id="logoutDropdown">

@@ -20,9 +20,12 @@ define([
         },
         response: function (data) {
             if (!isJSONString(data)) {
-                setCookie('username', '');
-                this.login = true;
+                this.triggerLogin();
             }
+        },
+        triggerLogin: function() {
+            this.username = getCookie('username');
+            this.login = true;
         },
         submitLogin: function () {
             var md5edPass = '';
@@ -46,6 +49,10 @@ define([
                 var json = JSON.parse(data);
                 setCookie("token", json[0].token);
                 setCookie("username", json[0].username);
+                this.login = false;
+                if(!this.username) {
+                    location.reload();
+                }
             }
             else {
                 this.fail = true;
