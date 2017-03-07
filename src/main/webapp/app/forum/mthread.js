@@ -10,5 +10,10 @@ define([], function () {
             this.replyKey = json.replyKey;
             this.board = json.board;
             this.id = json.threadsKey;
+            try {
+                this.views = parseInt(json.views);
+            } catch (e) {
+                
+            }
         }
 });

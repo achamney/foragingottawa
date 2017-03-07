@@ -5,10 +5,14 @@ define([], function() {
         templateUrl: 'app/forum/bbcodeEditor.html',
     }).Class({
         
-        constructor: function () {
+        constructor: function (ref) {
+            this.ref = ref.nativeElement;
         },
         
-        ngOnInit: function () {
+        ngOnChanges: function () {
+            if(this.text) {
+                $('textarea', this.ref)[0].value = this.text;
+            }
         },
         updateText: function (textarea, key) {
             this.text = textarea.value.replace(/\n/g,'[br][/br]');
@@ -17,5 +21,8 @@ define([], function() {
             textarea.value += "["+tag+"][/"+tag+"]";
         }
     });
+    BBCodeEditor = Reflect.decorate([
+        Reflect.metadata("design:paramtypes", [ng.core.ElementRef])
+    ], BBCodeEditor);
     return BBCodeEditor;
 });

@@ -19,12 +19,10 @@ define(['helper/md5'], function () {
                 disabled: true
             }, {
                 id: 3,
-                title: "About",
-                disabled: true
+                title: "About"
             }, {
                 id: 4,
-                title: "Forum",
-                disabled: true
+                title: "Forum"
             }];
         },
         ngOnInit: function () {
@@ -52,6 +50,7 @@ define(['helper/md5'], function () {
         changeTab: function (nav, e) {
             if (nav.disabled) return;
             this.page = nav.id;
+            $(e.target).parents(".navbar-collapse").removeClass('in');
             this.changePage.next({ page: nav.id });
         },
         logOut: function() {

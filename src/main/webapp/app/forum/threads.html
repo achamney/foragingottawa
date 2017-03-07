@@ -1,6 +1,6 @@
 
 <div class="container content">
-    <h1 class="header">{{boardName+' Threads'}}</h1>
+    <h1 class="header ellipsis">{{boardName+' Threads'}}</h1>
     <div class="forum-nav">
         <a href="#?page=4">Boards</a> > {{boardName}}
         <button class="btn btn-primary pull-right" (click)="startNewThread()" *ngIf="token && board!==2">New Thread</button>

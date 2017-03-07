@@ -50,11 +50,14 @@ define([
             this.username = getCookie('username');
         },
         reply: function () {
+            var _this = this;
             this.replyFlag = true;
             window.setTimeout(function() {
                 quickforms.parseForm( //formId*, app, fact*, callback
                                 {formId:'newPost',
                                 fact:'posts'});
+                quickforms.currentFormnewPost.updateId = _this.updateId;
+                $('textarea').focus();
             }, 50);
             this.token = getCookie('token');
         },
@@ -79,6 +82,22 @@ define([
             var post = json[0].id;
             location.reload();
         },
+
+        editPost: function(post) {
+            this.updateId = post.id;
+            this.replyText = post.body;
+            this.reply();
+        },
+
+        quotePost: function(post) {
+            this.replyText = "[quote][small] by "+post.username+"[/small][br][/br]"+post.body+"[/quote]";
+            this.reply();
+        },
+
+        deletePost: function() {
+            quickforms.executeQuery(quickforms.app, 'posts_delete_row',
+                    'id='+this.updateId, function(){location.reload();});
+        }
     });
 
 });

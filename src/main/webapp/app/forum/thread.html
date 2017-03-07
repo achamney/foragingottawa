@@ -2,28 +2,37 @@
 <div class="container content">
     <h1 class="header">{{threadTitle}}</h1>
     <div class = "forum-nav">
-        <a href="#?page=4">Boards</a> > <a href="#?page=5&board={{board}}">{{boardName}}</a> > {{threadTitle}}
-        <button class="btn btn-primary pull-right" (click)="reply()" *ngIf="!replyFlag">Reply <div class="glyphicon glyphicon-share"></div></button>
+        <a href="#?page=4"> {{'Boards'|nls}}</a> > <a href="#?page=5&board={{board}}">{{boardName}}</a> > {{threadTitle}}
+        <button class="btn btn-primary pull-right" (click)="reply()" *ngIf="!replyFlag&&username">{{'Reply'|nls}} <div class="glyphicon glyphicon-share"></div></button>
+        <button class="btn btn-primary pull-right disabled" *ngIf="!username" [title]="'Login to reply'|nls">{{'Reply'|nls}} <div class="glyphicon glyphicon-share"></div></button>
+        <div class="clear"></div>
     </div>
     <div *ngFor="let post of posts" [id]="post.id" class="post">
         <div class="post-header">
-            by <a href="#?page=9&username={{post.username}}">{{post.username}}</a> 
+            {{'by'|nls}} <a href="#?page=9&username={{post.username}}">{{post.username}}</a> 
             {{post.createdDate}}
-            <button class="btn btn-default pull-right"><div class="quoteicon"></div></button>
-            <button class="btn btn-default pull-right" *ngIf="post.username === username"><div class="glyphicon glyphicon-pencil"></div></button>
+            <button class="btn btn-default pull-right" *ngIf="username"(click)="quotePost(post)"><div class="quoteicon"></div></button>
+            <button class="btn btn-default pull-right" *ngIf="username && post.username===username" (click)="editPost(post)"><div class="glyphicon glyphicon-pencil"></div></button>
         </div>
         <hr>
         <bbcode  [text]="post.body">
         </bbcode>
     </div>
     <form *ngIf="replyFlag" id="newPost">
-        <bbcodeEditor  #editor>
+        <bbcodeEditor #editor [text]="replyText">
         </bbcodeEditor>
         <input type="hidden" name="token" id="token" />
         <input type="hidden" name="body" id="body" />
         <input type="hidden" name="thread" id="thread" />
-        <div class="btn btn-primary pull-right" (click)="replySubmit(editor.text, btn)" #btn>Reply</div>
-        <div class="btn btn-default pull-right" (click)="replyFlag=false">Cancel</div>
+        <input type="hidden" name="postsKey" id="postsKey" />
+        
+        <div class="buttons">
+            <div class="btn btn-primary pull-right" (click)="replySubmit(editor.text, btn)" #btn>{{'Reply'|nls}}</div>
+            <div class="btn btn-default pull-right" (click)="replyFlag=false">{{'Cancel'|nls}}</div>
+            <div class="btn btn-warning pull-right" *ngIf="updateId" (click)="deletePost()">{{'Delete'|nls}}</div>
+        </div>
     </form>
-    <button class="btn btn-primary pull-right" (click)="reply()" *ngIf="!replyFlag">Reply <div class="glyphicon glyphicon-share"></div></button>
+    
+    <button class="btn btn-primary pull-right" (click)="reply()" *ngIf="!replyFlag&&username">{{'Reply'|nls}} <div class="glyphicon glyphicon-share"></div></button>
+    <button class="btn btn-primary pull-right disabled" *ngIf="!username" [title]="'Login to reply'|nls">{{'Reply'|nls}} <div class="glyphicon glyphicon-share"></div></button>
 </div>

@@ -4,12 +4,13 @@ define([
     'forage/forum/thread',
     'forage/forum/new-thread',
     'forage/forum/bbcodeEditor',
-    'forage/bbcode'
-    ], function (Boards, Threads, Thread, NewThread, bbcodeEditor, BBCode ) {
+    'forage/bbcode',
+    'forage/nls',
+    ], function (Boards, Threads, Thread, NewThread, bbcodeEditor, BBCode, Nls ) {
         var module = ng.core.NgModule({
             imports: [ng.platformBrowser.BrowserModule],
-            declarations: [ Boards, Threads, Thread, NewThread, BBCode, bbcodeEditor],
-            exports: [ Boards, Threads, Thread, BBCode]
+            declarations: [ Boards, Threads, Thread, NewThread, BBCode, bbcodeEditor, Nls],
+            exports: [ Boards, Threads, Thread, BBCode, Nls]
         })
         .Class({
             constructor: function() { }

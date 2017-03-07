@@ -103,6 +103,9 @@
     padding-right: 10px;
     padding-bottom: 10px;
 }
+#newPost .buttons .btn {
+    margin: 0px 2px;
+}
 
 .quoteicon {
   quotes: "\201C""\201D""\2018""\2019";
