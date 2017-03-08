@@ -2,16 +2,16 @@ require([
     'forage/nav',
     'forage/home',
     'forage/text',
-    'forage/map',
     'forage/subscribe',
     'forage/captcha',
     'forage/about',
     'forage/heartbeat',
 
+    'forage/maps/maps',
     'forage/forum/forum'
 ], function (
-    Nav, Home, Text, Map, Subscribe, Captcha, About, Heartbeat,
-    Forum) {
+    Nav, Home, Text, Subscribe, Captcha, About, Heartbeat,
+    Maps, Forum) {
 
     var Main = ng.core.Component({
         selector: 'app',
@@ -37,11 +37,9 @@ require([
     Main = Reflect.decorate([
         Reflect.metadata("design:paramtypes", [/*ng.router.ActivatedRoute, ng.common.Location*/])
     ], Main);
-    var routes = [{ path: '', component: Home },
-                { path: 'forum', component: Forum }];
     var module = ng.core.NgModule({
-        imports: [ng.platformBrowser.BrowserModule, Forum],
-        declarations: [Main, Home, Text, Map, Nav, Subscribe, Captcha, About, Heartbeat],
+        imports: [ng.platformBrowser.BrowserModule, Forum, Maps],
+        declarations: [Main, Home, Text, Nav, Subscribe, Captcha, About, Heartbeat],
         bootstrap: [Main],
     })
         .Class({

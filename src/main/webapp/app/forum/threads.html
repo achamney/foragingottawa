@@ -1,8 +1,8 @@
 
 <div class="container content">
-    <h1 class="header ellipsis">{{boardName+' Threads'}}</h1>
+    <h1 class="header ellipsis">{{boardName}} {{'Threads'|nls}}</h1>
     <div class="forum-nav">
-        <a href="#?page=4">Boards</a> > {{boardName}}
+        <a href="#?page=4">{{'Boards'|nls}}</a> > {{boardName}}
         <button class="btn btn-primary pull-right" (click)="startNewThread()" *ngIf="token && board!==2">New Thread</button>
     </div>
     <div class="table" *ngIf="!newThread">
@@ -10,16 +10,16 @@
             <div class="row-cell row-icon">
             </div>
             <div class="row-cell row-text">
-                Title
+                {{'Title'|nls}}
             </div>
             <div class="row-cell thread-views">
-                Views
+                {{'Views'|nls}}
             </div>
             <div class="row-cell thread-replies">
-                Replies
+                {{'Replies'|nls}}
             </div>
             <div class="row-latest-post">
-                Latest Post
+                {{'Latest Post'|nls}}
             </div>
         </div>
         <div class="table-row" *ngFor="let thread of threads" (click)="openThread(thread)">

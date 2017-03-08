@@ -8,7 +8,7 @@
             <h3>{{blogPost.name}} <span class="pull-right" style="font-size:20px">{{blogPost.createdDate}}</span></h3>
             <bbcode [text]="blogPost.body"></bbcode>
             <div>
-                <div class="btn btn-default" (click)="goToComments(blogPost)">Comments ({{blogPost.comments}})</div>
+                <div class="btn btn-default" (click)="goToComments(blogPost)">{{'Comments'|nls}} ({{blogPost.comments}})</div>
             </div>
             <hr>
         </div>
