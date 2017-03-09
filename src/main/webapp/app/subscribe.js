@@ -1,7 +1,7 @@
 define([
     'forage/captcha',
-    "quickforms/server/getFactData",
-    'quickforms/dom/form/text'
+    "server/getFactData",
+    'dom/form/text'
 ], function (Captcha) {
     return ng.core.Component({
         selector: 'subscribe',

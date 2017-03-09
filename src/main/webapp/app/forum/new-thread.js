@@ -1,6 +1,6 @@
 define([
-    "quickforms/server/getFactData",
-    'quickforms/dom/form/text'
+    "server/getFactData",
+    'dom/form/text'
 ], function () {
     return ng.core.Component({
         selector: 'new-thread',

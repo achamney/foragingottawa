@@ -3,7 +3,7 @@ define([
     'forage/forum/mpost',
     'forage/forum/new-thread',
     'server/getFactData',
-    'quickforms/dom/form/text'
+    'dom/form/text'
 ], function (Post, NewThread) {
     return ng.core.Component({
         selector: 'thread',
