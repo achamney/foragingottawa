@@ -1,6 +1,6 @@
 
 <div class="container content">
-    <h1 class="header">{{threadTitle}}</h1>
+    <h1 class="header ellipsis">{{threadTitle}}</h1>
     <div class = "forum-nav">
         <a href="#?page=4"> {{'Boards'|nls}}</a> > <a href="#?page=5&board={{board}}">{{boardName}}</a> > {{threadTitle}}
         <button class="btn btn-primary pull-right" (click)="reply()" *ngIf="!replyFlag&&username">{{'Reply'|nls}} <div class="glyphicon glyphicon-share"></div></button>

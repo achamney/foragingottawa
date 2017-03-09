@@ -1,39 +1,41 @@
 
 <div class="container content">
     <h1 class="header">{{'Forum'|nls}}</h1>
-    <div class="table">
-        <div class="table-row header-row">
-            <div class="row-cell row-icon">
+    <div class="table-container">
+        <div class="table">
+            <div class="table-row header-row">
+                <div class="row-cell row-icon">
+                </div>
+                <div class="row-cell row-text">
+                    {{'Board'|nls}}
+                </div>
+                <div class="row-cell board-threads">
+                    {{'Threads'|nls}}
+                </div>
+                <div class="row-cell board-posts">
+                    {{'Posts'|nls}}
+                </div>
+                <div class="row-latest-post">
+                    {{'Latest Post'|nls}}
+                </div>
             </div>
-            <div class="row-cell row-text">
-                {{'Board'|nls}}
-            </div>
-            <div class="row-cell board-threads">
-                {{'Threads'|nls}}
-            </div>
-            <div class="row-cell board-posts">
-                {{'Posts'|nls}}
-            </div>
-            <div class="row-latest-post">
-                {{'Latest Post'|nls}}
-            </div>
-        </div>
-        <div class="table-row" *ngFor="let board of boards" (click)="openBoard(board)">
-            <div class="row-cell row-icon" [class.active]="board.icon==='active'">
-            </div>
-            <div class="row-cell row-text">
-                <div>{{board.name}}</div> <small> {{board.description}} </small>
-            </div>
-            <div class="row-cell board-threads">
-                <div>{{board.threads}}</div>
-            </div>
-            <div class="row-cell board-posts">
-                <div>{{board.posts}}</div>
-            </div>
-            <div class="row-latest-post cell-latest-post ellipsis">
-                <a (click)="goToLatest(board, $event)">{{board.latestPost}}</a> 
-                <div><small>{{board.latestPostDate}}</small></div>
-                <div><small>{{'by'|nls}} {{board.latestThreadUser}}</small></div>
+            <div class="table-row" *ngFor="let board of boards" (click)="openBoard(board)">
+                <div class="row-cell row-icon" [class.active]="board.icon==='active'">
+                </div>
+                <div class="row-cell row-text">
+                    <div>{{board.name}}</div> <small> {{board.description}} </small>
+                </div>
+                <div class="row-cell board-threads">
+                    <div>{{board.threads}}</div>
+                </div>
+                <div class="row-cell board-posts">
+                    <div>{{board.posts}}</div>
+                </div>
+                <div class="row-latest-post cell-latest-post ellipsis">
+                    <a (click)="goToLatest(board, $event)">{{board.latestPost}}</a> 
+                    <div><small>{{board.latestPostDate}}</small></div>
+                    <div><small>{{'by'|nls}} {{board.latestThreadUser}}</small></div>
+                </div>
             </div>
         </div>
     </div>

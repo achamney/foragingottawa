@@ -1,65 +1,108 @@
 
 use foragingottawa;
-
-CREATE TABLE `fact_foragelocations` (
-  `foragelocationsKey` int(11) NOT NULL AUTO_INCREMENT,
-  `name` text,
-  `img` text,
-  `latitude` decimal(7,5) DEFAULT NULL,
-  `longitude` decimal(7,5) DEFAULT NULL,
-  `date` varchar(15) DEFAULT NULL,
-  `description` text,
-  `deleteFlag` int(11) DEFAULT NULL,
-  PRIMARY KEY (`foragelocationsKey`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
-
-CREATE TABLE `fact_queries` (
-  `queriesKey` int(11) NOT NULL AUTO_INCREMENT,
-  `queryLabel` varchar(100) DEFAULT NULL,
-  `query` varchar(8000) DEFAULT NULL,
-  `deleteFlag` int(11) DEFAULT NULL,
-  PRIMARY KEY (`queriesKey`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
-
-CREATE TABLE `fact_teammembers` (
-  `temmemberKey` int(11) NOT NULL AUTO_INCREMENT,
-  `firstName` varchar(100) DEFAULT NULL,
-  `lastName` varchar(100) DEFAULT NULL,
-  `userName` varchar(100) DEFAULT NULL,
-  `password` varchar(100) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `userRole` int(11) DEFAULT NULL,
-  `activeFlag` int(11) DEFAULT NULL,
-  `deleteFlag` int(11) DEFAULT NULL,
-  PRIMARY KEY (`temmemberKey`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
-CREATE TABLE `fact_users` (
-  `usersKey` int(10) NOT NULL AUTO_INCREMENT,
-  `username` text NOT NULL,
-  `password` text NOT NULL,
-  `email` text NOT NULL,
-  `createdDate` datetime DEFAULT NULL,
-  `avatar` text,
-  `member_title` text,
-  `signature` text,
-  `deleteFlag` int(11) DEFAULT NULL,
-  PRIMARY KEY (`usersKey`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
-
-CREATE TABLE `fact_users` (
-  `usersKey` int(10) NOT NULL AUTO_INCREMENT,
-  `username` text NOT NULL,
-  `password` text NOT NULL,
-  `email` text NOT NULL,
-  `createdDate` varchar(20) DEFAULT NULL,
-  `avatar` text,
-  `member_title` text,
-  `signature` text,
-  `token` varchar(130),
-  `deleteFlag` int(11) DEFAULT NULL,
-  PRIMARY KEY (`usersKey`,`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+CREATE TABLE fact_boards
+(
+   boardsKey int PRIMARY KEY NOT NULL,
+   name varchar(100),
+   description longtext,
+   createdDate date,
+   updatedDate date,
+   deleteFlag smallint
+)
+;
+CREATE UNIQUE INDEX PRIMARY ON fact_boards(boardsKey)
+;
+CREATE TABLE fact_foragelocations
+(
+   foragelocationsKey int PRIMARY KEY NOT NULL,
+   name longtext,
+   img longtext,
+   latitude decimal(7,5),
+   longitude decimal(7,5),
+   date varchar(15),
+   description longtext,
+   deleteFlag int
+)
+;
+CREATE UNIQUE INDEX PRIMARY ON fact_foragelocations(foragelocationsKey)
+;
+CREATE TABLE fact_posts
+(
+   postsKey int PRIMARY KEY NOT NULL,
+   body longtext,
+   quotedPost int,
+   username varchar(50),
+   createdDate date,
+   updatedDate date,
+   deleteFlag smallint,
+   thread int NOT NULL,
+   title varchar(100) NOT NULL
+)
+;
+CREATE UNIQUE INDEX PRIMARY ON fact_posts(postsKey)
+;
+CREATE TABLE fact_queries
+(
+   queriesKey int PRIMARY KEY NOT NULL,
+   queryLabel varchar(100),
+   query text,
+   deleteFlag int
+)
+;
+CREATE UNIQUE INDEX PRIMARY ON fact_queries(queriesKey)
+;
+CREATE TABLE fact_settings
+(
+   id int PRIMARY KEY NOT NULL,
+   dbName longtext NOT NULL,
+   dbLogin longtext NOT NULL,
+   dbPassword longtext NOT NULL,
+   forumPath longtext NOT NULL,
+   forumName longtext NOT NULL,
+   messagePerPage longtext NOT NULL
+)
+;
+CREATE UNIQUE INDEX PRIMARY ON fact_settings(id)
+;
+CREATE TABLE fact_threads
+(
+   threadsKey int PRIMARY KEY NOT NULL,
+   name varchar(100),
+   username varchar(50),
+   icon int,
+   views int,
+   createdDate date,
+   updatedDate date,
+   deleteFlag smallint,
+   board int NOT NULL
+)
+;
+CREATE UNIQUE INDEX PRIMARY ON fact_threads(threadsKey)
+;
+CREATE TABLE fact_users
+(
+   usersKey int NOT NULL,
+   username varchar(50) NOT NULL,
+   password longtext NOT NULL,
+   email longtext NOT NULL,
+   createdDate varchar(20),
+   avatar longtext,
+   member_title longtext,
+   signature longtext,
+   token varchar(130),
+   deleteFlag int,
+   userRole int DEFAULT 1,
+   CONSTRAINT PRIMARY PRIMARY KEY (usersKey,username)
+)
+;
+CREATE UNIQUE INDEX PRIMARY ON fact_users
+(
+  usersKey,
+  username
+)
+;
+CREATE UNIQUE INDEX username ON fact_users(username)
+;
 
 CREATE TABLE `lkup_userrole` (
   `userRoleKey` int(11) NOT NULL,
