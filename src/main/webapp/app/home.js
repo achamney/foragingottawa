@@ -1,12 +1,11 @@
 define([
-    'forage/map',
     'forage/text',
     "quickforms/server/getFactData"
-], function (Map, Text) {
+], function (Text) {
     return ng.core.Component({
         selector: 'home',
         templateUrl: 'app/home.html',
-        directives: [Map, Text]
+        directives: [Text]
     }).Class({
         constructor: function () {
             var _this = this;

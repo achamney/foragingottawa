@@ -1,7 +1,6 @@
 var hasLoaded = false;
-define(['foragingottawa/maps/FormManager',
-				'server/getFactData','dom/form/text','dom/form/date'],
-                function(Map, FormManager){
+define(['server/getFactData','dom/form/text','dom/form/date'],
+                function(){
     return ng.core.Component({
         selector: 'maps',
         templateUrl: 'app/maps/map.html'

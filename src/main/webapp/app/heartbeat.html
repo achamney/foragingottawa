@@ -1,10 +1,10 @@
 <form id="formTemplate" class="form-group" [class.has-error]="fail" *ngIf="login">
-    <label for="username">Username:</label>
+    <label for="username">{{'Username'|nls}}:</label>
     <input class="form-control" id="username" name="username" type="text" />
-    <label for="password">Password:</label>
+    <label for="password">{{'Password'|nls}}:</label>
     <input class="form-control" id="password" name="username" type="password" (keyup)="checkEnter($event)" />
     <br>
-    <div class="btn btn-primary" (click)="submitLogin()">Sign In</div>
-    <div class="btn btn-default" (click)="logOut()" *ngIf="username">Log Out</div>
-    <div class="btn btn-default" (click)="login=false" *ngIf="!username">Cancel</div>
+    <div class="btn btn-primary" (click)="submitLogin()">{{'Sign In'|nls}}</div>
+    <div class="btn btn-default" (click)="logOut()" *ngIf="username">{{'Log Out'|nls}}</div>
+    <div class="btn btn-default" (click)="login=false" *ngIf="!username">{{'Cancel'|nls}}</div>
 </form>

@@ -1,21 +1,21 @@
 
 <div class="container content">
-    <h1 class="header">Forum</h1>
+    <h1 class="header">{{'Forum'|nls}}</h1>
     <div class="table">
         <div class="table-row header-row">
             <div class="row-cell row-icon">
             </div>
             <div class="row-cell row-text">
-                Board
+                {{'Board'|nls}}
             </div>
             <div class="row-cell board-threads">
-                Threads
+                {{'Threads'|nls}}
             </div>
             <div class="row-cell board-posts">
-                Posts
+                {{'Posts'|nls}}
             </div>
             <div class="row-latest-post">
-                Latest Post
+                {{'Latest Post'|nls}}
             </div>
         </div>
         <div class="table-row" *ngFor="let board of boards" (click)="openBoard(board)">
@@ -33,7 +33,7 @@
             <div class="row-latest-post cell-latest-post ellipsis">
                 <a (click)="goToLatest(board, $event)">{{board.latestPost}}</a> 
                 <div><small>{{board.latestPostDate}}</small></div>
-                <div><small>by {{board.latestThreadUser}}</small></div>
+                <div><small>{{'by'|nls}} {{board.latestThreadUser}}</small></div>
             </div>
         </div>
     </div>

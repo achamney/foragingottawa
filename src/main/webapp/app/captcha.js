@@ -1,13 +1,14 @@
 define([], function() {
-    return ng.core.Component({
+    var Recaptcha = ng.core.Component({
         selector: 'captcha',
         template: '<ng-content></ng-content>',
-        inputs: ['container', 'val'],
+        inputs: ['val'],
         outputs: ['cb']
     }).Class({
         
-        constructor: function () {
+        constructor: function (ref) {
             this.cb = new ng.core.EventEmitter();
+            this.container = ref.nativeElement;
         },
         
         ngOnInit: function () {
@@ -27,4 +28,9 @@ define([], function() {
             }
         }
     });
+    Recaptcha = Reflect.decorate([
+        Reflect.metadata("design:paramtypes", [ng.core.ElementRef])
+    ], Recaptcha);
+    return Recaptcha;
+    
 });

@@ -46,3 +46,6 @@ body label {
 .navbar .dropdown-menu{
 	padding:10px;
 }
+map {
+	display: block;
+}
