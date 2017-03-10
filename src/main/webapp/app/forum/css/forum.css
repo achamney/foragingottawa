@@ -71,10 +71,6 @@
 .table-row .glyphicon:hover {
     color: #66F;
 }
-.row-latest-post {
-    line-height: 13px;
-}
-
 .post {
     min-height: 170px;
     width: 100%;
@@ -119,6 +115,10 @@
 .quoteicon:before {
   content: open-quote;
   font-size: 26px;
+}
+
+bbcodeEditor textarea {
+    height: 250px;
 }
 
 

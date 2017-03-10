@@ -32,9 +32,11 @@
                     <div>{{board.posts}}</div>
                 </div>
                 <div class="row-latest-post cell-latest-post ellipsis">
-                    <a (click)="goToLatest(board, $event)">{{board.latestPost}}</a> 
-                    <div><small>{{board.latestPostDate}}</small></div>
-                    <div><small>{{'by'|nls}} {{board.latestThreadUser}}</small></div>
+                    <div *ngIf="board.latestPost!='null'" class="ellipsis">
+                        <a (click)="goToLatest(board, $event)">{{board.latestPost}}</a> 
+                        <div><small>{{board.latestPostDate}}</small></div>
+                        <div><small>{{'by'|nls}} {{board.latestThreadUser}}</small></div>
+                    </div>
                 </div>
             </div>
         </div>
