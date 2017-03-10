@@ -17,6 +17,7 @@
         <hr>
         <bbcode  [text]="post.body">
         </bbcode>
+        <div class="clear"></div>
     </div>
     <form *ngIf="replyFlag" id="newPost">
         <bbcodeEditor #editor [text]="replyText">

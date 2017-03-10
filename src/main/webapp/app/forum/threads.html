@@ -1,5 +1,5 @@
 
-<div class="container content">
+<div class="container content" *ngIf="type==='default'">
     <h1 class="header ellipsis">{{boardName}} {{'Threads'|nls}}</h1>
     <div class="forum-nav">
         <a href="#?page=4">{{'Boards'|nls}}</a> > {{boardName}}
@@ -43,5 +43,94 @@
         </div>
         <new-thread *ngIf="newThread" (close)="newThread=false" (create)="createNewThread($event)" [board]="board">
         </new-thread>
+    </div>
+</div>
+<div class="container content" *ngIf="type==='recent'">
+    <h1 class="header ellipsis">{{'Active Threads'|nls}}</h1>
+    <div class="forum-nav">
+        <a href="#?page=4">{{'Boards'|nls}}</a> > {{'Active Threads'|nls}}
+    </div>
+    <div class="table-container">
+        <div class="table">
+            <div class="table-row header-row">
+                <div class="row-cell row-icon">
+                </div>
+                <div class="row-cell row-text">
+                    {{'Title'|nls}}
+                </div>
+                <div class="row-cell thread-views">
+                    {{'Views'|nls}}
+                </div>
+                <div class="row-cell thread-replies">
+                    {{'Replies'|nls}}
+                </div>
+                <div class="row-latest-post">
+                    {{'Latest Post'|nls}}
+                </div>
+            </div>
+            <div class="table-row" *ngFor="let thread of threads" (click)="openThread(thread)">
+                <div class="row-cell row-icon" [class.active]="thread.icon==='active'">
+                </div>
+                <div class="row-cell row-text">
+                    <div>{{thread.name}}</div>
+                </div>
+                <div class="row-cell thread-views">
+                    <div>{{thread.views}}</div>
+                </div>
+                <div class="row-cell thread-replies">
+                    <div>{{thread.replies}}</div>
+                </div>
+                <div class="row-latest-post cell-latest-post">
+                    <div><span>{{thread.replyUser}}</span><div class="glyphicon glyphicon-expand pull-right" (click)="goToLatest(thread, $event)"></div></div>
+                    <div><small>{{thread.replyDate}}</small></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container content" *ngIf="type==='search'">
+    <h1 class="header ellipsis">{{'Search'|nls}}</h1>
+    <div class="forum-nav">
+        <a href="#?page=4">{{'Boards'|nls}}</a> > {{'Search'|nls}}
+        <div class="btn btn-default pull-right" (click)="openSearch(search.value)"style="margin-left: -1px"><div class="glyphicon glyphicon-search"></div></div>
+        <input type="text" class="pull-right" style="line-height: 29px" #search [value]="searchTerm"/>
+        <div class="clear"></div>
+    </div>
+    <div class="table-container">
+        <div class="table">
+            <div class="table-row header-row">
+                <div class="row-cell row-icon">
+                </div>
+                <div class="row-cell row-text">
+                    {{'Title'|nls}}
+                </div>
+                <div class="row-cell thread-views">
+                    {{'Views'|nls}}
+                </div>
+                <div class="row-cell thread-replies">
+                    {{'Replies'|nls}}
+                </div>
+                <div class="row-latest-post">
+                    {{'Latest Post'|nls}}
+                </div>
+            </div>
+            <div class="table-row" *ngFor="let thread of threads" (click)="openThread(thread)">
+                <div class="row-cell row-icon" [class.active]="thread.icon==='active'">
+                </div>
+                <div class="row-cell row-text">
+                    <div>{{thread.name}}</div>
+                </div>
+                <div class="row-cell thread-views">
+                    <div>{{thread.views}}</div>
+                </div>
+                <div class="row-cell thread-replies">
+                    <div>{{thread.replies}}</div>
+                </div>
+                <div class="row-latest-post cell-latest-post">
+                    <div><span>{{thread.replyUser}}</span><div class="glyphicon glyphicon-expand pull-right" (click)="goToLatest(thread, $event)"></div></div>
+                    <div><small>{{thread.replyDate}}</small></div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

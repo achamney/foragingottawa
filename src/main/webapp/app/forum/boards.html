@@ -1,6 +1,12 @@
 
 <div class="container content">
     <h1 class="header">{{'Forum'|nls}}</h1>
+    <div class="forum-nav">
+        <div class="btn btn-default pull-right" (click)="openLatestPosts()" style="margin-left: 15px">{{'Latest Posts'|nls}}</div>
+        <div class="btn btn-default pull-right" (click)="openSearch(search.value)"style="margin-left: -1px"><div class="glyphicon glyphicon-search"></div></div>
+        <input type="text" class="pull-right" style="line-height: 29px" #search/>
+        <div class="clear"></div>
+    </div>
     <div class="table-container">
         <div class="table">
             <div class="table-row header-row">
