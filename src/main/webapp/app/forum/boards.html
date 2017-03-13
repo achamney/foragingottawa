@@ -2,6 +2,7 @@
 <div class="container content">
     <h1 class="header">{{'Forum'|nls}}</h1>
     <div class="forum-nav">
+        <div class="loading pull-left" *ngIf="loading"></div>
         <div class="btn btn-default pull-right" (click)="openLatestPosts()" style="margin-left: 15px">{{'Latest Posts'|nls}}</div>
         <div class="btn btn-default pull-right" (click)="openSearch(search.value)"style="margin-left: -1px"><div class="glyphicon glyphicon-search"></div></div>
         <input type="text" class="pull-right" style="line-height: 29px" #search/>

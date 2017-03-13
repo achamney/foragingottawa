@@ -1,5 +1,5 @@
 var hasLoaded = false;
-define(['server/getFactData','dom/form/text','dom/form/date'],
+define(['server/getFactData','dom/form/text'],
                 function(){
     return ng.core.Component({
         selector: 'maps',

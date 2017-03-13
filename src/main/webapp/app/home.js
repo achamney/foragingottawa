@@ -9,11 +9,13 @@ define([
     }).Class({
         constructor: function () {
             var _this = this;
+            this.loading = true;
             quickforms.getFactData({
                 queryName: "getBlogPosts", 
                 callback: function(data) {
                     var blogPosts;
                     try {
+                        _this.loading = false;
                         blogPosts = JSON.parse(data);
                     } catch(e) { }
                     _this.blogPosts = blogPosts || [];

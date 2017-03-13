@@ -40,6 +40,7 @@ define([
             } else if (this.type === 'search') {
                 return this.doSearch();
             }
+            this.loading = true;
             quickforms.getFactData({
                 queryName: queryName,
                 params: params,
@@ -48,6 +49,7 @@ define([
         },
 
         threadResponse: function (data) {
+            this.loading = false;
             if(isJSONString(data)) {
                 var json = JSON.parse(data);
                 this.threads = json.map(function (datum) {

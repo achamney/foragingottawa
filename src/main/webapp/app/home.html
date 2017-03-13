@@ -4,6 +4,7 @@
         <h4>Take Advantage of the greatest gift given to us by nature and our city.</h4>
         <p>In Ottawa we are blessed with abundant useful vegetation, free stuff, and a great community. Let's get together and forage!</p>
         <hr>
+        <div class="loading pull-left" *ngIf="loading"></div>
         <div *ngFor="let blogPost of blogPosts" class="blog-post">
             <h3>{{blogPost.name}} <span class="pull-right" style="font-size:20px">{{blogPost.createdDate}}</span></h3>
             <bbcode [text]="blogPost.body"></bbcode>

@@ -8,7 +8,8 @@
         <input type="text" name = "email" id = "email" value = "" class="form-control"/>
 
         <br />
-        <label for="username" [class.error]="duplicate">{{'Username'|nls}}</label> &nbsp;&nbsp; <span *ngIf="duplicate" class="error">{{'That username has alreay been taken'|nls}}</span><br>
+        <label for="username" [class.error]="duplicate">{{'Username'|nls}}</label> 
+        &nbsp;&nbsp; <span *ngIf="duplicate" class="error" style="color:red">{{'That username has alreay been taken'|nls}}</span><br>
         <input type="text" name = "username" id = "username" value = "" (keyup)="duplicate=false" #user class="form-control"/>
 
         <br />
@@ -18,14 +19,15 @@
 
         <br><br>
 
-        <captcha (cb)="resolveCaptcha($event)" [val]="user.value"></captcha>
+        <captcha (cb)="resolveCaptcha($event)" #captcha></captcha>
         <input type="hidden" name = "captcha" id = "captcha" value = ""/>
 
         <br>
 
         <div class="buttons design delete">
-            <div class="btn btn-primary" [class.disabled]="!captchad" (click)="submitForm(btn)" 
+            <div class="btn btn-primary" [class.disabled]="!captchad" (click)="submitForm(btn, captcha)" 
                 data-icon="check" data-theme="b" data-inline="true" #btn>{{'Subscribe'|nls}}</div>
+            <div class="loading pull-right" *ngIf="loading"></div>
         </div>
     </form>
 </div>

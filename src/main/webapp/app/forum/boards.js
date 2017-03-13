@@ -16,10 +16,12 @@ define([
                 hasLoaded = true;
             }
             var _this = this;
+            _this.loading = true;
             quickforms.getFactData({
                 queryName: "getBoards",
                 callback: function (data) {
                     var json = JSON.parse(data);
+                    _this.loading = false;
                     _this.boards = json.map(function(datum) {
                         return new Board(datum);
                     })

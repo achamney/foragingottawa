@@ -26,11 +26,13 @@ define([
                 hasLoaded = window.hasLoaded = true;
             }
             var _this = this;
+            _this.loading = true;
             quickforms.getFactData({
                 queryName: "getPosts",
                 params: "thread="+this.thread,
                 callback: function (data) {
                     var json = JSON.parse(data);
+                    _this.loading = false;
                     _this.posts = json.map(function(datum) {
                         return new Post(datum);
                     })

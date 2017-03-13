@@ -96,6 +96,24 @@ heartbeat.open {
     color: white;
 }
 
+.loading {
+	width: 25px;
+	height: 25px;
+	background-image: url('../img/loading_icon.gif');
+	display: inline-block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

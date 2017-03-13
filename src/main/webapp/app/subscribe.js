@@ -12,12 +12,14 @@ define([
         },
         
         ngOnInit: function () {
-            quickforms.parseForm( //formId*, app, fact*, callback
-							{formId:'formTemplate',
-							fact:'users'});
+            window.setTimeout(function() {
+                quickforms.parseForm( //formId*, app, fact*, callback
+                                {formId:'formTemplate',
+                                fact:'users'});
+            }, 200);
         },
 
-        submitForm: function (el) {
+        submitForm: function (el, captcha) {
             if(!this.captchad) return;
             var redir = quickforms.formRedirect;
             var _this = this;
@@ -26,7 +28,9 @@ define([
             quickforms.formRedirect = redir;
             quickforms.serverQueries[quickforms.serverQueries.length-1].addErrorListener(function(e) {
                 _this.onError(e);
-            })
+            });
+            this.loading = true;
+            this.username = "";
         },
         
         resolveCaptcha: function(cap) {
@@ -42,11 +46,14 @@ define([
             var dataJson = JSON.parse(data);
             setCookie("token", dataJson[0].token);
             window.location.href="/";
+            this.loading = false;
         },
 
         onError: function(data) {
             if(~data.indexOf("Duplicate entry")) {
                 this.duplicate = true;
+                grecaptcha.reset();
+                this.loading = false;
             }
         }
     });

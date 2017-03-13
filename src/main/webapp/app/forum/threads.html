@@ -3,6 +3,7 @@
     <h1 class="header ellipsis">{{boardName}} {{'Threads'|nls}}</h1>
     <div class="forum-nav">
         <a href="#?page=4">{{'Boards'|nls}}</a> > {{boardName}}
+        <div class="loading" *ngIf="loading"></div>
         <button class="btn btn-primary pull-right" (click)="startNewThread()" *ngIf="token && board!==2">New Thread</button>
     </div>
     <div class="table-container">
