@@ -3,7 +3,7 @@
 
 
     <div class="col-sm-8">
-        <map id="mainMap" [data]="[{ lat: 45.3768482, long: -75.7100154 }]">
+        <map id="mainMap" [data]="[{ lat: 45.3768482, long: -75.7100154 }]" (newMarker)="setPosition($event)">
         </map>
         <div class="popup hide" id="showPointPopup">
             <h4 id="popupName" class="popup-name"></h4>
@@ -12,7 +12,7 @@
 
     </div>
 
-    <div class="col-sm-4" id="addPointForm">
+    <form class="col-sm-4" id="addPointForm" *ngIf="username">
         <h4>Add Location</h4>
         <label>Date Visited:</label>
         <input type="text" name="date" class="date form-control" id="formDate" />
@@ -32,10 +32,11 @@
                 <input class="form-control" id="addPointLong" name="longitude" type="text" />
             </div>
         </div>
+        <input type="hidden" name="token" id="token" />
         <br>
-        <div class="btn-group">
+        <div class="btn-group" >
             <button class="btn btn-default cancel">Cancel</button>
-            <button class="btn btn-primary ok">Submit</button>
+            <button class="btn btn-primary ok" (click)="submit(btn)" #btn>Submit</button>
         </div>
-    </div>
+    </form>
 </div>
