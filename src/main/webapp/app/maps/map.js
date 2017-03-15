@@ -22,6 +22,7 @@ define(['server/getFactData','dom/form/text', 'dom/form/date'],
             this.username = getCookie("username");
         },
         setPosition: function (latLng) { 
+            if(!this.username) return;
             var lat = quickforms.currentFormaddPointForm.childMap['addPointLat'],
                 long = quickforms.currentFormaddPointForm.childMap['addPointLong'];
             lat.currentVal=latLng.lat();
