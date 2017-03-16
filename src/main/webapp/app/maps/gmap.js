@@ -2,13 +2,14 @@ define([], function() {
     var component = ng.core.Component({
         selector: 'map',
         template: '',
-        inputs: ['data'],
-        outputs: ['newMarker']
+        inputs: ['data', 'newMarker'],
+        outputs: ['create']
     }).Class({
         
         constructor: function (ref) {
             this.ref = ref.nativeElement;
-            this.newMarker = new ng.core.EventEmitter(); 
+            this.create = new ng.core.EventEmitter(); 
+            this.createSetters();
         },
         
         ngOnInit: function () {
@@ -21,17 +22,9 @@ define([], function() {
                     center: coords,
                     scrollwheel: false
                 });
-                var tempMarker = null;
+                this.tempMarker = null;
                 this.mapImpl.addListener("click", function(e) {
-                    if(tempMarker) {
-                        tempMarker.setMap(null);
-                    }
-                    tempMarker = new google.maps.Marker({
-                        position: { lat: e.latLng.lat(), lng: e.latLng.lng() },
-                        map: _this.mapImpl,
-                        title: 'Hello World!'
-                    });
-                    _this.newMarker.next(e.latLng);
+                    _this.create.next(e.latLng);
                 });
                 var infowindow = new google.maps.InfoWindow({
                     content: "<h1>HelloWorld</h1>"
@@ -49,6 +42,20 @@ define([], function() {
                     }
                 }
             }
+        },
+        createSetters: function() {    
+            Object.defineProperty(this, 'newMarker', { 
+                set: function (newMarker) { 
+                    if(!newMarker) return;
+                    this._newMarker = newMarker;
+                    if (this.tempMarker) {
+                        this.tempMarker.setMap(null);
+                    }
+                    newMarker.map = this.mapImpl;
+                    this.tempMarker = new google.maps.Marker(newMarker);    
+                }, 
+                get: function() { return this._newMarker; }
+            });
         }
     });
     component = Reflect.decorate([

@@ -11,7 +11,7 @@ define(['server/getFactData','dom/form/text', 'dom/form/date'],
                 quickforms.loadCss('app/maps/css/map.css');
                 hasMapLoaded = true;
             }
-
+            this.icon = 1;
         },
         ngOnInit: function () {
             window.setTimeout(function() {
@@ -29,6 +29,18 @@ define(['server/getFactData','dom/form/text', 'dom/form/date'],
             long.currentVal=latLng.lng();
             lat.dom.val(lat.currentVal);
             long.dom.val(long.currentVal);
+            this.setMarker(lat.currentVal, long.currentVal);
+        },
+        setMarker: function(lat, long) {
+            if(this.newMarker && !lat) {
+                lat = this.newMarker.position.lat;
+                long = this.newMarker.position.lng;
+            }
+            this.newMarker = {
+                position: { lat: lat, lng: long },
+                icon: this.getIcon(this.icon),
+                title: 'Hello World!'
+            }
         },
         submit: function(btn) {
             var redir = quickforms.formRedirect;
@@ -51,6 +63,20 @@ define(['server/getFactData','dom/form/text', 'dom/form/date'],
             if(~data.indexOf("Duplicate entry")) {
                 this.duplicate = true;
             }
+        },
+        getIcon: function(id) {
+            var icons = {
+                1: "img/tree.png",
+                2: "img/greens.png",
+                3: "img/berry.png",
+                4: "img/mushroom.png",
+                5: "img/herbs.png"
+            }
+            return icons[id];
+        },
+        setMarkerIcon: function(id) {
+            this.icon = id;
+            this.setMarker();
         }
     });
 });
