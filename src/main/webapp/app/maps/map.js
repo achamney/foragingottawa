@@ -1,5 +1,5 @@
 var hasMapLoaded = false;
-define(['server/getFactData','dom/form/text', 'dom/form/date'],
+define(['server/getFactData','dom/form/text', 'dom/form/date', 'dom/form/checkbox'],
                 function(){
     return ng.core.Component({
         selector: 'maps',
@@ -11,6 +11,13 @@ define(['server/getFactData','dom/form/text', 'dom/form/date'],
                 quickforms.loadCss('app/maps/css/map.css');
                 hasMapLoaded = true;
             }
+            this.icons = {
+                1: "img/tree.png",
+                2: "img/greens.png",
+                3: "img/berry.png",
+                4: "img/mushroom.png",
+                5: "img/herbs.png"
+            }
             this.icon = 1;
         },
         ngOnInit: function () {
@@ -19,7 +26,29 @@ define(['server/getFactData','dom/form/text', 'dom/form/date'],
                                 {formId:'addPointForm',
                                 fact:'forageLocations'});
             }, 200);
+            
+            quickforms.getFactData({
+                queryName: 'getForageLocations',
+                params: '',
+                callback: this.markerResponse.bind(this)
+            });
             this.username = getCookie("username");
+        },
+        markerResponse: function (data) {
+            this.loading = false;
+            var _this = this;
+            if(isJSONString(data)) {
+                var json = JSON.parse(data);
+                this.markers = json.map(function (datum) {
+                    return {
+                        position: { lat: parseFloat(datum.latitude), lng: parseFloat(datum.longitude) },
+                        icon: _this.getIcon(parseInt(datum.icon)),
+                        title: datum.name
+                    }
+                })
+            } else {
+                this.markers = [];
+            }
         },
         setPosition: function (latLng) { 
             if(!this.username) return;
@@ -57,7 +86,7 @@ define(['server/getFactData','dom/form/text', 'dom/form/date'],
         
         onFinish(data) {
             if (data.indexOf("[") !== 0) return this.onError(data);
-            window.location="#?page=2";
+            window.location.reload();
         }, 
         onError: function(data) {
             if(~data.indexOf("Duplicate entry")) {
@@ -65,18 +94,13 @@ define(['server/getFactData','dom/form/text', 'dom/form/date'],
             }
         },
         getIcon: function(id) {
-            var icons = {
-                1: "img/tree.png",
-                2: "img/greens.png",
-                3: "img/berry.png",
-                4: "img/mushroom.png",
-                5: "img/herbs.png"
-            }
-            return icons[id];
+            return this.icons[id];
         },
         setMarkerIcon: function(id) {
             this.icon = id;
-            this.setMarker();
+            if (this.newMarker) {
+                this.setMarker();
+            }
         }
     });
 });

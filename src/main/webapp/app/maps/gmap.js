@@ -29,18 +29,6 @@ define([], function() {
                 var infowindow = new google.maps.InfoWindow({
                     content: "<h1>HelloWorld</h1>"
                 });
-                if (this.data) {
-                    for(var datum of this.data) {
-                        var marker = new google.maps.Marker({
-                            position: { lat: datum.lat, lng: datum.long },
-                            map: this.mapImpl,
-                            title: 'Hello World!'
-                        });
-                        marker.addListener('click', function() {
-                            infowindow.open(_this.mapImpl, marker);
-                        });
-                    }
-                }
             }
         },
         createSetters: function() {    
@@ -55,6 +43,21 @@ define([], function() {
                     this.tempMarker = new google.maps.Marker(newMarker);    
                 }, 
                 get: function() { return this._newMarker; }
+            });
+            Object.defineProperty(this, 'data', { 
+                set: function (data) { 
+                    this._data = data;
+                    if (this._data) {
+                        for(var datum of this._data) {
+                            datum.map = this.mapImpl;
+                            var marker = new google.maps.Marker(datum);
+                            marker.addListener('click', function() {
+                                infowindow.open(_this.mapImpl, marker);
+                            });
+                        }
+                    }
+                }, 
+                get: function() { return this._data; }
             });
         }
     });
