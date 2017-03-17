@@ -26,9 +26,6 @@ define([], function() {
                 this.mapImpl.addListener("click", function(e) {
                     _this.create.next(e.latLng);
                 });
-                var infowindow = new google.maps.InfoWindow({
-                    content: "<h1>HelloWorld</h1>"
-                });
             }
         },
         createSetters: function() {    
@@ -47,9 +44,15 @@ define([], function() {
             Object.defineProperty(this, 'data', { 
                 set: function (data) { 
                     this._data = data;
+                    var _this = this;
                     if (this._data) {
                         for(var datum of this._data) {
                             datum.map = this.mapImpl;
+                            var infowindow = new google.maps.InfoWindow({
+                                content: "<h1>"+datum.title+"<small class='pull-right'>"+datum.date+"</small></h1>"+
+                                "<p>"+datum.description+"</p>"+
+                                "<img src='"+datum.img+"' width=200>"
+                            });
                             var marker = new google.maps.Marker(datum);
                             marker.addListener('click', function() {
                                 infowindow.open(_this.mapImpl, marker);

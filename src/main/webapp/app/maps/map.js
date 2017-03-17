@@ -43,7 +43,10 @@ define(['server/getFactData','dom/form/text', 'dom/form/date', 'dom/form/checkbo
                     return {
                         position: { lat: parseFloat(datum.latitude), lng: parseFloat(datum.longitude) },
                         icon: _this.getIcon(parseInt(datum.icon)),
-                        title: datum.name
+                        title: datum.name,
+                        description: datum.description,
+                        img: datum.img,
+                        date: datum.date
                     }
                 })
             } else {
@@ -67,8 +70,7 @@ define(['server/getFactData','dom/form/text', 'dom/form/date', 'dom/form/checkbo
             }
             this.newMarker = {
                 position: { lat: lat, lng: long },
-                icon: this.getIcon(this.icon),
-                title: 'Hello World!'
+                icon: this.getIcon(this.icon)
             }
         },
         submit: function(btn) {

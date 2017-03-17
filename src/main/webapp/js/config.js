@@ -1,6 +1,6 @@
 define(function(){ 
 	var config = {};
-	config.jqueryVersion="1.7.1.min";
+	config.jqueryVersion="";
 	config.jqueryMobileVersion="1.3.2.min";
 	config.jqueryMobileCss = "jquery.mobile-1.3.2.min.css";
 	config.jqueryDataTableCss = "jquery/jquery.dataTables.css";

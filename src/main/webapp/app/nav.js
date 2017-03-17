@@ -15,8 +15,7 @@ define(['helper/md5'], function () {
                 title: "Home"
             }, {
                 id: 2,
-                title: "Maps",
-                disabled: true
+                title: "Maps"
             }, {
                 id: 3,
                 title: "About"

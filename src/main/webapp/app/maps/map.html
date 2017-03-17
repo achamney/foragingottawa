@@ -35,7 +35,7 @@
 
         <label>Description:</label>
         <textarea class="form-control" id="addPointDescription" name="description" type="text"></textarea>
-        <label>X/Y:</label>
+        <label>Lat/Long:</label>
         <div>
             <div class="col-xs-6">
                 <input class="form-control" id="addPointLat" name="latitude" type="text" />
@@ -47,7 +47,6 @@
         <input type="hidden" name="token" id="token" />
         <br>
         <div class="btn-group" >
-            <button class="btn btn-default cancel">Cancel</button>
             <button class="btn btn-primary ok" (click)="submit(btn)" #btn>Submit</button>
         </div>
     </form>
