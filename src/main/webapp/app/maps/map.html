@@ -48,6 +48,9 @@
         <br>
         <div class="btn-group" >
             <button class="btn btn-primary ok" (click)="submit(btn)" #btn>Submit</button>
+            <button *ngIf="id" class="btn btn-default" (click)="delete()">Delete</button>
+            <button *ngIf="id" class="btn btn-default" (click)="window.location='#?page=2';window.location.reload()">Cancel</button>
+            <div class="loading" *ngIf="loading"></div>
         </div>
     </form>
 </div>

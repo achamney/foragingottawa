@@ -48,11 +48,19 @@ define([], function() {
                     if (this._data) {
                         for(var datum of this._data) {
                             datum.map = this.mapImpl;
-                            var infowindow = new google.maps.InfoWindow({
+                            var popupObj = {
                                 content: "<h1>"+datum.title+"<small class='pull-right'>"+datum.date+"</small></h1>"+
-                                "<p>"+datum.description+"</p>"+
-                                "<img src='"+datum.img+"' width=200>"
-                            });
+                                "<p>by "+datum.username+"</p>"+
+                                "<p>"+datum.description+"</p>"
+                            };
+                            if(datum.img) {
+                                popupObj.content += "<img src='"+datum.img+"' width=200>";
+                            }
+                            var username = getCookie("username");
+                            if(datum.username === username) {
+                                popupObj.content += "<br><button class='btn btn-primary' onclick='window.location=\"#?page=2&id="+datum.id+"\";location.reload();'>Edit</button>";
+                            }
+                            var infowindow = new google.maps.InfoWindow(popupObj);
                             var marker = new google.maps.Marker(datum);
                             marker.addListener('click', function() {
                                 infowindow.open(_this.mapImpl, marker);
