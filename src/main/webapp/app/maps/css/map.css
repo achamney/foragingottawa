@@ -1,7 +1,7 @@
 #mainMap{
 	width:100%;
 	position:relative;
-	height:700px;
+	height:600px;
 	background-color:white;
 	border:1px solid black;
 }
@@ -54,4 +54,11 @@ map {
 	position: absolute;
     right: 20px;
     top: 5px;
+}
+
+.ui-icon-arrow-r {
+	background-position-x: -33px;
+}
+.ui-icon-arrow-l {
+	background-position-x: -96px;
 }

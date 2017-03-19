@@ -5,7 +5,7 @@
     <div [class.col-sm-8]="newPoint" [class.col-sm-12]="!newPoint">
         <map id="mainMap" [data]="markers" [newMarker]="newMarker" (create)="setPosition($event)" [newPoint]="newPoint">
         </map>
-        <div *ngIf="!newPoint" class="btn new-button btn-primary" (click)="clickNewPoint()">+</div>
+        <div *ngIf="!newPoint && username" class="btn new-button btn-primary" (click)="clickNewPoint()">+</div>
     </div>
 
     <form [class.col-sm-4]="newPoint" [class.col-sm-12]="!newPoint" id="addPointForm" *ngIf="newPoint" tabindex="0">
