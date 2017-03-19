@@ -21,14 +21,7 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                 this.icon = 1;
             },
             ngOnInit: function () {
-                window.setTimeout(function () {
-                    quickforms.parseForm( //formId*, app, fact*, callback
-                        {
-                            formId: 'addPointForm',
-                            fact: 'forageLocations'
-                        });
-                }, 200);
-
+                this.parseForm();
                 quickforms.getFactData({
                     queryName: 'getForageLocations',
                     params: '',
@@ -36,6 +29,7 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                 });
                 this.username = getCookie("username");
                 this.id = QueryString("id");
+                this.newPoint = !!this.id;
             },
             markerResponse: function (data) {
                 this.loading = false;
@@ -58,6 +52,22 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                     this.markers = [];
                 }
             },
+
+            clickNewPoint() {
+                this.newPoint = true;
+                this.parseForm();
+            },
+
+            parseForm: function () {
+                if (!this.newPoint) return;
+                window.setTimeout(function () {
+                    quickforms.parseForm( //formId*, app, fact*, callback
+                        {
+                            formId: 'addPointForm',
+                            fact: 'forageLocations'
+                        });
+                }, 200);
+            },
             setPosition: function (latLng) {
                 if (!this.username) return;
                 var lat = quickforms.currentFormaddPointForm.childMap['addPointLat'],
@@ -67,6 +77,9 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                 lat.dom.val(lat.currentVal);
                 long.dom.val(long.currentVal);
                 this.setMarker(lat.currentVal, long.currentVal);
+                window.setTimeout(function () {
+                    $("#addPointForm").focus();
+                }, 700);
             },
             setMarker: function (lat, long) {
                 if (this.newMarker && !lat) {
@@ -75,13 +88,15 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                 }
                 this.newMarker = {
                     position: { lat: lat, lng: long },
-                    icon: this.getIcon(this.icon)
+                    icon: this.getIcon(this.icon),
+                    animation: google.maps.Animation.DROP,
+                    draggable: true
                 }
             },
             submit: function (btn) {
                 var redir = quickforms.formRedirect;
                 var _this = this;
-                this.loading=true;
+                this.loading = true;
                 quickforms.formRedirect = this.onFinish.bind(this);
                 quickforms.currentFormaddPointForm.childMap['token'].currentVal = getCookie('token');
                 quickforms.putFact(btn, "/");
@@ -119,6 +134,14 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                         window.location = "#?page=2";
                         location.reload();
                     });
+            },
+            onCancel: function () {
+                if (!this.id) {
+                    this.newPoint = false;
+                } else {
+                    window.location = '#?page=2';
+                    window.location.reload();
+                }
             }
         });
     });

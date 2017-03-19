@@ -49,3 +49,9 @@ body label {
 map {
 	display: block;
 }
+
+.new-button {
+	position: absolute;
+    right: 20px;
+    top: 5px;
+}

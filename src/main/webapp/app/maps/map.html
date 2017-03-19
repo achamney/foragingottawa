@@ -2,17 +2,13 @@
 
 
 
-    <div class="col-sm-8">
-        <map id="mainMap" [data]="markers" [newMarker]="newMarker" (create)="setPosition($event)">
+    <div [class.col-sm-8]="newPoint" [class.col-sm-12]="!newPoint">
+        <map id="mainMap" [data]="markers" [newMarker]="newMarker" (create)="setPosition($event)" [newPoint]="newPoint">
         </map>
-        <div class="popup hide" id="showPointPopup">
-            <h4 id="popupName" class="popup-name"></h4>
-            <img id="popupImage" class="popup-img" />
-        </div>
-
+        <div *ngIf="!newPoint" class="btn new-button btn-primary" (click)="clickNewPoint()">+</div>
     </div>
 
-    <form class="col-sm-4" id="addPointForm" *ngIf="username">
+    <form [class.col-sm-4]="newPoint" [class.col-sm-12]="!newPoint" id="addPointForm" *ngIf="newPoint" tabindex="0">
         <h4>Add Location</h4>
         <label>Date Visited:</label>
         <input type="text" name="date" class="date form-control" id="formDate" />
@@ -49,7 +45,7 @@
         <div class="btn-group" >
             <button class="btn btn-primary ok" (click)="submit(btn)" #btn>Submit</button>
             <button *ngIf="id" class="btn btn-default" (click)="delete()">Delete</button>
-            <button *ngIf="id" class="btn btn-default" (click)="window.location='#?page=2';window.location.reload()">Cancel</button>
+            <button class="btn btn-default" (click)="onCancel()">Cancel</button>
             <div class="loading" *ngIf="loading"></div>
         </div>
     </form>
