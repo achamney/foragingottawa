@@ -6,11 +6,12 @@ require([
     'forage/captcha',
     'forage/about',
     'forage/heartbeat',
+    'forage/profile',
 
     'forage/maps/maps',
     'forage/forum/forum'
 ], function (
-    Nav, Home, Text, Subscribe, Captcha, About, Heartbeat,
+    Nav, Home, Text, Subscribe, Captcha, About, Heartbeat, Profile,
     Maps, Forum) {
 
     var Main = ng.core.Component({
@@ -39,7 +40,7 @@ require([
     ], Main);
     var module = ng.core.NgModule({
         imports: [ng.platformBrowser.BrowserModule, Forum, Maps],
-        declarations: [Main, Home, Text, Nav, Subscribe, Captcha, About, Heartbeat],
+        declarations: [Main, Home, Text, Nav, Subscribe, Captcha, About, Heartbeat, Profile],
         bootstrap: [Main],
     })
         .Class({

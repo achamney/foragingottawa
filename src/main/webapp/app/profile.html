@@ -1,0 +1,42 @@
+
+<div class="container content">
+    <h1>{{'Profile'|nls}}</h1>
+    <div *ngIf="!edit">
+        <p>{{'Username'|nls}}: {{user.username}}</p>
+        <p>{{'Email'|nls}}: {{user.email}}</p>
+        <p>{{'Joined'|nls}}: {{user.createdDate}}</p>
+        <p>{{'Avatar'|nls}}: <img src="{{user.avatar}}"></p>
+        <button class="btn btn-default">{{'Change Password'|nls}}</button>
+    </div>
+    <form id="formTemplate" *ngIf="edit">
+        <h1>{{'Subscribe to Foraging Ottawa'|nls}}</h1>
+        <p>Subscribing will give you access to post on the forums, and receive notifications for recent posts</p>
+
+        <label for="email">{{'Email'|nls}}</label><br>
+        <input type="text" name = "email" id = "email" value = "" class="form-control"/>
+
+        <br />
+        <label for="username" [class.error]="duplicate">{{'Username'|nls}}</label> 
+        &nbsp;&nbsp; <span *ngIf="duplicate" class="error" style="color:red">{{'That username has alreay been taken'|nls}}</span><br>
+        <input type="text" name = "username" id = "username" value = "" (keyup)="duplicate=false" #user class="form-control"/>
+
+        <br />
+        
+        <label for="password">{{'Password'|nls}}</label><br>
+        <input type="password" name = "password" id = "password" value = "" class="form-control"/>
+
+        <br><br>
+
+        <captcha (cb)="resolveCaptcha($event)" #captcha></captcha>
+        <input type="hidden" name = "captcha" id = "captcha" value = ""/>
+        <input type="hidden" name = "userRole" id = "userRole" value = ""/>
+
+        <br>
+
+        <div class="buttons design delete">
+            <div class="btn btn-primary" [class.disabled]="!captchad" (click)="submitForm(btn, captcha)" 
+                data-icon="check" data-theme="b" data-inline="true" #btn>{{'Subscribe'|nls}}</div>
+            <div class="loading pull-right" *ngIf="loading"></div>
+        </div>
+    </form>
+</div>

@@ -23,12 +23,13 @@
                     {{'Sign In'|nls}} <span class="caret"></span>
                 </a>
             </li>
-            <li class="dropdown" *ngIf="username">
+            <li class="dropdown username-dropdown" *ngIf="username">
                 <a class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
                     {{username}} <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu form-group" id="logoutDropdown">
-                    <button class="btn btn-primary pull-right" (click)="logOut()">{{'Log Out'|nls}}</button>
+                    <li class="" (click)="profile($event)"><a href="#">{{'Profile'|nls}}</a></li>
+                    <li class="" (click)="logOut()"><a href="#">{{'Log Out'|nls}}</a></li>
                 </ul>
             </li>
             <li class="active" (click)="changeTab({id:10}, $event)"><a href="#?page=10">

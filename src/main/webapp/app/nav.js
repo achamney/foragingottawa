@@ -56,6 +56,12 @@ define(['helper/md5'], function () {
             setCookie("token", "");
             setCookie("username", "");
             location.reload();
+        },
+        profile: function(e) {
+            window.location = "#?page=9&id=" + getCookie("userId");
+            e.stopImmediatePropagation();
+            e.preventDefault();
+            $('.username-dropdown').removeClass("open");
         }
 
     });

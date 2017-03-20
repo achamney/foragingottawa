@@ -49,6 +49,7 @@ define([
                 var json = JSON.parse(data);
                 setCookie("token", json[0].token);
                 setCookie("username", json[0].username);
+                setCookie("userId", json[0].usersKey);
                 this.login = false;
                 if(!this.username) {
                     location.reload();
