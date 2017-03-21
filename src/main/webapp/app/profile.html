@@ -1,41 +1,47 @@
 
-<div class="container content">
+<div class="container content profile">
     <h1>{{'Profile'|nls}}</h1>
     <div *ngIf="!edit">
-        <p>{{'Username'|nls}}: {{user.username}}</p>
-        <p>{{'Email'|nls}}: {{user.email}}</p>
-        <p>{{'Joined'|nls}}: {{user.createdDate}}</p>
-        <p>{{'Avatar'|nls}}: <img src="{{user.avatar}}"></p>
-        <button class="btn btn-default">{{'Change Password'|nls}}</button>
+        <p><b>{{'Username'|nls}}:</b> {{user.username}}</p>
+        <p><b>{{'Email'|nls}}:</b> {{user.email}}</p>
+        <p><b>{{'Joined'|nls}}:</b> {{user.createdDate}}</p>
+        <p><b>{{'Avatar'|nls}}:</b> <img src="{{user.avatar || 'img/profile.gif'}}" width="100px"></p>
+        <button class="btn btn-primary" (click)="onEdit()" *ngIf="username===user.username">{{'Edit'|nls}}</button>
     </div>
-    <form id="formTemplate" *ngIf="edit">
-        <h1>{{'Subscribe to Foraging Ottawa'|nls}}</h1>
-        <p>Subscribing will give you access to post on the forums, and receive notifications for recent posts</p>
+    <form id="editProfileForm" *ngIf="edit">
+
+        <label for="username">{{'Username'|nls}}</label><br>
+        <input type="text" name = "username" id = "username" value = "" class="form-control" disabled/>
+
+        <br />
 
         <label for="email">{{'Email'|nls}}</label><br>
         <input type="text" name = "email" id = "email" value = "" class="form-control"/>
 
         <br />
-        <label for="username" [class.error]="duplicate">{{'Username'|nls}}</label> 
-        &nbsp;&nbsp; <span *ngIf="duplicate" class="error" style="color:red">{{'That username has alreay been taken'|nls}}</span><br>
-        <input type="text" name = "username" id = "username" value = "" (keyup)="duplicate=false" #user class="form-control"/>
-
-        <br />
         
-        <label for="password">{{'Password'|nls}}</label><br>
-        <input type="password" name = "password" id = "password" value = "" class="form-control"/>
-
-        <br><br>
-
-        <captcha (cb)="resolveCaptcha($event)" #captcha></captcha>
-        <input type="hidden" name = "captcha" id = "captcha" value = ""/>
-        <input type="hidden" name = "userRole" id = "userRole" value = ""/>
+        <label for="avatar">{{'Avatar URL'|nls}}</label><br>
+        <input type="text" name = "avatar" id = "avatar" value = "" class="form-control"/>
 
         <br>
 
-        <div class="buttons design delete">
-            <div class="btn btn-primary" [class.disabled]="!captchad" (click)="submitForm(btn, captcha)" 
-                data-icon="check" data-theme="b" data-inline="true" #btn>{{'Subscribe'|nls}}</div>
+        <button class="btn btn-default" (click)="changePassword=true" *ngIf="!changePassword">{{'Change Password'|nls}}</button>
+        <div [class.hidden]="!changePassword">
+            <label for="password1">{{'Password'|nls}}</label><br>
+            <input type="password" name = "password1" id = "password1" value = "" class="form-control"/>
+            <br />
+            <label for="confirmPass">{{'Confirm Password'|nls}}</label><br>
+            <input type="password" name = "confirmPass" id = "confirmPass" value = "" class="form-control"/>
+        </div>
+
+        <input type="hidden" name = "token" id = "token" value = ""/>
+        <input type="password" name = "password" id = "password" value = "" class="hidden"/>
+
+        <br><br>
+
+        <div class="buttons design btn-group">
+            <div class="btn btn-primary" (click)="submitForm(btn)" #btn>{{'Submit'|nls}}</div>
+            <div class="btn btn-default" (click)="edit=false">{{'Cancel'|nls}}</div>
             <div class="loading pull-right" *ngIf="loading"></div>
         </div>
     </form>
