@@ -1,52 +1,47 @@
-<div class="container content">
+<div class="container content" style="height:calc(100% - 70px)">
 
 
 
-    <div [class.col-sm-8]="newPoint" [class.col-sm-12]="!newPoint">
-        <map id="mainMap" [data]="markers" [newMarker]="newMarker" (create)="setPosition($event)" [newPoint]="newPoint">
+    <div style="height:100%; position: relative">
+        <map id="mainMap" [data]="markers" [newMarker]="newMarker" (create)="setPosition($event)" [newPoint]="newPoint" style="height:100%">
         </map>
         <div *ngIf="!newPoint && username" class="btn new-button btn-primary" (click)="clickNewPoint()">+</div>
+
+        <form id="addPointForm" *ngIf="newPoint" tabindex="0">
+            <h4>Add Location</h4>
+            <label>Name:</label>
+            <input class="form-control" id="addPointName" name="name" type="text" />
+            <label>Date Visited:</label>
+            <input type="text" name="date" class="date form-control" id="formDate" />
+            <label>Image Url: <a href="http://imgur.com" target="new">Upload</a></label>
+            <input class="form-control" id="addPointImg" name="img" type="text" />
+            <label>Icon:</label><br>
+            <input type="radio" name="icon" id="icon1" value="1" (click)="setMarkerIcon(1)" checked/>
+            <img src="img/tree.png" width="20px">
+            <input type="radio" name="icon" id="icon2" value="2" (click)="setMarkerIcon(2)"/>
+            <img src="img/greens.png" width="20px">
+            <input type="radio" name="icon" id="icon3" value="3" (click)="setMarkerIcon(3)"/>
+            <img src="img/berry.png" width="20px">
+            <input type="radio" name="icon" id="icon4" value="4" (click)="setMarkerIcon(4)"/>
+            <img src="img/mushroom.png" width="20px">
+            <input type="radio" name="icon" id="icon5" value="5" (click)="setMarkerIcon(5)"/>
+            <img src="img/herbs.png" width="20px">
+            <br>
+
+            <label>Description:</label>
+            <textarea class="form-control" id="addPointDescription" name="description" type="text"></textarea>
+            <input type="hidden" class="form-control" id="addPointLat" name="latitude" />
+            <input type="hidden" class="form-control" id="addPointLong" name="longitude" />
+            <input type="hidden" name="token" id="token" />
+            <br>
+            <div class="btn-group" >
+                <button class="btn btn-primary ok" (click)="submit(btn)" #btn>Submit</button>
+                <button *ngIf="id" class="btn btn-default" (click)="delete()">Delete</button>
+                <button class="btn btn-default" (click)="onCancel()">Cancel</button>
+                <div class="loading" *ngIf="loading"></div>
+            </div>
+        </form>
     </div>
 
-    <form [class.col-sm-4]="newPoint" [class.col-sm-12]="!newPoint" id="addPointForm" *ngIf="newPoint" tabindex="0">
-        <h4>Add Location</h4>
-        <label>Date Visited:</label>
-        <input type="text" name="date" class="date form-control" id="formDate" />
-        <label>Name:</label>
-        <input class="form-control" id="addPointName" name="name" type="text" />
-        <label>Image Url: <a href="http://imgur.com" target="new">Upload</a></label>
-        <input class="form-control" id="addPointImg" name="img" type="text" />
-        <label>Icon:</label><br>
-        <input type="radio" name="icon" id="icon1" value="1" (click)="setMarkerIcon(1)" checked/>
-        <img src="img/tree.png" width="20px">
-        <input type="radio" name="icon" id="icon2" value="2" (click)="setMarkerIcon(2)"/>
-        <img src="img/greens.png" width="20px">
-        <input type="radio" name="icon" id="icon3" value="3" (click)="setMarkerIcon(3)"/>
-        <img src="img/berry.png" width="20px">
-        <input type="radio" name="icon" id="icon4" value="4" (click)="setMarkerIcon(4)"/>
-        <img src="img/mushroom.png" width="20px">
-        <input type="radio" name="icon" id="icon5" value="5" (click)="setMarkerIcon(5)"/>
-        <img src="img/herbs.png" width="20px">
-        <br>
-
-        <label>Description:</label>
-        <textarea class="form-control" id="addPointDescription" name="description" type="text"></textarea>
-        <label>Lat/Long:</label>
-        <div>
-            <div class="col-xs-6">
-                <input class="form-control" id="addPointLat" name="latitude" type="text" />
-            </div>
-            <div class="col-xs-6">
-                <input class="form-control" id="addPointLong" name="longitude" type="text" />
-            </div>
-        </div>
-        <input type="hidden" name="token" id="token" />
-        <br>
-        <div class="btn-group" >
-            <button class="btn btn-primary ok" (click)="submit(btn)" #btn>Submit</button>
-            <button *ngIf="id" class="btn btn-default" (click)="delete()">Delete</button>
-            <button class="btn btn-default" (click)="onCancel()">Cancel</button>
-            <div class="loading" *ngIf="loading"></div>
-        </div>
-    </form>
+    
 </div>

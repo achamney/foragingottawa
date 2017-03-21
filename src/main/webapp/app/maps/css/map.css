@@ -41,7 +41,17 @@ body label {
 #addPointForm {
 	box-shadow: 0 0 5px;
 	padding: 10px 20px;
-	background-color: white;
+	position: absolute;
+    top: 0px;
+    width: 200px;
+    right: 0px;
+    background-color: rgba(180,255,180,0.7);
+}
+#addPointForm h4 {
+	margin-top: 0px;
+}
+#addPointForm label {
+	margin-bottom: 0px;
 }
 .navbar .dropdown-menu{
 	padding:10px;
@@ -52,8 +62,8 @@ map {
 
 .new-button {
 	position: absolute;
-    right: 20px;
-    top: 5px;
+    right: 10px;
+    top: 10px;
 }
 
 .ui-icon-arrow-r {
