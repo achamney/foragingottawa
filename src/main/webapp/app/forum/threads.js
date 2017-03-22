@@ -96,6 +96,10 @@ define([
                 params: params,
                 callback: this.threadResponse.bind(this)
             });
+        },
+
+        blogBoard: function() { // Only allow new thread on blog board if:
+            return this.board!==2 || getCookie('username')==="Austin";
         }
     });
 
