@@ -23,6 +23,7 @@ define([
             var _this = this;
             this.finishButton = el;
             this.body = body;
+            this.loading = true;
             quickforms.currentFormformTemplate.childMap['token'].currentVal = getCookie('token');
             quickforms.currentFormformTemplate.childMap['board'].currentVal = this.board;
             quickforms.formRedirect = this.onFinishThread.bind(this);
@@ -50,11 +51,13 @@ define([
         },
         
         onFinish: function(data) {
+            this.loading = false;
             if (data.indexOf("[") !== 0) return this.onError(data);
             window.location="#?page=6&thread="+this.thread;
         },
 
         onError: function(data) {
+            this.loading = false;
             if(~data.indexOf("Duplicate entry")) {
                 this.duplicate = true;
             }

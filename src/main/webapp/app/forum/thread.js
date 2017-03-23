@@ -67,6 +67,7 @@ define([
         replySubmit: function (body, el) {
             var redir = quickforms.formRedirect;
             var _this = this;
+            this.loading = true;
             quickforms.currentFormnewPost.childMap['token'].currentVal = getCookie('token');
             quickforms.currentFormnewPost.childMap['thread'].currentVal = this.thread;
             quickforms.currentFormnewPost.childMap['body'].currentVal = body;
@@ -79,6 +80,7 @@ define([
         },
 
         onFinishPost: function(data) {
+            this.loading = false;
             if (data.indexOf("[") !== 0) return this.onError(data);
             var json = JSON.parse(data);
             var post = json[0].id;

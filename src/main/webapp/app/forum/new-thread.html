@@ -19,5 +19,6 @@
 
     <div class="buttons design delete">
         <div class="btn btn-primary" (click)="submitForm(btn, editor.text)" data-theme="b" data-inline="true" #btn>Submit</div>
+        <div class="loading" *ngIf="loading"></div>
     </div>
 </form>

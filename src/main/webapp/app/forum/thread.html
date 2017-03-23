@@ -29,6 +29,7 @@
         <input type="hidden" name="postsKey" id="postsKey" />
         
         <div class="buttons">
+            <div class="loading" *ngIf="loading"></div>
             <div class="btn btn-primary pull-right" (click)="replySubmit(editor.text, btn)" #btn>{{'Reply'|nls}}</div>
             <div class="btn btn-default pull-right" (click)="replyFlag=false">{{'Cancel'|nls}}</div>
             <div class="btn btn-warning pull-right" *ngIf="updateId" (click)="deletePost()">{{'Delete'|nls}}</div>
