@@ -18,6 +18,14 @@
 	overflow-y:auto;
 	overflow-x:hidden
 }
+
+#mainMap h1 {
+	margin: 0px;
+}
+#mainMap p {
+	margin: 0px;
+}
+
 .blocker{
 	top:0;
 	left:0;

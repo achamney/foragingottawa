@@ -68,7 +68,8 @@ define([], function() {
                         for(var datum of this._data) {
                             datum.map = this.mapImpl;
                             var popupObj = {
-                                content: "<h1>"+datum.title+"<small class='pull-right'>"+datum.date+"</small></h1>"+
+                                content: "<h1>"+datum.title+"</h1>"+
+                                "<p><small>"+datum.date+"</small></p>"+
                                 "<p>by "+datum.username+"</p>"+
                                 "<p>"+datum.description+"</p>"
                             };
@@ -79,15 +80,19 @@ define([], function() {
                             if(datum.username === username) {
                                 popupObj.content += "<br><button class='btn btn-primary' onclick='window.location=\"#?page=2&id="+datum.id+"\";location.reload();'>Edit</button>";
                             }
-                            var infowindow = new google.maps.InfoWindow(popupObj);
                             var marker = new google.maps.Marker(datum);
-                            marker.addListener('click', function() {
-                                infowindow.open(_this.mapImpl, marker);
-                            });
+                            _this.registerClick(marker, _this.mapImpl, popupObj);
                         }
                     }
                 }, 
                 get: function() { return this._data; }
+            });
+        },
+
+        registerClick: function(marker, mapImpl, popupObj) {
+            var infowindow = new google.maps.InfoWindow(popupObj);
+            marker.addListener('click', function() {
+                infowindow.open(mapImpl, marker);
             });
         }
     });
