@@ -21,7 +21,6 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                 this.icon = 1;
             },
             ngOnInit: function () {
-                this.parseForm();
                 quickforms.getFactData({
                     queryName: 'getForageLocations',
                     params: '',
@@ -30,6 +29,7 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                 this.username = getCookie("username");
                 this.id = QueryString("id");
                 this.newPoint = !!this.id;
+                this.parseForm();
             },
             markerResponse: function (data) {
                 this.loading = false;

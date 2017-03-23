@@ -51,9 +51,14 @@ body label {
 	padding: 10px 10px;
 	position: absolute;
     top: 0px;
-    width: 200px;
+    width: 250px;
     right: 0px;
     background-color: rgba(180,255,180,0.7);
+}
+@media (max-width: 767px) {
+	#addPointForm {
+		width: 200px;
+	}
 }
 #addPointForm h4 {
 	margin: 0px;
