@@ -96,9 +96,10 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
             submit: function (btn) {
                 var redir = quickforms.formRedirect;
                 var _this = this;
+                var currentForm = quickforms.currentFormmapadvanced || quickforms.currentFormaddPointForm;
                 this.loading = true;
                 quickforms.formRedirect = this.onFinish.bind(this);
-                quickforms.currentFormaddPointForm.childMap['token'].currentVal = getCookie('token');
+                currentForm.childMap['token'].currentVal = getCookie('token');
                 quickforms.putFact(btn, "/");
                 quickforms.formRedirect = redir;
                 quickforms.serverQueries[quickforms.serverQueries.length - 1].addErrorListener(function (e) {
@@ -136,7 +137,7 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                             formId: 'mapadvanced',
                             fact: 'forageLocations'
                         });
-                }, 500);
+                }, 300);
             },
 
             delete: function () {
