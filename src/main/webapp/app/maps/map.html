@@ -7,8 +7,8 @@
         </map>
         <div *ngIf="!newPoint && username" class="btn new-button btn-primary" (click)="clickNewPoint()">+</div>
 
-        <form id="addPointForm" *ngIf="newPoint" tabindex="0">
-            <h4>Add Location</h4>
+        <form id="addPointForm" *ngIf="newPoint && !advanced" tabindex="0">
+            <h4>Add Location<small class="pull-right"><a (click)="openAdvanced()">Advanced</a></small></h4>
             <label>Name:</label>
             <input class="form-control" id="addPointName" name="name" type="text" />
             <label>Date Visited:</label>
@@ -39,6 +39,44 @@
             </div>
         </form>
     </div>
+
+
+    <form class="advanced" tabindex="0" id="mapadvanced" *ngIf="advanced">
+        <hr>
+        <h4>Advanced Add Location</h4>
+        <label>Common Name:</label>
+        <input class="form-control" id="addPointName" name="name" type="text" />
+        <label>Scientific Name:</label>
+        <input type="text" name="species" id="species" class="form-control autocomplete" />
+        <label>Date Visited:</label>
+        <input type="text" name="date" class="date form-control" id="formDate" />
+        <label>Harvest Maturity Month:</label> <br>
+        <select name="harvestMonth" id="harvestMonth"  class="form-control"> </select><br>
+        <label>Image Url: <a href="http://imgur.com" target="new">Upload</a></label>
+        <input class="form-control" id="addPointImg" name="img" type="text" />
+        <label>Icon:</label><br>
+        <input type="radio" name="icon" id="icon1" value="1" (click)="setMarkerIcon(1)" checked/>
+        <img src="img/tree.png" width="20px">
+        <input type="radio" name="icon" id="icon2" value="2" (click)="setMarkerIcon(2)"/>
+        <img src="img/greens.png" width="20px">
+        <input type="radio" name="icon" id="icon3" value="3" (click)="setMarkerIcon(3)"/>
+        <img src="img/berry.png" width="20px">
+        <input type="radio" name="icon" id="icon4" value="4" (click)="setMarkerIcon(4)"/>
+        <img src="img/mushroom.png" width="20px">
+        <br>
+
+        <label>Description:</label>
+        <textarea class="form-control" id="addPointDescription" name="description" type="text"></textarea>
+        <input type="hidden" class="form-control" id="addPointLat" name="latitude" />
+        <input type="hidden" class="form-control" id="addPointLong" name="longitude" />
+        <input type="hidden" name="token" id="token" />
+        <div class="btn-group" >
+            <button class="btn btn-primary ok" (click)="submit(btn)" #btn>Submit</button>
+            <button *ngIf="id" class="btn btn-default" (click)="delete()">Delete</button>
+            <button class="btn btn-default" (click)="onCancel()">Cancel</button>
+            <div class="loading" *ngIf="loading"></div>
+        </div>
+    </form>
 
     
 </div>

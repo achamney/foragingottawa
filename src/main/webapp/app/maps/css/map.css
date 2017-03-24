@@ -72,6 +72,24 @@ body label {
 map {
 	display: block;
 }
+maps hr {
+	border-color: #999;
+    margin: 0px -10px;
+    margin-bottom: 20px;
+}
+maps .autocomplete-list {
+	margin: 5px;
+	background-color: rgba(255,255,255,0.5);
+    box-shadow: 0 0 2px;
+}
+maps .autocomplete-list option {
+	padding: 5px;
+	border-bottom: 1px solid #BBB;
+	cursor: pointer;
+}
+maps .autocomplete-list option:hover {
+	background-color: rgba(180,255,180,0.7);
+}
 
 .new-button {
 	position: absolute;
@@ -84,4 +102,11 @@ map {
 }
 .ui-icon-arrow-l {
 	background-position-x: -96px;
+}
+
+.advanced {
+	padding: 30px 20px;
+	margin: 0px -20px;
+	margin-top: 20px;
+	background-color: rgba(255,255,255,0.9);
 }

@@ -45,6 +45,7 @@ define([], function() {
             this.mapImpl.addListener("zoom_changed", function(e) {
                 zoom = _this.mapImpl.zoom;
             });
+            this.addDataToMap();
         },
 
         createSetters: function() {    
@@ -63,26 +64,8 @@ define([], function() {
             Object.defineProperty(this, 'data', { 
                 set: function (data) { 
                     this._data = data;
-                    var _this = this;
                     if (this._data) {
-                        for(var datum of this._data) {
-                            datum.map = this.mapImpl;
-                            var popupObj = {
-                                content: "<h1>"+datum.title+"</h1>"+
-                                "<p><small>"+datum.date+"</small></p>"+
-                                "<p>by "+datum.username+"</p>"+
-                                "<p>"+datum.description+"</p>"
-                            };
-                            if(datum.img) {
-                                popupObj.content += "<img src='"+datum.img+"' width=200>";
-                            }
-                            var username = getCookie("username");
-                            if(datum.username === username) {
-                                popupObj.content += "<br><button class='btn btn-primary' onclick='window.location=\"#?page=2&id="+datum.id+"\";location.reload();'>Edit</button>";
-                            }
-                            var marker = new google.maps.Marker(datum);
-                            _this.registerClick(marker, _this.mapImpl, popupObj);
-                        }
+                        this.addDataToMap();
                     }
                 }, 
                 get: function() { return this._data; }
@@ -94,6 +77,29 @@ define([], function() {
             marker.addListener('click', function() {
                 infowindow.open(mapImpl, marker);
             });
+        },
+
+        addDataToMap: function() {
+            var _this = this;
+            if(!this._data) return;
+            for(var datum of this._data) {
+                datum.map = this.mapImpl;
+                var popupObj = {
+                    content: "<h1>"+datum.title+"</h1>"+
+                    "<p><small>"+datum.date+"</small></p>"+
+                    "<p>by "+datum.username+"</p>"+
+                    "<p>"+datum.description+"</p>"
+                };
+                if(datum.img) {
+                    popupObj.content += "<img src='"+datum.img+"' width=200>";
+                }
+                var username = getCookie("username");
+                if(datum.username === username) {
+                    popupObj.content += "<br><button class='btn btn-primary' onclick='window.location=\"#?page=2&id="+datum.id+"\";location.reload();'>Edit</button>";
+                }
+                var marker = new google.maps.Marker(datum);
+                _this.registerClick(marker, _this.mapImpl, popupObj);
+            }
         }
     });
     component = Reflect.decorate([

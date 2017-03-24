@@ -1,5 +1,5 @@
 var hasMapLoaded = false;
-define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkbox'],
+define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkbox', "dom/form/select", "dom/form/autocomplete"],
     function () {
         return ng.core.Component({
             selector: 'maps',
@@ -126,6 +126,19 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                     this.setMarker();
                 }
             },
+
+            openAdvanced: function() {
+                this.advanced = true;
+                window.setTimeout(function(){
+                    $(".advanced").focus();
+                    quickforms.parseForm( //formId*, app, fact*, callback
+                        {
+                            formId: 'mapadvanced',
+                            fact: 'forageLocations'
+                        });
+                }, 500);
+            },
+
             delete: function () {
                 this.loading = true;
                 quickforms.executeQuery(quickforms.app, 'foragelocations_delete_row',
@@ -138,6 +151,7 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
             onCancel: function () {
                 if (!this.id) {
                     this.newPoint = false;
+                    this.advanced = false;
                 } else {
                     window.location = '#?page=2';
                     window.location.reload();
