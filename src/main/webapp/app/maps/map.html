@@ -52,8 +52,8 @@
         <input type="text" name="date" class="date form-control" id="formDate" />
         
         <label>Harvest Maturity Month:</label> <br>
-        <div name="harvestMonth" id="harvestMonth"  class="form-control" (click)="harvestDropdown=true">{{getMonthText()}}</div>
-        <div *ngIf="harvestDropdown" clickOutside (outside)="harvestDropdown=false">
+        <div name="harvestMonth" id="harvestMonth"  class="form-control multi" (click)="harvestDropdown=true">{{getMonthText()}}</div>
+        <div *ngIf="harvestDropdown" clickOutside (outside)="harvestDropdown=false" class="multi-list">
             <div *ngFor="let monthText of months" (click)="selectedMonths[monthText]=!selectedMonths[monthText]">
                 {{monthText}}
                 <div class="glyphicon glyphicon-ok pull-right" *ngIf="selectedMonths[monthText]"></div>
