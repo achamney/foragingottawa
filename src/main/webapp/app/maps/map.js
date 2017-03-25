@@ -11,13 +11,15 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                     quickforms.loadCss('app/maps/css/map.css');
                     hasMapLoaded = true;
                 }
+                this.selectedMonths = {};
                 this.icons = {
                     1: "img/tree.png",
                     2: "img/greens.png",
                     3: "img/berry.png",
                     4: "img/mushroom.png",
                     5: "img/herbs.png"
-                }
+                };
+                this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
                 this.icon = 1;
             },
             ngOnInit: function () {
@@ -157,6 +159,15 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                     window.location = '#?page=2';
                     window.location.reload();
                 }
+            },
+            getMonthText: function() {
+                var txt = ""
+                for(var key in this.selectedMonths) {
+                    if(this.selectedMonths[key]) {
+                        txt += key+" ";
+                    }
+                }
+                return txt;
             }
         });
     });
