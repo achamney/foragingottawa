@@ -18,7 +18,11 @@ define([], function() {
             this.text = textarea.value.replace(/\n/g,'[br][/br]');
         },
         bbTag: function (tag, textarea) {
-            textarea.value += "["+tag+"][/"+tag+"]";
+            if(tag === "img.big") {
+                textarea.value += "[img=block][/img]";
+            } else {
+                textarea.value += "["+tag+"][/"+tag+"]";
+            }
         }
     });
     BBCodeEditor = Reflect.decorate([

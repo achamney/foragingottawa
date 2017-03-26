@@ -11,7 +11,6 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                     quickforms.loadCss('app/maps/css/map.css');
                     hasMapLoaded = true;
                 }
-                this.selectedMonths = {};
                 this.icons = {
                     1: "img/tree.png",
                     2: "img/greens.png",
@@ -19,7 +18,9 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                     4: "img/mushroom.png",
                     5: "img/herbs.png"
                 };
-                this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                this.months = [{ label: 'January', id: 0 }, { label: 'February', id: 1 }, { label: 'March', id: 2 }, { label: 'April', id: 3 }, { label: 'May', id: 4 },
+                { label: 'June', id: 5 }, { label: 'July', id: 6 }, { label: 'August', id: 7 }, { label: 'September', id: 8 }, { label: 'October', id: 9 },
+                { label: 'November', id: 10 }, { label: 'December', id: 11 }];
                 this.icon = 1;
             },
             ngOnInit: function () {
@@ -80,7 +81,7 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                 long.dom.val(long.currentVal);
                 this.setMarker(lat.currentVal, long.currentVal);
                 window.setTimeout(function () {
-                    $("#addPointForm").focus();
+                    $("#addPointForm, .advanced").focus();
                 }, 700);
             },
             setMarker: function (lat, long) {
@@ -101,6 +102,9 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                 var currentForm = quickforms.currentFormmapadvanced || quickforms.currentFormaddPointForm;
                 this.loading = true;
                 quickforms.formRedirect = this.onFinish.bind(this);
+                if(this.advanced) {
+                    currentForm.childMap['harvestMonth'].currentVal = this.getMonthText();
+                }
                 currentForm.childMap['token'].currentVal = getCookie('token');
                 quickforms.putFact(btn, "/");
                 quickforms.formRedirect = redir;
@@ -130,14 +134,25 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                 }
             },
 
-            openAdvanced: function() {
+            openAdvanced: function () {
                 this.advanced = true;
-                window.setTimeout(function(){
+                var _this = this;
+                window.setTimeout(function () {
                     $(".advanced").focus();
                     quickforms.parseForm( //formId*, app, fact*, callback
                         {
                             formId: 'mapadvanced',
-                            fact: 'forageLocations'
+                            fact: 'forageLocations',
+                            callback: function(formObj) {
+                                if(formObj.updateRow) {
+                                    var selectedMonths = formObj.childMap['harvestMonth'].currentVal.split(", ");
+                                    for(var month of _this.months) {
+                                        if(~selectedMonths.indexOf(month.label)) {
+                                            month.selected = true;
+                                        }
+                                    }
+                                }
+                            }
                         });
                 }, 300);
             },
@@ -160,14 +175,18 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                     window.location.reload();
                 }
             },
-            getMonthText: function() {
+            getMonthText: function () {
                 var txt = ""
-                for(var key in this.selectedMonths) {
-                    if(this.selectedMonths[key]) {
-                        txt += key+" ";
+                for (var key in this.months) {
+                    if (this.months[key].selected) {
+                        txt += this.months[key].label + ", ";
                     }
                 }
+                txt = txt.substr(0, txt.length-2);
                 return txt;
+            },
+            selectMonth: function (monthText) {
+                this.months[monthText.id].selected = !this.months[monthText.id].selected;
             }
         });
     });

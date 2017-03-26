@@ -52,12 +52,16 @@ define([], function() {
             Object.defineProperty(this, 'newMarker', { 
                 set: function (newMarker) { 
                     if(!newMarker) return;
+                    var _this = this;
                     this._newMarker = newMarker;
                     if (this.tempMarker) {
                         this.tempMarker.setMap(null);
                     }
                     newMarker.map = this.mapImpl;
                     this.tempMarker = new google.maps.Marker(newMarker);    
+                    this.tempMarker.addListener('dragend', function(e) {
+                        _this.create.next(e.latLng);
+                    });
                 }, 
                 get: function() { return this._newMarker; }
             });

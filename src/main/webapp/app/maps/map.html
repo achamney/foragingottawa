@@ -48,17 +48,17 @@
         <input class="form-control" id="addPointName" name="name" type="text" />
         <label>Scientific Name:</label>
         <input type="text" name="species" id="species" class="form-control autocomplete" placeholder="Enter 3 characters to search" />
-        <label>Date Visited:</label>
-        <input type="text" name="date" class="date form-control" id="formDate" />
         
-        <label>Harvest Maturity Month:</label> <br>
-        <div name="harvestMonth" id="harvestMonth"  class="form-control multi" (click)="harvestDropdown=true">{{getMonthText()}}</div>
+        <label>Harvest Maturity Months:</label> <br>
+        <div class="form-control multi" (click)="harvestDropdown=true">{{getMonthText()}}</div>
         <div *ngIf="harvestDropdown" clickOutside (outside)="harvestDropdown=false" class="multi-list">
-            <div *ngFor="let monthText of months" (click)="selectedMonths[monthText]=!selectedMonths[monthText]">
-                {{monthText}}
-                <div class="glyphicon glyphicon-ok pull-right" *ngIf="selectedMonths[monthText]"></div>
+            <div *ngFor="let monthText of months" (click)="selectMonth(monthText)">
+                <div class="glyphicon glyphicon-check pull-left" *ngIf="months[monthText.id].selected"></div>
+                <div class="glyphicon glyphicon-unchecked pull-left" *ngIf="!months[monthText.id].selected"></div>
+                {{monthText.label}}
             </div>
         </div>
+        <input type="hidden" name="harvestMonth" id="harvestMonth" />
         
         <label>Image Url: <a href="http://imgur.com" target="new">Upload</a></label>
         <input class="form-control" id="addPointImg" name="img" type="text" />
@@ -72,6 +72,34 @@
         <input type="radio" name="icon" id="icon4" value="4" (click)="setMarkerIcon(4)"/>
         <img src="img/mushroom.png" width="20px">
         <br>
+
+        <label>Date Visited:</label>
+        <input type="text" name="date" class="date form-control" id="formDate" placeholder="mm/dd/yyyy" />
+        <label for="fruitingStatus">Fruiting Status:</label>
+        <select name="fruitingStatus" id="fruitingStatus" class="form-control" offline>
+            <option value="0">Unsure/Other</option>
+            <option value="1">Flowers</option>
+            <option value="2">Unripe Fruit</option>
+            <option value="3">Ripe Fruit</option>
+        </select>
+        <label for="quality">Quality:</label>
+        <select name="quality" id="quality" class="form-control" offline>
+            <option value="0">Unsure</option>
+            <option value="1">Poor</option>
+            <option value="2">Fair</option>
+            <option value="3">Good</option>
+            <option value="4">Very Good</option>
+            <option value="5">Excellent</option>
+        </select>
+        <label for="yield">Yield:</label>
+        <select name="yield" id="yield" class="form-control" offline>
+            <option value="0">Unsure</option>
+            <option value="1">Poor</option>
+            <option value="2">Fair</option>
+            <option value="3">Good</option>
+            <option value="4">Very Good</option>
+            <option value="5">Excellent</option>
+        </select>
 
         <label>Description:</label>
         <textarea class="form-control" id="addPointDescription" name="description" type="text"></textarea>

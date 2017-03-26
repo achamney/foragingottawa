@@ -59,6 +59,9 @@ body label {
 	#addPointForm {
 		width: 200px;
 	}
+	maps .advanced {
+		margin: 0px -5px;
+	}
 }
 #addPointForm h4 {
 	margin: 0px;
@@ -91,15 +94,24 @@ maps .autocomplete-list option:hover {
 	background-color: rgba(180,255,180,0.7);
 }
 
-map .advanced .multi {
+maps .advanced .multi {
 	cursor: pointer;
 }
-map .advanced .multi-list {
+maps .advanced .multi-list {
 	margin: 5px;
-	background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,0.9);
     box-shadow: 0 0 2px;
+    position: absolute;
+    width: 250px;
+    z-index: 10;
 }
-map .advanced .multi-list>div:hover {
+maps .advanced .multi-list>div {
+	padding: 5px;
+}
+maps .advanced .multi-list .glyphicon {
+	padding-right: 10px;
+}
+maps .advanced .multi-list>div:hover {
 	cursor: pointer;
 	background-color: rgba(180,255,180,0.7);
 }

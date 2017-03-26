@@ -379,7 +379,7 @@ var XBBCODE = (function () {
                     }
                 }
 
-                return '<span class="xbbcode-size-10" style="color:' + colorCode + '">';
+                return '<span class="xbbcode-size-12" style="color:' + colorCode + '">';
             },
             closeTag: function (params, content) {
                 return '</span>';
