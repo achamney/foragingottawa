@@ -19,7 +19,7 @@
 	overflow-x:hidden
 }
 
-#mainMap h1 {
+#mainMap h3 {
 	margin: 0px;
 }
 #mainMap p {
@@ -114,6 +114,9 @@ maps .advanced .multi-list .glyphicon {
 maps .advanced .multi-list>div:hover {
 	cursor: pointer;
 	background-color: rgba(180,255,180,0.7);
+}
+maps select {
+	cursor: pointer;
 }
 
 .new-button {

@@ -1,5 +1,5 @@
 define([], function() {
-    var center = { lat: 45.3768482, lng: -75.7100154 };
+    var center = { lat: 45.3858482, lng: -75.7100154 };
     var zoom = 12;
     var component = ng.core.Component({
         selector: 'map',
@@ -89,7 +89,7 @@ define([], function() {
             for(var datum of this._data) {
                 datum.map = this.mapImpl;
                 var popupObj = {
-                    content: "<h1>"+datum.title+"</h1>"+
+                    content: "<h3>"+datum.title+"</h3>"+
                     "<p><small>"+datum.date+"</small></p>"+
                     "<p>by "+datum.username+"</p>"+
                     "<p>"+datum.description+"</p>"

@@ -26,6 +26,10 @@ define([
         triggerLogin: function() {
             this.username = getCookie('username');
             this.login = true;
+            var _this = this;
+            window.setTimeout(function() {
+                _this.in = true;
+            })
         },
         submitLogin: function () {
             var md5edPass = '';

@@ -50,7 +50,7 @@
         <input type="text" name="species" id="species" class="form-control autocomplete" placeholder="Enter 3 characters to search" />
         
         <label>Harvest Maturity Months:</label> <br>
-        <div class="form-control multi" (click)="harvestDropdown=true">{{getMonthText()}}</div>
+        <div class="form-control multi ellipsis" (click)="harvestDropdown=true">{{getMonthText()}}</div>
         <div *ngIf="harvestDropdown" clickOutside (outside)="harvestDropdown=false" class="multi-list">
             <div *ngFor="let monthText of months" (click)="selectMonth(monthText)">
                 <div class="glyphicon glyphicon-check pull-left" *ngIf="months[monthText.id].selected"></div>
@@ -72,7 +72,18 @@
         <input type="radio" name="icon" id="icon4" value="4" (click)="setMarkerIcon(4)"/>
         <img src="img/mushroom.png" width="20px">
         <br>
-
+        <label for="access">Access:</label>
+        <select name="access" id="access" class="form-control" offline>
+            <option value="0">Unsure</option>
+            <option value="1">Source is on my property</option>
+            <option value="2">I have permission from the owner to add the source</option>
+            <option value="3">Source is on public land</option>
+            <option value="4">Source is on private property but overhangs public land</option>
+            <option value="5">Source is on private property (ask before you pick)</option>
+        </select>
+        <br>
+        <hr/>
+        <h4>Visit Info:</h4>
         <label>Date Visited:</label>
         <input type="text" name="date" class="date form-control" id="formDate" placeholder="mm/dd/yyyy" />
         <label for="fruitingStatus">Fruiting Status:</label>
