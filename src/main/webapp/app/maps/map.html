@@ -131,9 +131,34 @@
         </div>
     </form>
 
-    <div class="advanced" *ngIf="visits" >
-            <table id="visits" tabindex="0">
-            </table>
+    <div class="visits advanced" *ngIf="showVisits" tabindex="0">
+        <h3>Visits to location {{visitLocationName}}</h3>
+        <div class="table-container">
+            <div class="table">
+                <div class="table-row header-row">
+                    <div class="row-cell" style="width:50px">
+                        Id
+                    </div>
+                    <div class="row-cell" style="flex:1">
+                        Username
+                    </div>
+                    <div class="row-cell" style="flex:1">
+                        Date
+                    </div>
+                </div>
+                <div class="table-row" *ngFor="let visit of forageVisits">
+                    <div class="row-cell row-text" style="width:50px">
+                        <div>{{visit.foragevisitskey}}</div>
+                    </div>
+                    <div class="row-cell" style="flex:1">
+                        <div>{{visit.username}}</div>
+                    </div>
+                    <div class="row-cell" style="flex:1">
+                        <div>{{visit.date}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     
 </div>

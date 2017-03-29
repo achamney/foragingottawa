@@ -1,12 +1,15 @@
 var hasMapLoaded = false;
 define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkbox', "dom/form/select", "dom/form/autocomplete", 'dom/tableControl'],
     function () {
-        return ng.core.Component({
+        var component = ng.core.Component({
             selector: 'maps',
             templateUrl: 'app/maps/map.html'
         }).Class({
 
-            constructor: function () {
+            constructor: function (zone) {
+                this._zone = zone;
+                this.forageVisits = [];
+                var _this = this;
                 if (!hasMapLoaded) {
                     quickforms.loadCss('app/maps/css/map.css');
                     hasMapLoaded = true;
@@ -22,6 +25,7 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                 { label: 'June', id: 5 }, { label: 'July', id: 6 }, { label: 'August', id: 7 }, { label: 'September', id: 8 }, { label: 'October', id: 9 },
                 { label: 'November', id: 10 }, { label: 'December', id: 11 }];
                 this.icon = 1;
+                
             },
             ngOnInit: function () {
                 quickforms.getFactData({
@@ -217,16 +221,32 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
             },
             getVisits: function (id) {
                 this.id = id;
-                this.visits=true;
+                this.showVisits = true;
+                this.loading = true;
+                var _this = this;
                 window.setTimeout(function() {
-                    quickforms.loadTable(//appName, queryName*, parameterList, callback
-                        { queryName: 'getVisits',
-                        parameterList: 'id=' + id,
-                        domId: "visits",
-                        callback: function() {
-                            $('#visits').focus();
-                        }});
-                }, 10);
+                    $('.visits').focus();
+                });
+                quickforms.getFactData({
+                    queryName: 'getVisits',
+                    params: 'id='+id,
+                    callback: this.visitsResponse.bind(_this)
+                });
+            },
+            visitsResponse: function(data) {
+                var _this = this;
+                this._zone.run(function(){
+                    this.loading = false;
+                    if (isJSONString(data)) {
+                        _this.forageVisits = JSON.parse(data);
+                        _this.visitLocationName = _this.forageVisits[0].name;
+                    }
+                });
             }
         });
+        
+        component = Reflect.decorate([
+            Reflect.metadata("design:paramtypes", [ng.core.NgZone])
+        ], component);
+        return component;
     });

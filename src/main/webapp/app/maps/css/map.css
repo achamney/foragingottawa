@@ -138,3 +138,28 @@ maps select {
 	margin-top: 20px;
 	background-color: rgba(255,255,255,0.9);
 }
+
+.table-container {
+    overflow: auto;
+}
+.table {
+    background-color: rgba(240,255,240,0.7);
+    padding: 10px;
+    min-width: 500px;
+}
+.table-row {
+    box-shadow: 0 0 1px 1px #999;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+}
+.table-row.header-row {
+    font-weight: 700;
+}
+.table-row:hover {
+    background-color: #DDF
+}
+.table-row .row-cell {
+    border-right: 1px solid black;
+    padding: 5px;
+}
