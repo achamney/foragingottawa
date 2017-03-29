@@ -1,5 +1,5 @@
 var hasMapLoaded = false;
-define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkbox', "dom/form/select", "dom/form/autocomplete"],
+define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkbox', "dom/form/select", "dom/form/autocomplete", 'dom/tableControl'],
     function () {
         return ng.core.Component({
             selector: 'maps',
@@ -73,8 +73,10 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
             },
             setPosition: function (latLng) {
                 if (!this.username) return;
-                var lat = quickforms.currentFormaddPointForm.childMap['addPointLat'],
-                    long = quickforms.currentFormaddPointForm.childMap['addPointLong'];
+                
+                var currentForm = quickforms.currentFormmapadvanced || quickforms.currentFormaddPointForm;
+                var lat = currentForm.childMap['addPointLat'],
+                    long = currentForm.childMap['addPointLong'];
                 lat.currentVal = latLng.lat();
                 long.currentVal = latLng.lng();
                 lat.dom.val(lat.currentVal);
@@ -101,8 +103,15 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                 var _this = this;
                 var currentForm = quickforms.currentFormmapadvanced || quickforms.currentFormaddPointForm;
                 this.loading = true;
-                quickforms.formRedirect = this.onFinish.bind(this);
-                if(this.advanced) {
+                this.finishButton = btn;
+                // If updating the location, don't put a new visit
+                if (currentForm.updateRow) {
+                    quickforms.formRedirect = this.onFinish.bind(this);
+                } else {
+                    quickforms.formRedirect = this.onFinishLocation.bind(this);
+                }
+
+                if (this.advanced) {
                     currentForm.childMap['harvestMonth'].currentVal = this.getMonthText();
                 }
                 currentForm.childMap['token'].currentVal = getCookie('token');
@@ -112,6 +121,18 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                     _this.onError(e);
                 });
                 this.loading = true;
+            },
+
+            onFinishLocation: function(data) {
+                if (data.indexOf("[") !== 0) return this.onError(data);
+                var _this = this;
+                var json = JSON.parse(data);
+                this.foragelocation = json[0].id;
+                var currentForm = quickforms.currentFormmapadvanced || quickforms.currentFormaddPointForm;
+                currentForm.fact="foragevisits";
+                currentForm.childMap['foragelocation'].currentVal = json[0].id;
+                quickforms.formRedirect = this.onFinish.bind(this);
+                quickforms.putFact(this.finishButton, "/");
             },
 
             onFinish(data) {
@@ -144,6 +165,12 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                             formId: 'mapadvanced',
                             fact: 'forageLocations',
                             callback: function(formObj) {
+                                if(_this.newMarker) {
+                                    var lat = formObj.childMap['addPointLat'],
+                                        long = formObj.childMap['addPointLong'];
+                                    lat.currentVal = _this.newMarker.position.lat;
+                                    long.currentVal = _this.newMarker.position.lng;
+                                }
                                 if(formObj.updateRow) {
                                     var selectedMonths = formObj.childMap['harvestMonth'].currentVal.split(", ");
                                     for(var month of _this.months) {
@@ -187,6 +214,19 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
             },
             selectMonth: function (monthText) {
                 this.months[monthText.id].selected = !this.months[monthText.id].selected;
+            },
+            getVisits: function (id) {
+                this.id = id;
+                this.visits=true;
+                window.setTimeout(function() {
+                    quickforms.loadTable(//appName, queryName*, parameterList, callback
+                        { queryName: 'getVisits',
+                        parameterList: 'id=' + id,
+                        domId: "visits",
+                        callback: function() {
+                            $('#visits').focus();
+                        }});
+                }, 10);
             }
         });
     });

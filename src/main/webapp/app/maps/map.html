@@ -3,7 +3,8 @@
 
 
     <div style="height:100%; position: relative">
-        <map id="mainMap" [data]="markers" [newMarker]="newMarker" (create)="setPosition($event)" [newPoint]="newPoint" style="height:100%">
+        <map id="mainMap" [data]="markers" [newMarker]="newMarker" (create)="setPosition($event)" (viewVisits)="getVisits($event)"
+            [newPoint]="newPoint" style="height:100%">
         </map>
         <div *ngIf="!newPoint && username" class="btn new-button btn-primary" (click)="clickNewPoint()">+</div>
 
@@ -31,6 +32,7 @@
             <input type="hidden" class="form-control" id="addPointLat" name="latitude" />
             <input type="hidden" class="form-control" id="addPointLong" name="longitude" />
             <input type="hidden" name="token" id="token" />
+            <input type="hidden" name="foragelocation" id="foragelocation" />
             <div class="btn-group" >
                 <button class="btn btn-primary ok" (click)="submit(btn)" #btn>Submit</button>
                 <button *ngIf="id" class="btn btn-default" (click)="delete()">Delete</button>
@@ -82,41 +84,45 @@
             <option value="5">Source is on private property (ask before you pick)</option>
         </select>
         <br>
-        <hr/>
-        <h4>Visit Info:</h4>
-        <label>Date Visited:</label>
-        <input type="text" name="date" class="date form-control" id="formDate" placeholder="mm/dd/yyyy" />
-        <label for="fruitingStatus">Fruiting Status:</label>
-        <select name="fruitingStatus" id="fruitingStatus" class="form-control" offline>
-            <option value="0">Unsure/Other</option>
-            <option value="1">Flowers</option>
-            <option value="2">Unripe Fruit</option>
-            <option value="3">Ripe Fruit</option>
-        </select>
-        <label for="quality">Quality:</label>
-        <select name="quality" id="quality" class="form-control" offline>
-            <option value="0">Unsure</option>
-            <option value="1">Poor</option>
-            <option value="2">Fair</option>
-            <option value="3">Good</option>
-            <option value="4">Very Good</option>
-            <option value="5">Excellent</option>
-        </select>
-        <label for="yield">Yield:</label>
-        <select name="yield" id="yield" class="form-control" offline>
-            <option value="0">Unsure</option>
-            <option value="1">Poor</option>
-            <option value="2">Fair</option>
-            <option value="3">Good</option>
-            <option value="4">Very Good</option>
-            <option value="5">Excellent</option>
-        </select>
-
+        <div *ngIf="!id">
+            <hr/>
+            <h4>Visit Info:</h4>
+            <label>Date Visited:</label>
+            <input type="text" name="date" class="date form-control" id="formDate" placeholder="mm/dd/yyyy" />
+            <label for="fruitingStatus">Fruiting Status:</label>
+            <select name="fruitingStatus" id="fruitingStatus" class="form-control" offline>
+                <option value="0">Unsure/Other</option>
+                <option value="1">Flowers</option>
+                <option value="2">Unripe Fruit</option>
+                <option value="3">Ripe Fruit</option>
+            </select>
+            <label for="quality">Quality:</label>
+            <select name="quality" id="quality" class="form-control" offline>
+                <option value="0">Unsure</option>
+                <option value="1">Poor</option>
+                <option value="2">Fair</option>
+                <option value="3">Good</option>
+                <option value="4">Very Good</option>
+                <option value="5">Excellent</option>
+            </select>
+            <label for="yield">Yield:</label>
+            <select name="yield" id="yield" class="form-control" offline>
+                <option value="0">Unsure</option>
+                <option value="1">Poor</option>
+                <option value="2">Fair</option>
+                <option value="3">Good</option>
+                <option value="4">Very Good</option>
+                <option value="5">Excellent</option>
+            </select>
+        </div>
         <label>Description:</label>
         <textarea class="form-control" id="addPointDescription" name="description" type="text"></textarea>
+
         <input type="hidden" class="form-control" id="addPointLat" name="latitude" />
         <input type="hidden" class="form-control" id="addPointLong" name="longitude" />
         <input type="hidden" name="token" id="token" />
+        <input type="hidden" name="foragelocation" id="foragelocation" />
+        
         <div class="btn-group" >
             <button class="btn btn-primary ok" (click)="submit(btn)" #btn>Submit</button>
             <button *ngIf="id" class="btn btn-default" (click)="delete()">Delete</button>
@@ -125,5 +131,9 @@
         </div>
     </form>
 
+    <div class="advanced" *ngIf="visits" >
+            <table id="visits" tabindex="0">
+            </table>
+    </div>
     
 </div>

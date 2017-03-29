@@ -3,7 +3,7 @@ define(function(){
 	config.jqueryVersion="";
 	config.jqueryMobileVersion="1.3.2.min";
 	config.jqueryMobileCss = "jquery.mobile-1.3.2.min.css";
-	config.jqueryDataTableCss = "jquery/jquery.dataTables.css";
+	config.jqueryDataTableCss = "/quickforms/css/jquery/jquery.dataTables.css";
 	config.jqueryMobileTheme = "";
 	config.jqueryUITheme = "";
 	config.quickformsUrl = "/quickforms/";

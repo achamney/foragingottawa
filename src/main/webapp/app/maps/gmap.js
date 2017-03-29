@@ -5,17 +5,19 @@ define([], function() {
         selector: 'map',
         template: '',
         inputs: ['data', 'newMarker', 'newPoint'],
-        outputs: ['create']
+        outputs: ['create', 'viewVisits']
     }).Class({
         
         constructor: function (ref) {
             this.ref = ref.nativeElement;
             this.create = new ng.core.EventEmitter(); 
+            this.viewVisits = new ng.core.EventEmitter(); 
             this.createSetters();
         },
         
         ngOnInit: function () {
         },
+
         ngOnChanges: function (changes) {
             var _this = this;
             if(this.mapImpl && !changes.newPoint) return;
@@ -86,6 +88,9 @@ define([], function() {
         addDataToMap: function() {
             var _this = this;
             if(!this._data) return;
+            window.viewVisits = function(id) {
+                _this.viewVisits.next(id);
+            }
             for(var datum of this._data) {
                 datum.map = this.mapImpl;
                 var popupObj = {
@@ -97,6 +102,7 @@ define([], function() {
                 if(datum.img) {
                     popupObj.content += "<img src='"+datum.img+"' width=200>";
                 }
+                popupObj.content += "<br><button class='btn btn-default pull-right' onclick='viewVisits("+datum.id+")'>Visits</button>";
                 var username = getCookie("username");
                 if(datum.username === username) {
                     popupObj.content += "<br><button class='btn btn-primary' onclick='window.location=\"#?page=2&id="+datum.id+"\";location.reload();'>Edit</button>";
