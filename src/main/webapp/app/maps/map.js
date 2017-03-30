@@ -52,7 +52,8 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                             img: datum.img,
                             date: datum.date,
                             username: datum.username,
-                            id: datum.foragelocationsKey
+                            id: datum.foragelocationsKey,
+                            visits: datum.visits
                         }
                     })
                 } else {
@@ -132,7 +133,7 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                 var _this = this;
                 var json = JSON.parse(data);
                 this.foragelocation = json[0].id;
-                var currentForm = quickforms.currentFormmapadvanced || quickforms.currentFormaddPointForm;
+                var currentForm = quickforms.currentFormmapadvanced || quickforms.currentFormaddPointForm || quickforms.currentFormnewVisit;
                 currentForm.fact="foragevisits";
                 currentForm.childMap['foragelocation'].currentVal = json[0].id;
                 quickforms.formRedirect = this.onFinish.bind(this);
@@ -223,25 +224,80 @@ define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkb
                 this.id = id;
                 this.showVisits = true;
                 this.loading = true;
-                var _this = this;
+                this.forageVisits = [];
                 window.setTimeout(function() {
                     $('.visits').focus();
                 });
                 quickforms.getFactData({
                     queryName: 'getVisits',
                     params: 'id='+id,
-                    callback: this.visitsResponse.bind(_this)
+                    callback: this.visitsResponse.bind(this)
                 });
             },
             visitsResponse: function(data) {
                 var _this = this;
                 this._zone.run(function(){
-                    this.loading = false;
+                    _this.loading = false;
                     if (isJSONString(data)) {
                         _this.forageVisits = JSON.parse(data);
                         _this.visitLocationName = _this.forageVisits[0].name;
                     }
                 });
+            },
+            createVisit: function() {
+                this.newVisit = true;
+                var _this = this;
+                window.setTimeout(function () {
+                    $("#newVisit").focus();
+                    quickforms.parseForm( //formId*, app, fact*, callback
+                        {
+                            formId: 'newVisit',
+                            fact: 'foragevisits'
+                        });
+                }, 300);
+            },
+            onVisitCancel: function() {
+                this.newVisit = false;
+            },
+            submitVisit: function(btn) {
+                this.finishButton = btn;
+                quickforms.currentFormnewVisit.childMap['token'].currentVal = getCookie('token');
+                this.onFinishLocation("[{\"id\":"+this.id+"}]");
+            },
+            editVisit: function(visit) {
+                if(visit.username === getCookie('username')) {
+                    window.location = "#?page=7&id=" + visit.foragevisitskey;
+                }
+            },
+            getVisitColour: function(txt) {
+                var num = parseInt(txt);
+                switch(num) {
+                    case 0:
+                        return "transparent";
+                    case 1:
+                        return "rgba(255,0,0,0.5)";
+                    case 2:
+                        return "rgba(255,150,0,0.5)";
+                    case 3:
+                        return "rgba(185,200,100,0.5)";
+                    case 4:
+                        return "rgba(155,220,100,0.5)";
+                    case 5:
+                        return "rgba(105,220,100,0.75)";
+                }
+            },
+            getVisitStatus: function(txt) {
+                var num = parseInt(txt);
+                switch(num) {
+                    case 0:
+                        return "Unsure";
+                    case 1:
+                        return "Flowers";
+                    case 2:
+                        return "Unripe";
+                    case 3:
+                        return "Ripe";
+                }
             }
         });
         

@@ -87,33 +87,7 @@
         <div *ngIf="!id">
             <hr/>
             <h4>Visit Info:</h4>
-            <label>Date Visited:</label>
-            <input type="text" name="date" class="date form-control" id="formDate" placeholder="mm/dd/yyyy" />
-            <label for="fruitingStatus">Fruiting Status:</label>
-            <select name="fruitingStatus" id="fruitingStatus" class="form-control" offline>
-                <option value="0">Unsure/Other</option>
-                <option value="1">Flowers</option>
-                <option value="2">Unripe Fruit</option>
-                <option value="3">Ripe Fruit</option>
-            </select>
-            <label for="quality">Quality:</label>
-            <select name="quality" id="quality" class="form-control" offline>
-                <option value="0">Unsure</option>
-                <option value="1">Poor</option>
-                <option value="2">Fair</option>
-                <option value="3">Good</option>
-                <option value="4">Very Good</option>
-                <option value="5">Excellent</option>
-            </select>
-            <label for="yield">Yield:</label>
-            <select name="yield" id="yield" class="form-control" offline>
-                <option value="0">Unsure</option>
-                <option value="1">Poor</option>
-                <option value="2">Fair</option>
-                <option value="3">Good</option>
-                <option value="4">Very Good</option>
-                <option value="5">Excellent</option>
-            </select>
+            <visit></visit>
         </div>
         <label>Description:</label>
         <textarea class="form-control" id="addPointDescription" name="description" type="text"></textarea>
@@ -132,33 +106,61 @@
     </form>
 
     <div class="visits advanced" *ngIf="showVisits" tabindex="0">
-        <h3>Visits to location {{visitLocationName}}</h3>
+        <hr>
+        <h4>Visits to location {{visitLocationName}}</h4>
+        <div class="loading" *ngIf="loading"></div>
+        <div class="btn btn-primary create-visit-button" (click)="createVisit()" *ngIf="username">Create Visit</div>
+        <div class="clear"></div>
         <div class="table-container">
             <div class="table">
                 <div class="table-row header-row">
-                    <div class="row-cell" style="width:50px">
-                        Id
-                    </div>
-                    <div class="row-cell" style="flex:1">
+                    <div class="row-cell" style="flex: 1">
                         Username
                     </div>
-                    <div class="row-cell" style="flex:1">
+                    <div class="row-cell" style="flex: 1">
                         Date
                     </div>
-                </div>
-                <div class="table-row" *ngFor="let visit of forageVisits">
-                    <div class="row-cell row-text" style="width:50px">
-                        <div>{{visit.foragevisitskey}}</div>
+                    <div class="row-cell" style="width: 65px">
+                        Status
                     </div>
+                    <div class="row-cell" style="width: 65px">
+                        Quality
+                    </div>
+                    <div class="row-cell" style="width: 65px">
+                        Yield
+                    </div>
+                </div>
+                <div class="table-row" *ngFor="let visit of forageVisits" (click)="editVisit(visit)">
                     <div class="row-cell" style="flex:1">
                         <div>{{visit.username}}</div>
                     </div>
                     <div class="row-cell" style="flex:1">
                         <div>{{visit.date}}</div>
                     </div>
+                    <div class="row-cell" style="width:65px">
+                        <div>{{getVisitStatus(visit.fruitingStatus)}}</div>
+                    </div>
+                    <div class="row-cell" style="width:65px" [style.background-color]="getVisitColour(visit.quality)">
+                        <div>{{visit.quality}}</div>
+                    </div>
+                    <div class="row-cell" style="width:65px" [style.background-color]="getVisitColour(visit.yield)">
+                        <div>{{visit.yield}}</div>
+                    </div>
                 </div>
             </div>
         </div>
+        <form id="newVisit" *ngIf="newVisit">
+            <visit></visit>
+            <input type="hidden" name="token" id="token" />
+            <input type="hidden" name="foragelocation" id="foragelocation" />
+            
+            <div class="btn-group" >
+                <button class="btn btn-primary ok" (click)="submitVisit(btn)" #btn>Submit</button>
+                <button *ngIf="visitId" class="btn btn-default" (click)="deleteVisit()">Delete</button>
+                <button class="btn btn-default" (click)="onVisitCancel()">Cancel</button>
+                <div class="loading" *ngIf="loading"></div>
+            </div>
+        </form>
     </div>
     
 </div>

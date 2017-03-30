@@ -1,0 +1,15 @@
+<div class="container content" style="height:calc(100% - 50px)">
+    <h3>Edit Visit</h3>
+    <form id="newVisit">
+        <visit></visit>
+        <input type="hidden" name="token" id="token" />
+        <input type="hidden" name="foragelocation" id="foragelocation" />
+        <br>
+        <div class="btn-group" >
+            <button class="btn btn-primary ok" (click)="onSubmit(btn)" #btn>Submit</button>
+            <button class="btn btn-warning" (click)="onDelete()">Delete</button>
+            <button class="btn btn-default" (click)="onCancel()">Cancel</button>
+            <div class="loading" *ngIf="loading"></div>
+        </div>
+    </form>
+</div>
