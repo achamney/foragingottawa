@@ -102,10 +102,10 @@ define([], function() {
                 if(datum.img) {
                     popupObj.content += "<img src='"+datum.img+"' width=200>";
                 }
-                popupObj.content += "<br><button class='btn btn-default pull-right' onclick='viewVisits("+datum.id+")'>Visits ("+datum.visits+")</button>";
+                popupObj.content += "<br><br><button class='btn btn-default pull-right' onclick='viewVisits("+datum.id+")'>Visits ("+datum.visits+")</button>";
                 var username = getCookie("username");
                 if(datum.username === username) {
-                    popupObj.content += "<br><button class='btn btn-primary' onclick='window.location=\"#?page=2&id="+datum.id+"\";location.reload();'>Edit</button>";
+                    popupObj.content += "<button class='btn btn-primary' onclick='window.location=\"#?page=2&id="+datum.id+"\";location.reload();'>Edit</button>";
                 }
                 var marker = new google.maps.Marker(datum);
                 _this.registerClick(marker, _this.mapImpl, popupObj);
