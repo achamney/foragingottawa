@@ -1,16 +1,17 @@
 
 <div class="container content">
     <form id="formTemplate">
-        <h1>{{'Subscribe to Foraging Ottawa'|nls}}</h1>
-        <p>Subscribing will give you access to post on the forums, and receive notifications for recent posts</p>
+        <h1>{{'Create an account with Foraging Ottawa'|nls}}</h1>
+        <p>An account will give you access to post on the forums, the ability to add forage locations, and receive notifications for recent posts</p>
 
-        <label for="email">{{'Email'|nls}}</label><br>
+        <label for="email">{{'Email'|nls}} <span style="font-weight: 300">{{'(we value your privacy)'|nls}}</span></label><br>
         <input type="text" name = "email" id = "email" value = "" class="form-control"/>
 
         <br />
         <label for="username" [class.error]="duplicate">{{'Username'|nls}}</label> 
         &nbsp;&nbsp; <span *ngIf="duplicate" class="error" style="color:red">{{'That username has alreay been taken'|nls}}</span><br>
-        <input type="text" name = "username" id = "username" value = "" (keyup)="duplicate=false" #user class="form-control"/>
+        <input type="text" name = "username" id = "username" value = "" 
+            (keyup)="duplicate=false" class="form-control" #user (blur)="val=user.value"/>
 
         <br />
         
@@ -19,7 +20,7 @@
 
         <br><br>
 
-        <captcha (cb)="resolveCaptcha($event)" #captcha></captcha>
+        <captcha (cb)="resolveCaptcha($event)" #captcha [val]="val"></captcha>
         <input type="hidden" name = "captcha" id = "captcha" value = ""/>
         <input type="hidden" name = "userRole" id = "userRole" value = "1"/>
 

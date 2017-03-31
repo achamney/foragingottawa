@@ -37,6 +37,20 @@ nav.navbar-default .navbar-nav>.open>a, nav.navbar-default .navbar-nav>.open>a:h
 	background-color: -webkit-linear-gradient(top, #008a00 0%,#008a00 0%,#005700 4%,#005700 4%,#003700 83%,#003700 100%); /* Chrome10-25,Safari5.1-6 */
 	background-color: linear-gradient(to bottom, #008a00 0%,#008a00 0%,#005700 4%,#005700 4%,#003700 83%,#003700 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
+#forageNav .nav-special a {
+	border:none;
+	position:static;
+	margin-bottom: 0;
+	transition: background-color 0.2s ease;
+	background: #b4ddb4; /* Old browsers */
+	background: -moz-linear-gradient(top, #b4ddb4 0%, #83c783 0%, #52b152 1%, #008a00 28%, #005700 83%, #004900 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #b4ddb4 0%,#83c783 0%,#52b152 1%,#008a00 28%,#005700 83%,#004900 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #b4ddb4 0%,#83c783 0%,#52b152 1%,#008a00 28%,#005700 83%,#004900 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+#forageNav .nav-special a:hover {
+	background: #003700;
+	background-color: #003700;
+}
 #forageNav.navbar-default .navbar-nav>li>a{
 	color:white;
 }
