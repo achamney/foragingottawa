@@ -14,12 +14,12 @@ define(['helper/md5'], function () {
                 id: 1,
                 title: "Home"
             }, {
-                id: 2,
-                title: "Map"
-            }, {
                 id: 3,
                 title: "About"
             }, {
+                id: 2,
+                title: "Map"
+            },  {
                 id: 4,
                 title: "Forum"
             }];
