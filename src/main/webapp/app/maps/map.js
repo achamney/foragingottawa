@@ -1,5 +1,5 @@
 var hasMapLoaded = false;
-define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkbox', "dom/form/select", "dom/form/autocomplete", 'dom/tableControl'],
+define(['server/getFactData', 'dom/form/text', 'dom/form/date', 'dom/form/checkbox', "dom/form/select",'forage/maps/species', 'dom/tableControl'],
     function () {
         var component = ng.core.Component({
             selector: 'maps',

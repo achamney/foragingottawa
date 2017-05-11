@@ -7,11 +7,12 @@ require([
     'forage/about',
     'forage/heartbeat',
     'forage/profile',
+    'forage/common',
 
     'forage/maps/maps',
     'forage/forum/forum'
 ], function (
-    Nav, Home, Text, Subscribe, Captcha, About, Heartbeat, Profile,
+    Nav, Home, Text, Subscribe, Captcha, About, Heartbeat, Profile, Common,
     Maps, Forum) {
 
     var Main = ng.core.Component({
@@ -39,8 +40,9 @@ require([
         Reflect.metadata("design:paramtypes", [/*ng.router.ActivatedRoute, ng.common.Location*/])
     ], Main);
     var module = ng.core.NgModule({
-        imports: [ng.platformBrowser.BrowserModule, Forum, Maps],
+        imports: [ng.platformBrowser.BrowserModule, Forum, Maps, Common],
         declarations: [Main, Home, Text, Nav, Subscribe, Captcha, About, Heartbeat, Profile],
+        exports: [],
         bootstrap: [Main],
     })
         .Class({

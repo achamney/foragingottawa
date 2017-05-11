@@ -9,14 +9,14 @@
         <div *ngIf="!newPoint && username" class="btn new-button btn-primary" (click)="clickNewPoint()">+</div>
 
         <form id="addPointForm" *ngIf="newPoint && !advanced" tabindex="0">
-            <h4>Add Location<small class="pull-right"><a (click)="openAdvanced()">Advanced</a></small></h4>
-            <label>Name:</label>
+            <h4>{{'Add Location'|nls}}<small class="pull-right"><a (click)="openAdvanced()">{{'Advanced'|nls}}</a></small></h4>
+            <label>{{'Name'|nls}}:</label>
             <input class="form-control" id="addPointName" name="name" type="text" />
-            <label>Date Visited:</label>
+            <label>{{'Date Visited'|nls}}:</label>
             <input type="text" name="date" class="date form-control" id="formDate" />
-            <label>Image Url: <a href="http://imgur.com" target="new">Upload</a></label>
+            <label>{{'Image Url'|nls}}: <a href="http://imgur.com" target="new">{{'Upload'|nls}}</a></label>
             <input class="form-control" id="addPointImg" name="img" type="text" />
-            <label>Icon:</label><br>
+            <label>{{'Icon'|nls}}:</label><br>
             <input type="radio" name="icon" id="icon1" value="1" (click)="setMarkerIcon(1)" checked/>
             <img src="img/tree.png" width="20px">
             <input type="radio" name="icon" id="icon2" value="2" (click)="setMarkerIcon(2)"/>
@@ -27,16 +27,16 @@
             <img src="img/mushroom.png" width="20px">
             <br>
 
-            <label>Description:</label>
+            <label>{{'Description'|nls}}:</label>
             <textarea class="form-control" id="addPointDescription" name="description" type="text"></textarea>
             <input type="hidden" class="form-control" id="addPointLat" name="latitude" />
             <input type="hidden" class="form-control" id="addPointLong" name="longitude" />
             <input type="hidden" name="token" id="token" />
             <input type="hidden" name="foragelocation" id="foragelocation" />
             <div class="btn-group" >
-                <button class="btn btn-primary ok" (click)="submit(btn)" #btn>Submit</button>
-                <button *ngIf="id" class="btn btn-default" (click)="delete()">Delete</button>
-                <button class="btn btn-default" (click)="onCancel()">Cancel</button>
+                <button class="btn btn-primary ok" (click)="submit(btn)" #btn>{{'Submit'|nls}}</button>
+                <button *ngIf="id" class="btn btn-default" (click)="delete()">{{'Delete'|nls}}</button>
+                <button class="btn btn-default" (click)="onCancel()">{{'Cancel'|nls}}</button>
                 <div class="loading" *ngIf="loading"></div>
             </div>
         </form>
@@ -45,13 +45,13 @@
 
     <form class="advanced" tabindex="0" id="mapadvanced" *ngIf="advanced">
         <hr>
-        <h4>Advanced Add Location</h4>
-        <label>Common Name:</label>
+        <h4>{{'Advanced Add Location'|nls}}</h4>
+        <label>{{'Common Name'|nls}}:</label>
         <input class="form-control" id="addPointName" name="name" type="text" />
-        <label>Scientific Name:</label>
-        <input type="text" name="species" id="species" class="form-control autocomplete" placeholder="Enter 3 characters to search" />
+        <label>{{'Scientific Name'|nls}}:</label>
+        <input type="text" name="species" id="species" class="form-control autocomplete" placeholder="{{'Enter 3 characters to search'|nls}}" />
         
-        <label>Harvest Maturity Months:</label> <br>
+        <label>{{'Harvest Maturity Months'|nls}}:</label> <br>
         <div class="form-control multi ellipsis" (click)="harvestDropdown=true">{{getMonthText()}}</div>
         <div *ngIf="harvestDropdown" clickOutside (outside)="harvestDropdown=false" class="multi-list">
             <div *ngFor="let monthText of months" (click)="selectMonth(monthText)">
@@ -62,9 +62,9 @@
         </div>
         <input type="hidden" name="harvestMonth" id="harvestMonth" />
         
-        <label>Image Url: <a href="http://imgur.com" target="new">Upload</a></label>
+        <label>{{'Image Url'|nls}}: <a href="http://imgur.com" target="new">{{'Upload'|nls}}</a></label>
         <input class="form-control" id="addPointImg" name="img" type="text" />
-        <label>Icon:</label><br>
+        <label>{{'Icon'|nls}}:</label><br>
         <input type="radio" name="icon" id="icon1" value="1" (click)="setMarkerIcon(1)" checked/>
         <img src="img/tree.png" width="20px">
         <input type="radio" name="icon" id="icon2" value="2" (click)="setMarkerIcon(2)"/>
@@ -74,22 +74,22 @@
         <input type="radio" name="icon" id="icon4" value="4" (click)="setMarkerIcon(4)"/>
         <img src="img/mushroom.png" width="20px">
         <br>
-        <label for="access">Access:</label>
+        <label for="access">{{'Access'|nls}}:</label>
         <select name="access" id="access" class="form-control" offline>
-            <option value="0">Unsure</option>
-            <option value="1">Source is on my property</option>
-            <option value="2">I have permission from the owner to add the source</option>
-            <option value="3">Source is on public land</option>
-            <option value="4">Source is on private property but overhangs public land</option>
-            <option value="5">Source is on private property (ask before you pick)</option>
+            <option value="0">{{'Unsure'|nls}}</option>
+            <option value="1">{{'Source is on my property'|nls}}</option>
+            <option value="2">{{'I have permission from the owner to add the source'|nls}}</option>
+            <option value="3">{{'Source is on public land'|nls}}</option>
+            <option value="4">{{'Source is on private property but overhangs public land'|nls}}</option>
+            <option value="5">{{'Source is on private property (ask before you pick)'|nls}}</option>
         </select>
         <br>
         <div *ngIf="!id">
             <hr/>
-            <h4>Visit Info:</h4>
+            <h4>{{'Visit Info'|nls}}:</h4>
             <visit></visit>
         </div>
-        <label>Description:</label>
+        <label>{{'Description'|nls}}:</label>
         <textarea class="form-control" id="addPointDescription" name="description" type="text"></textarea>
 
         <input type="hidden" class="form-control" id="addPointLat" name="latitude" />
@@ -98,36 +98,36 @@
         <input type="hidden" name="foragelocation" id="foragelocation" />
         
         <div class="btn-group" >
-            <button class="btn btn-primary ok" (click)="submit(btn)" #btn>Submit</button>
-            <button *ngIf="id" class="btn btn-default" (click)="delete()">Delete</button>
-            <button class="btn btn-default" (click)="onCancel()">Cancel</button>
+            <button class="btn btn-primary ok" (click)="submit(btn)" #btn>{{'Submit'|nls}}</button>
+            <button *ngIf="id" class="btn btn-default" (click)="delete()">{{'Delete'|nls}}</button>
+            <button class="btn btn-default" (click)="onCancel()">{{'Cancel'|nls}}</button>
             <div class="loading" *ngIf="loading"></div>
         </div>
     </form>
 
     <div class="visits advanced" *ngIf="showVisits" tabindex="0">
         <hr>
-        <h4>Visits to location {{visitLocationName}}</h4>
+        <h4>{{'Visits to location'|nls}} {{visitLocationName}}</h4>
         <div class="loading" *ngIf="loading"></div>
-        <div class="btn btn-primary create-visit-button" (click)="createVisit()" *ngIf="username">Create Visit</div>
+        <div class="btn btn-primary create-visit-button" (click)="createVisit()" *ngIf="username">{{'Create Visit'|nls}}</div>
         <div class="clear"></div>
         <div class="table-container">
             <div class="table">
                 <div class="table-row header-row">
                     <div class="row-cell" style="flex: 1">
-                        Username
+                        {{'Username'|nls}}
                     </div>
                     <div class="row-cell" style="flex: 1">
-                        Date
+                        {{'Date'|nls}}
                     </div>
                     <div class="row-cell" style="width: 65px">
-                        Status
+                        {{'Status'|nls}}
                     </div>
                     <div class="row-cell" style="width: 65px">
-                        Quality
+                        {{'Quality'|nls}}
                     </div>
                     <div class="row-cell" style="width: 65px">
-                        Yield
+                        {{'Yield'|nls}}
                     </div>
                 </div>
                 <div class="table-row" *ngFor="let visit of forageVisits" (click)="editVisit(visit)">
@@ -155,9 +155,9 @@
             <input type="hidden" name="foragelocation" id="foragelocation" />
             
             <div class="btn-group" >
-                <button class="btn btn-primary ok" (click)="submitVisit(btn)" #btn>Submit</button>
-                <button *ngIf="visitId" class="btn btn-default" (click)="deleteVisit()">Delete</button>
-                <button class="btn btn-default" (click)="onVisitCancel()">Cancel</button>
+                <button class="btn btn-primary ok" (click)="submitVisit(btn)" #btn>{{'Submit'|nls}}</button>
+                <button *ngIf="visitId" class="btn btn-default" (click)="deleteVisit()">{{'Delete'|nls}}</button>
+                <button class="btn btn-default" (click)="onVisitCancel()">{{'Cancel'|nls}}</button>
                 <div class="loading" *ngIf="loading"></div>
             </div>
         </form>

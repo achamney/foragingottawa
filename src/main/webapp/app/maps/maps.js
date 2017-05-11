@@ -1,18 +1,16 @@
 define([
-    'forage/bbcode',
-    'forage/nls',
-    'forage/clickoutside',
+    'forage/common',
 
     'forage/maps/map',
     'forage/maps/visit',
     'forage/maps/edit-visit',
     'forage/maps/gmap'
-    ], function (BBCode, Nls, Clickoutside, 
+    ], function (Common, 
     Map, Visit, EditVisit, GMap
     ) {
         var module = ng.core.NgModule({
-            imports: [ng.platformBrowser.BrowserModule],
-            declarations: [Map, GMap, Clickoutside, Visit, EditVisit],
+            imports: [ng.platformBrowser.BrowserModule, Common],
+            declarations: [Map, GMap, Visit, EditVisit],
             exports: [Map, EditVisit]
         })
         .Class({
