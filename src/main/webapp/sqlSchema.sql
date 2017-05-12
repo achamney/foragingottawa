@@ -123,7 +123,13 @@ where queryLabel = 'getAllUsers';
 
 
 update fact_queries set query = '
-select * from fact_forageLocations where deleteFlag is null or deleteFlag = 0
+select latitude,longitude,icon,name,description,img,date,username,foragelocationsKey,
+    (select count(*) from fact_foragelocations a 
+        INNER JOIN fact_foragevisits b on a.foragelocationsKey = b.foragelocation
+        where a.foragelocationskey = l.foragelocationskey and (b.deleteFlag is null or b.deleteFlag = 0))
+        as visits
+	from fact_forageLocations as l
+    where deleteFlag is null or deleteFlag = 0
 '
 where queryLabel = 'getForageLocations';
 
@@ -203,6 +209,7 @@ SELECT threads.name, threads.threadsKey, threads.views,
         FROM fact_threads as threads
         INNER JOIN fact_boards on boardsKey = board
         WHERE boardsKey = ? and (threads.deleteFlag is null or threads.deleteFlag = 0)	
+        order by STR_TO_DATE(replyDate, \'%Y-%m-%d\')
 '
 where queryLabel = 'getThreads';
         
@@ -258,5 +265,43 @@ SELECT p.postsKey, t.name as title, body, p.createdDate, p.username, threadsKey,
       inner join fact_posts as p on p.thread = t.threadsKey
       inner join fact_boards as b on t.board = b.boardsKey
       where threadsKey = ? and (p.deleteFlag is null or p.deleteFlag = 0)	
+      order by STR_TO_DATE(p.createdDate, \'%Y-%m-%d\')
  '
  where queryLabel='getPosts'
+
+
+update fact_queries set query = '
+select token, username, usersKey from fact_users where username = ? and password = ?
+'
+where queryLabel = 'getLogin';
+
+
+update fact_queries set query = '
+SELECT threads.name, threads.threadsKey, threads.views,
+      	(select count(*)-1 from fact_posts as p 
+        where threads.threadsKey = p.thread and (p.deleteFlag is null or p.deleteFlag = 0)) as replies,
+       	(select a.username from fact_posts as a 
+        where threads.threadsKey = a.thread
+        order by STR_TO_DATE(a.createdDate, \'%Y-%m-%d\') desc
+        limit 1) as replyUser,      	(select a.createdDate from fact_posts as a
+        where threads.threadsKey = a.thread
+        order by STR_TO_DATE(a.createdDate, \'%Y-%m-%d\') desc
+        limit 1) as replyDate,
+      	(select a.postsKey from fact_posts as a 
+        where threads.threadsKey = a.thread
+        order by STR_TO_DATE(a.createdDate, \'%Y-%m-%d\') desc
+        limit 1) as replyKey,
+        board,
+        fact_boards.name as "boardName"
+        FROM fact_threads as threads
+        INNER JOIN fact_boards on boardsKey = board
+        INNER JOIN fact_posts as p on p.thread = threads.threadsKey
+		WHERE (threads.name like ?
+		    OR threads.username like ?
+            OR p.username like ?
+            OR p. body like ?) 
+            and (threads.deleteFlag is null or threads.deleteFlag = 0)	
+        group by threads.name, threads.threadsKey, threads.views
+        order by STR_TO_DATE(replyDate, \'%Y-%m-%d\') desc
+'
+where queryLabel = 'searchPosts';
