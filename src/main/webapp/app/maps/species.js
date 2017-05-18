@@ -6,9 +6,24 @@ define(['dom/form/form',
         {
             this.autocompleteElement = new quickforms.AutoCompleteElement(dom, formObj);
             this.autocompleteElement.createOption = function (json) {
-                var opt = $('<option value="' + json.id + '" ' + json.selected + '>' + json.label + '<small>' + json.commonName + '</small></option>');
+                var opt = $('<div value="' + json.id + '" ' + json.selected + '><i>' + json.label + '</i><small> (' + json.commonName_en + ')</small></div>');
                 return opt;
             };
+            this.autocompleteElement.getAutoCompleteList = function (val) {
+                this.loading.removeClass("hidden");
+                quickforms.getFactData({
+                    queryName: 'get'+this.name,
+                    params: 'label=%'+val+'%,label=%'+val+'%,label=%'+val+'%',
+                    callback: this.convertJSONtoSelect.bind(this)
+                });
+            };
+            
+            this.autocompleteElement.selectOption = function(dom, e) {
+                var text = $(dom).text();
+                this.list.children().remove();
+                this.dom.val(text);
+                this.currentVal = text;
+            }
         };
         quickforms.form.domParsers.push(function (formObj) {
             var texts = formObj.dom.find('input.species[type=text]');
@@ -16,7 +31,7 @@ define(['dom/form/form',
                 tex = $(tex);
 
                 var texObj = new SpeciesElement(tex, formObj);
-                texObj.parseDom(formObj);
+                texObj.autocompleteElement.parseDom(formObj);
             });
         });
 

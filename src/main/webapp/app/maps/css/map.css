@@ -85,12 +85,12 @@ maps .autocomplete-list {
 	background-color: rgba(255,255,255,0.5);
     box-shadow: 0 0 2px;
 }
-maps .autocomplete-list option {
+maps .autocomplete-list div {
 	padding: 5px;
 	border-bottom: 1px solid #BBB;
 	cursor: pointer;
 }
-maps .autocomplete-list option:hover {
+maps .autocomplete-list div:hover {
 	background-color: rgba(180,255,180,0.7);
 }
 

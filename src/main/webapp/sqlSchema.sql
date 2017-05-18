@@ -135,7 +135,9 @@ where queryLabel = 'getForageLocations';
 
 update fact_queries set query = 
 '
-select speciesKey as id, speciesLabel as label, commonName as commonName, speciesOrder as "order" from lkup_species where concat(COALESCE(speciesLabel,\'\'),\' \',COALESCE(commonName,\'\')) like ?
+select speciesKey as id, speciesLabel as label, commonName_en as commonName_en, commonName_fr as commonName_fr, speciesOrder as "order" 
+from lkup_species 
+where speciesLabel like ? or commonName_en like ? or commonName_fr like ?
 '
 where queriesKey =15;
 update fact_queries set query = '
